@@ -29,6 +29,12 @@ Optional adjustment demonstration: apply -5 with a reason, observe the original 
 
 A valid correction reduces the risk finding it resolves. It does not erase unrelated relationship/payment risk or automatically turn HIGH into LOW.
 
+## Optional Case 2 relationship demonstration
+
+Use `Apex5Vibe_Case_2_Relationship_Evidence.xlsx` from the source fixture directory in Buyer–Seller Relationship, then click Send & reassess. In the verified run, that module decreased from 30 to 0 and the total decreased from 35 HIGH to 5 LOW. No manual adjustment was applied; the other six module runs stayed unchanged.
+
+This workbook adds 16 **fictional demonstration trades** to the 12 existing local reference records. It changes the combined median from GBP 8,000 to GBP 35,000. It is a different evidence scenario from correcting the invoice's fields. The original invoice, Errors, Corrected, and Additional Evidence files do not contain these added historical transactions and do not alone remove the 30-point trade-scale finding. See [Relationship evidence demo](relationship-evidence-demo.md) for the exact calculation, provenance, and current verification limitations.
+
 ## Troubleshooting
 
 | Symptom | Action |

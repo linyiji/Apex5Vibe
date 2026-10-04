@@ -1,0 +1,44 @@
+{
+  "case_id": "case_4ec73a33ab5f4102acf55b2a0e14ed0f",
+  "evidence_id": "file_213767950ee9403cac3d0ed8954dc3bd",
+  "synthetic": true,
+  "additional_authored_trades": 16,
+  "existing_trades_preserved": 12,
+  "relationship_before": 30,
+  "relationship_after": 0,
+  "total_before": 35,
+  "total_after": 5,
+  "risk_band_after": "LOW",
+  "other_six_runs_unchanged": [
+    "invoice_integrity",
+    "buyer_verification",
+    "seller_verification",
+    "market_price",
+    "payment_history",
+    "duplicate_financing"
+  ],
+  "run_id": "run_a61f2647a9ca4076ad0501671f3cfee5",
+  "download_bytes_verified": true,
+  "manual_adjustment_total": 0,
+  "verified_on": "2026-10-04",
+  "timezone": "Asia/Hong_Kong",
+  "requested_model": "gpt-6.1-sol",
+  "reported_model": "gpt-6.1-sol",
+  "original_median_gbp": 8000,
+  "combined_median_gbp": 35000,
+  "invoice_amount_gbp": 50000,
+  "ratio": 1.4285714285714286,
+  "sources": [
+    {
+      "path": "deliverables/apexvibe5-handoff-v1/source/Apex5Vibe_Case_2_Relationship_Evidence.xlsx",
+      "sha256": "ef4ba18d744d825ecafc012da578ed8a2133078f3a68efd25fdf009a8c4d51d6",
+      "bytes": 8351
+    },
+    {
+      "path": "deliverables/apexvibe5-handoff-v1/source/ApexDefend_Case_2_Additional_Evidence.pdf",
+      "sha256": "6386a87ed6ead873a51ed5dd10a649c392d7265d4acc787c475242b3329f64af",
+      "bytes": 274614
+    }
+  ],
+  "limitation": "The sixteen additional transactions were authored for this synthetic demonstration; they were not extracted from the four supplied invoice and correction files. This verifies re-assessment behavior, not real transaction authenticity or financing eligibility."
+}

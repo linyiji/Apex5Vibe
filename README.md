@@ -2,7 +2,7 @@
 
 A local **English-language PC Web demo** with a Next.js frontend, FastAPI backend, SQLite database, and independent workers. The backend calls TeamRouter using **gpt-6.1-sol** to assess seven invoice risk modules against selected local evidence.
 
-**Higher scores mean higher invoice risk. LOW < 30; HIGH ≥ 30.** Corrected evidence can remove a finding and lower the module and aggregate scores. A risk reduction does not automatically imply LOW: Case 2 demonstrates **35 → 50 → 35 HIGH**.
+**Higher scores mean higher invoice risk. LOW < 30; HIGH ≥ 30.** Corrected evidence can remove a finding and lower the module and aggregate scores. A risk reduction does not automatically imply LOW: the Case 2 field-correction flow demonstrates **35 → 50 → 35 HIGH**. An optional, separately authored synthetic trade-ledger fixture demonstrates **35 HIGH → 5 LOW** by changing the comparable-history dataset.
 
 The frontend uses the real `/v1` API by default. It uploads file bytes and displays persisted AI results; it does not calculate scores locally or fall back to a mock result on failure. Scope is desktop PC browsers. Mobile adaptation and production deployment are outside this demo.
 
@@ -60,8 +60,11 @@ Use the source files in `deliverables/apexvibe5-handoff-v1/source/`. They are sy
 | Case 2 PDF → Run Assessment | 35 / HIGH, manual review, no automatic advance |
 | Case 2 Invoice Integrity → Errors.xlsx → Send & reassess | 50 / HIGH; integrity increases from 0 to 15 |
 | Same module → Corrected.xlsx → Replace current field sheet → Send & reassess | 35 / HIGH; integrity decreases from 15 to 0 |
+| Case 2 Relationship → Apex5Vibe_Case_2_Relationship_Evidence.xlsx → Send & reassess | 5 / LOW; relationship decreases from 30 to 0 using additional synthetic history |
 
 The corrected sheet supersedes the erroneous sheet only after successful parsing and validation. The old evidence and AI run stay in history. The main PDF and the other six modules remain unchanged.
+
+The optional relationship workbook preserves 12 local reference trades and adds 16 fictional demonstration trades. The combined median becomes GBP 35,000 and the current invoice/median ratio becomes 1.43. These additional trades are **not facts extracted from the original invoice, error sheet, correction sheet, or supporting PDF**. The original four files alone leave the relationship baseline at GBP 8,000 and the relationship score at 30. See [Relationship evidence demo](docs/relationship-evidence-demo.md) for the distinction, reproducible steps, and verification.
 
 Buyer and Seller independently support Skip, Select existing, and Manual. Review displays the original PDF and read-only extracted fields. Resolve any company conflict before starting. Step 3 automatically opens the result after the initial batch settles, including failed or incomplete assessments.
 
@@ -97,7 +100,8 @@ Offline tests use an explicitly marked test analyzer. They are separate from rea
 - [Backend implementation](docs/backend-implementation.md)
 - [API integration](docs/frontend-integration.md)
 - [Demo runbook](docs/demo-runbook.md)
+- [Relationship evidence demo and limitations](docs/relationship-evidence-demo.md)
 - [Earlier backend acceptance](docs/validation/README.md)
 - [Original architecture archive](deliverables/apexvibe5-handoff-v1/README.md)
 
-The service is a local demonstration with a fixed analyst identity and synthetic reference data. It supports the supplied invoice AcroForm template and text-based evidence, not general scanned-invoice OCR. Images, Word, and legacy XLS are unavailable. Authentication, multi-tenancy, external registries, and actual financing execution are outside scope. Work and tests remain local; no GitHub push has been performed.
+The service is a local demonstration with a fixed analyst identity and synthetic reference data. It supports the supplied invoice AcroForm template and text-based evidence, not general scanned-invoice OCR. Images, Word, and legacy XLS are unavailable. Authentication, multi-tenancy, external registries, independent verification of uploaded trade records, and actual financing execution are outside scope. The GitHub repository contains the source, synthetic fixtures, and validation records; the application still runs locally.
