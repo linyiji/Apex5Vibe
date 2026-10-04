@@ -35,14 +35,20 @@ class Service:
 
     def command(self, scope, key, payload, action):
         if not key or not 8 <= len(key) <= 128:
-            raise AppError("INVALID_IDEMPOTENCY_KEY", "Idempotency-Key需要8到128个字符", 400)
+            raise AppError(
+                "INVALID_IDEMPOTENCY_KEY", "Idempotency-Key must contain 8 to 128 characters.", 400
+            )
         scope = f"local_demo_analyst:{scope}:{key}"
         request_hash = content_hash(payload)
         with self.db.transaction() as s:
             old = s.get(Idempotency, scope)
             if old and old.expires_at > time.time():
                 if old.request_hash != request_hash:
-                    raise AppError("IDEMPOTENCY_CONFLICT", "相同幂等键不能用于不同请求", 409)
+                    raise AppError(
+                        "IDEMPOTENCY_CONFLICT",
+                        "The same idempotency key cannot be used for different requests.",
+                        409,
+                    )
                 return old.status_code, old.response
             if old:
                 s.delete(old)
@@ -62,21 +68,21 @@ class Service:
     def case(self, s, case_id):
         case = s.get(Case, case_id)
         if not case:
-            raise AppError("CASE_NOT_FOUND", "评估Case不存在", 404)
+            raise AppError("CASE_NOT_FOUND", "Assessment case not found.", 404)
         return case
 
     def module(self, s, case_id, key):
         self.case(s, case_id)
         module = s.get(Module, (case_id, key))
         if not module:
-            raise AppError("MODULE_NOT_FOUND", "评估模块不存在", 404)
+            raise AppError("MODULE_NOT_FOUND", "Assessment module not found.", 404)
         return module
 
     def expected_case(self, case, revision):
         if case.revision != revision:
             raise AppError(
                 "VERSION_CONFLICT",
-                "Case已更新，请刷新后重试",
+                "This case has changed. Refresh it before trying again.",
                 409,
                 details={"current_case_revision": case.revision},
             )
@@ -85,7 +91,7 @@ class Service:
         if module.version != version:
             raise AppError(
                 "VERSION_CONFLICT",
-                "模块已更新，请刷新后重试",
+                "This module has changed. Refresh it before trying again.",
                 409,
                 details={"current_module_version": module.version},
             )
@@ -110,7 +116,7 @@ class Service:
     def validate_selection(self, s, selection):
         if selection["mode"] == "existing":
             if not self.entity(s, selection["entity_id"]):
-                raise AppError("ENTITY_NOT_FOUND", "所选主体不存在", 404)
+                raise AppError("ENTITY_NOT_FOUND", "The selected company was not found.", 404)
 
     def entity(self, s, entity_id):
         for r in s.scalars(select(Reference).where(Reference.kind == "entity_profile")):
@@ -132,7 +138,10 @@ class Service:
                 and r.document["data"].get("country") == extracted["country"]
             ]
             if len(matches) > 1:
-                raise AppError("ENTITY_AMBIGUOUS", "主体注册号匹配到多个档案，请核对")
+                raise AppError(
+                    "ENTITY_AMBIGUOUS",
+                    "The registration number matches multiple company records. Review the selection.",
+                )
             profile = matches[0] if matches else None
             if profile is None:
                 entity_id = uid("entity")
@@ -176,7 +185,7 @@ class Service:
                 "invoice_entity": extracted,
                 "resolved_entity_id": None if status == "conflict" else profile["entity_id"],
                 "status": status,
-                "reason": "对照发票注册号与辖区匹配本地资料",
+                "reason": "Matched invoice registration number and jurisdiction against local records.",
                 "resolution_action": existing_context.get("resolution_action"),
             }
             invoice[side] = extracted
@@ -186,10 +195,12 @@ class Service:
         case = self.case(s, case_id)
         self.expected_case(case, revision)
         if Path(filename).suffix.lower() != ".pdf":
-            raise AppError("UNSUPPORTED_PARSER", "主发票请使用PDF", 415)
+            raise AppError("UNSUPPORTED_PARSER", "Upload the main invoice as a PDF.", 415)
         validate_upload(filename, data, self.settings.max_file_bytes)
         if case.invoice and not replace:
-            raise AppError("INVOICE_EXISTS", "已有主发票，替换需明确设置replace=true", 409)
+            raise AppError(
+                "INVOICE_EXISTS", "A main invoice already exists. Set replace=true to replace it.", 409
+            )
         active = s.scalar(
             select(Job).where(
                 Job.case_id == case_id,
@@ -198,7 +209,9 @@ class Service:
             )
         )
         if active:
-            raise AppError("RUN_ALREADY_ACTIVE", "请等待当前任务完成再替换主发票", 409)
+            raise AppError(
+                "RUN_ALREADY_ACTIVE", "Wait for active jobs to finish before replacing the main invoice.", 409
+            )
         evidence = self.store_file(s, case_id, None, filename, data, "invoice")
         case.error = None
         case.stage = "extracting"
@@ -215,7 +228,7 @@ class Service:
         case = self.case(s, case_id)
         self.expected_case(case, body.expected_case_revision)
         if not case.invoice or case.stage == "extracting":
-            raise AppError("INVOICE_NOT_READY", "请先等待主发票解析完成")
+            raise AppError("INVOICE_NOT_READY", "Wait for the main invoice to finish parsing.")
         selection = body.selection.model_dump(exclude_none=True)
         self.validate_selection(s, selection)
         case.parties = {
@@ -237,11 +250,17 @@ class Service:
         case = self.case(s, case_id)
         self.expected_case(case, body.expected_case_revision)
         if not case.invoice or case.stage == "extracting" or case.error:
-            raise AppError("INVOICE_NOT_READY", "主发票尚未解析成功")
+            raise AppError("INVOICE_NOT_READY", "The main invoice has not been parsed successfully.")
         if any(p["status"] == "conflict" for p in case.parties.values()):
-            raise AppError("ENTITY_CONFLICT", "请先解决买卖方主体冲突")
+            raise AppError(
+                "ENTITY_CONFLICT", "Resolve buyer and seller conflicts before starting the assessment."
+            )
         if case.initial_status != "not_started":
-            raise AppError("ASSESSMENT_ALREADY_STARTED", "初次评估已启动，请使用模块重跑", 409)
+            raise AppError(
+                "ASSESSMENT_ALREADY_STARTED",
+                "The initial assessment has already started. Re-run individual modules instead.",
+                409,
+            )
         case.initial_status, case.stage = "running", "assessing"
         run_ids = []
         for key in MODULES:
@@ -278,17 +297,24 @@ class Service:
         active = self.active_job(s, module)
         if active:
             if not allow_defer:
-                raise AppError("RUN_ALREADY_ACTIVE", "此模块正在评估", 409, details={"job_id": active.id})
+                raise AppError(
+                    "RUN_ALREADY_ACTIVE",
+                    "This module already has an active assessment.",
+                    409,
+                    details={"job_id": active.id},
+                )
             module.rerun_requested = True
             return active
         if not case.invoice or case.stage == "extracting" or case.error:
-            raise AppError("INVOICE_NOT_READY", "主发票不可用于评估")
+            raise AppError("INVOICE_NOT_READY", "The main invoice is not ready for assessment.")
         if any(p.get("status") == "conflict" for p in case.parties.values()):
             if allow_defer:
                 module.state, module.rerun_requested = "needs_info", False
-                module.error = AppError("ENTITY_CONFLICT", "请先解决主体冲突").body()
+                module.error = AppError(
+                    "ENTITY_CONFLICT", "Resolve company conflicts before continuing."
+                ).body()
                 return None
-            raise AppError("ENTITY_CONFLICT", "请先解决主体冲突")
+            raise AppError("ENTITY_CONFLICT", "Resolve company conflicts before continuing.")
         unparsed = s.scalar(
             select(Evidence).where(
                 Evidence.case_id == case.id,
@@ -305,7 +331,7 @@ class Service:
                 module.rerun_requested = False
                 module.state, module.error = "needs_info", unparsed.error
                 return None
-            raise AppError("EVIDENCE_NOT_READY", "模块证据仍在解析或已解析失败")
+            raise AppError("EVIDENCE_NOT_READY", "Module evidence is still being parsed or failed to parse.")
         run = Run(
             id=uid("run"),
             case_id=case.id,
@@ -388,17 +414,20 @@ class Service:
         case, module = self.case(s, case_id), self.module(s, case_id, key)
         self.expected_module(module, expected_version)
         if not 1 <= len(files) <= self.settings.max_files:
-            raise AppError("INVALID_FILES", "每次请上传1到10个文件")
+            raise AppError("INVALID_FILES", "Upload between 1 and 10 files per request.")
         for name, data in files:
             validate_upload(name, data, self.settings.max_file_bytes)
         if supersedes_evidence_id and not evidence_group:
-            raise AppError("EVIDENCE_GROUP_REQUIRED", "替代上传必须指定evidence_group")
+            raise AppError("EVIDENCE_GROUP_REQUIRED", "A replacement upload requires an evidence_group.")
         if evidence_group and len(files) != 1:
-            raise AppError("INVALID_FILES", "每个证据组一次只能上传一个版本")
+            raise AppError("INVALID_FILES", "Upload one file version at a time for each evidence group.")
         if evidence_group == "invoice_field_sheet" and (
             key != "invoice_integrity" or Path(files[0][0]).suffix.lower() != ".xlsx"
         ):
-            raise AppError("INVALID_EVIDENCE_GROUP", "invoice_field_sheet需要invoice_integrity模块的XLSX文件")
+            raise AppError(
+                "INVALID_EVIDENCE_GROUP",
+                "An invoice_field_sheet must be an XLSX uploaded to Invoice Integrity.",
+            )
         group_versions = (
             list(
                 s.scalars(
@@ -421,7 +450,11 @@ class Service:
             or replacement.evidence_group != evidence_group
             or replacement.status != "active"
         ):
-            raise AppError("INVALID_REPLACEMENT", "只能替代同Case、同模块、同组的当前有效证据", 409)
+            raise AppError(
+                "INVALID_REPLACEMENT",
+                "Only the current active evidence in the same case, module, and group can be replaced.",
+                409,
+            )
         ids, job, added = [], None, False
         for name, data in files:
             sha = hashlib.sha256(data).hexdigest()
@@ -440,10 +473,16 @@ class Service:
                 continue
             if evidence_group:
                 if any(e.status == "pending" for e in group_versions):
-                    raise AppError("REPLACEMENT_PENDING", "此证据组的新版本仍在解析", 409)
+                    raise AppError(
+                        "REPLACEMENT_PENDING",
+                        "A new version of this evidence group is still being parsed.",
+                        409,
+                    )
                 if active and not replacement:
                     raise AppError(
-                        "REPLACEMENT_REQUIRED", "当前组已有有效证据，请显式指定supersedes_evidence_id", 409
+                        "REPLACEMENT_REQUIRED",
+                        "This group has active evidence. Specify supersedes_evidence_id to replace it.",
+                        409,
                     )
             evidence = self.store_file(s, case_id, key, name, data)
             evidence.evidence_group = evidence_group
@@ -476,7 +515,11 @@ class Service:
                 s.get(Evidence, evidence.supersedes_evidence_id) if evidence.supersedes_evidence_id else None
             )
             if old and old.status != "active":
-                raise AppError("REPLACEMENT_CONFLICT", "被替代证据已不是有效版本", 409)
+                raise AppError(
+                    "REPLACEMENT_CONFLICT",
+                    "The evidence being replaced is no longer the active version.",
+                    409,
+                )
             for previous in s.scalars(
                 select(Evidence).where(
                     Evidence.case_id == evidence.case_id,
@@ -501,9 +544,13 @@ class Service:
             or module.freshness != "current"
             or self.active_job(s, module)
         ):
-            raise AppError("ASSESSMENT_NOT_CURRENT", "请等待目标模块当前评估完成后再调整", 409)
+            raise AppError(
+                "ASSESSMENT_NOT_CURRENT",
+                "Wait for a current successful assessment before applying an adjustment.",
+                409,
+            )
         if body.applies_to_run_id != run.id:
-            raise AppError("VERSION_CONFLICT", "人工调整必须绑定当前AI运行", 409)
+            raise AppError("VERSION_CONFLICT", "The adjustment must apply to the current AI run.", 409)
         _, effective = adjusted_score(run.output["ai_score"], body.requested_adjustment, CAPS[key])
         for old in self.adjustments(s, module):
             if old.status in ["active", "pending_review"]:
@@ -792,7 +839,7 @@ class Service:
             )
         ):
             if e.parse_status != "ready":
-                raise AppError("EVIDENCE_NOT_READY", "模块证据尚未解析成功")
+                raise AppError("EVIDENCE_NOT_READY", "Module evidence has not been parsed successfully.")
             sources.append(
                 {
                     "source_id": e.id,

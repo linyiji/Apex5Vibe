@@ -1,0 +1,76 @@
+{
+  "file_name": "INV-2026-014_Adaeze_Okonkwo_Studio.pdf",
+  "simulated": false,
+  "fields": {
+    "seller": {
+      "value": "Adaeze Okonkwo Studio",
+      "status": "extracted",
+      "source": "Adaeze Okonkwo Studio, 18 Shoreditch High Street, London"
+    },
+    "buyer": {
+      "value": "Harbour & Vine Ltd",
+      "status": "extracted",
+      "source": "Bill to: Harbour & Vine Ltd, 22 Rivington Street"
+    },
+    "buyer_registration": {
+      "value": null,
+      "status": "missing",
+      "source": null
+    },
+    "invoice_number": {
+      "value": "INV-2026-014",
+      "status": "extracted",
+      "source": "Invoice No. INV-2026-014"
+    },
+    "invoice_date": {
+      "value": "2026-09-14",
+      "status": "extracted",
+      "source": "Issue date: 14 Sep 2026"
+    },
+    "due_date": {
+      "value": "2026-10-14",
+      "status": "extracted",
+      "source": "Due: 14 Oct 2026"
+    },
+    "amount": {
+      "value": "4030.00",
+      "status": "extracted",
+      "source": "TOTAL £4,030.00"
+    },
+    "currency": {
+      "value": "GBP",
+      "status": "extracted",
+      "source": "All amounts in GBP"
+    },
+    "bank_account": {
+      "value": "20-45-77 ••••4821",
+      "status": "extracted",
+      "source": "Sort code 20-45-77  Account 6119 4821"
+    },
+    "po_reference": {
+      "value": "PO-20931",
+      "status": "uncertain",
+      "source": "Your ref: P0-20931 (smudged: 0 or O?)"
+    }
+  },
+  "line_items": [
+    {
+      "description": "Brand Identity Package",
+      "quantity": 1,
+      "unit_price": 2400,
+      "amount": 2400
+    },
+    {
+      "description": "Website Design",
+      "quantity": 3,
+      "unit_price": 450,
+      "amount": 1350
+    },
+    {
+      "description": "Post-launch Support (hours)",
+      "quantity": 6,
+      "unit_price": 80,
+      "amount": 480
+    }
+  ]
+}

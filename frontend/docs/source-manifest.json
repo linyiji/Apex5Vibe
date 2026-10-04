@@ -1,0 +1,259 @@
+{
+  "review_date": "2026-10-04",
+  "timezone": "Asia/Hong_Kong",
+  "archive_path": "/Users/mac/Downloads/apexvibe-frontend.zip",
+  "archive_sha256": "4ad72a3f68b2ce5dace664254c10d359c6bd6e8db6022a7e4b795785b4006354",
+  "extracted_to": "/Users/mac/Apex5vibe/frontend",
+  "original_file_count": 46,
+  "files": [
+    {
+      "path": ".env.example",
+      "bytes": 161,
+      "sha256": "8ff2ba4628fef117359ae3eed4c8eac6b5030a897ff5fb507fe256c9ebe1db3b"
+    },
+    {
+      "path": ".gitignore",
+      "bytes": 480,
+      "sha256": "207e265ff4901f9ad9f96d8ce08530e04f9fc600815472a66d0a446096d654cd"
+    },
+    {
+      "path": "AGENTS.md",
+      "bytes": 678,
+      "sha256": "63f2c50380ed6303237cce215ce27af1d620d094c215e28d1b1538a3c070e3bb"
+    },
+    {
+      "path": "CLAUDE.md",
+      "bytes": 11,
+      "sha256": "336cc4fbf19beaada7ccf9986414fa91851a8d7a07dfb3ccbe800a69eed0ab49"
+    },
+    {
+      "path": "eslint.config.mjs",
+      "bytes": 465,
+      "sha256": "870f1adccecf3051cbcd9fd307cef51d7633cf510979c181a81f4b1797273493"
+    },
+    {
+      "path": "FRONTEND.md",
+      "bytes": 12416,
+      "sha256": "1b9c6b51eb89439e13b3c9e2490ff42351668960dcb1f21849b41ed17fe5050e"
+    },
+    {
+      "path": "next-env.d.ts",
+      "bytes": 296,
+      "sha256": "0f70629890b72a0a82e91972cc032c04b658b26c265373cb711cf576bfbf8fcc"
+    },
+    {
+      "path": "next.config.ts",
+      "bytes": 133,
+      "sha256": "614bce25b089c3f19b1e17a6346c74b858034040154c6621e7d35303004767cc"
+    },
+    {
+      "path": "package-lock.json",
+      "bytes": 237270,
+      "sha256": "0ae64fdd884c00aed8c423866a793a122f588867517f770eeefad22acec97b83"
+    },
+    {
+      "path": "package.json",
+      "bytes": 561,
+      "sha256": "0fc65eca1d4c56d5b8d9a921027d58d8f9e5389395d23ed323ffad46aa4d221d"
+    },
+    {
+      "path": "postcss.config.mjs",
+      "bytes": 94,
+      "sha256": "dfac7ac2d86d326a0e5adb024e7943c181393ed17a5fcb8f0315b24c7da6ddde"
+    },
+    {
+      "path": "README.md",
+      "bytes": 1926,
+      "sha256": "dad7d2c05c5b73be962650182d8e77d1adb687ac889f0bcdafee41c51c6c99a8"
+    },
+    {
+      "path": "tsconfig.json",
+      "bytes": 666,
+      "sha256": "be18523b23b78b6e1a876ddd107d330f0168bddf09d751b57e0b5edce69c66f3"
+    },
+    {
+      "path": "app/favicon.ico",
+      "bytes": 25931,
+      "sha256": "2b8ad2d33455a8f736fc3a8ebf8f0bdea8848ad4c0db48a2833bd0f9cd775932"
+    },
+    {
+      "path": "app/globals.css",
+      "bytes": 970,
+      "sha256": "935d1aa7ac00491b74985c5a0d6c717fdaf7c98acb4fb0447fed6854b6d49b43"
+    },
+    {
+      "path": "app/layout.tsx",
+      "bytes": 1399,
+      "sha256": "3aa22d02e5d9ab3ac5f90aeb0b1c543ceda8fc86cdff69b465cdbc9b9383dfae"
+    },
+    {
+      "path": "app/page.tsx",
+      "bytes": 2171,
+      "sha256": "b94e5aace23c23258261cfaa0ef552b9b005f27741692166ee602753e5478d46"
+    },
+    {
+      "path": "app/assessment/[id]/page.tsx",
+      "bytes": 5579,
+      "sha256": "084df6aca79d3144ca6e71ef9abedde6f3d34f145dec8df7b067250ef1cbcc75"
+    },
+    {
+      "path": "components/AnalystInput.tsx",
+      "bytes": 6117,
+      "sha256": "e06566a59e554b419c134a11e4e5714abee4e6cfa6c8d2cab447d6ba019a6efd"
+    },
+    {
+      "path": "components/AssessmentSummary.tsx",
+      "bytes": 4286,
+      "sha256": "51320643f327805b999f34b25b06b43380e10108de8e065c8497647b3f5de968"
+    },
+    {
+      "path": "components/DecisionView.tsx",
+      "bytes": 4528,
+      "sha256": "c40a7dc8890ae6c603b7e36ee77914e1fa26381d39343ad76d851088de4d78c2"
+    },
+    {
+      "path": "components/EvidencePanel.tsx",
+      "bytes": 1809,
+      "sha256": "1d47a236cf86a664c7429892c63732db944a16861ba333941ff7b4f36e8ebe6c"
+    },
+    {
+      "path": "components/Header.tsx",
+      "bytes": 1438,
+      "sha256": "f7ce82336f282191452ef9135be60c9fd4a1b8215f308da24885e25181d0915e"
+    },
+    {
+      "path": "components/InvoiceFieldsForm.tsx",
+      "bytes": 3384,
+      "sha256": "e678ecb3e419731e196aad4bc87a01f6711aed8bc26188d2872b5ca314bfb2a0"
+    },
+    {
+      "path": "components/InvoicePreview.tsx",
+      "bytes": 4075,
+      "sha256": "99d5df9aaf5815c8a81b3994c4a13c6595df78707a1ab33f2bbf55a4b10b1d46"
+    },
+    {
+      "path": "components/InvoiceUploader.tsx",
+      "bytes": 3510,
+      "sha256": "ddf6188bb72132ec7f99088069c145c13be8288bcdeb1b7de8182e2d3cba5f42"
+    },
+    {
+      "path": "components/MissingInformation.tsx",
+      "bytes": 2518,
+      "sha256": "40f0e28b56ffa8c1e4fa5988f170a36585c1b18cf9622f923ea64b3928bac51a"
+    },
+    {
+      "path": "components/PastEvaluations.tsx",
+      "bytes": 3613,
+      "sha256": "6110702688b46d96abc5980a4937911d2a73fa6a871feab9f263d71cc0dfaaf3"
+    },
+    {
+      "path": "components/ProcessingState.tsx",
+      "bytes": 1962,
+      "sha256": "f795595a02dcdc68a4dcfad58dc49992fce28ab45cb04dcefc11f1c8ed86f014"
+    },
+    {
+      "path": "components/RiskDrivers.tsx",
+      "bytes": 1949,
+      "sha256": "d1ce6a1924d9824d6db480350cf5d198256114953466bb7ace04e5d4b4278b1a"
+    },
+    {
+      "path": "components/RiskFactorCard.tsx",
+      "bytes": 1793,
+      "sha256": "98408579be3581a16df1556f5790c893faa64b565354f66e6d933db11fdca0e4"
+    },
+    {
+      "path": "components/RiskScore.tsx",
+      "bytes": 1369,
+      "sha256": "0b54b67878d68c50771d7fbb43d84ec079369092bbf8162ebf15e377fef69ceb"
+    },
+    {
+      "path": "components/ScoreChange.tsx",
+      "bytes": 3107,
+      "sha256": "55c2d710844d5fe3f4a17db47ff15f4bcec077f55fde43c47143a06223d7e33d"
+    },
+    {
+      "path": "components/StepIndicator.tsx",
+      "bytes": 1035,
+      "sha256": "7677c16f8a6dcd28dd88d076cf7b7171a6ac91a1b561d3c1d2cadc54ceb4b5d2"
+    },
+    {
+      "path": "lib/api.ts",
+      "bytes": 5042,
+      "sha256": "f7e0f31999abb5d482a047e4bce0d4c494360519c5ce530ce4b0a54c8a8159e6"
+    },
+    {
+      "path": "lib/case-store.ts",
+      "bytes": 2981,
+      "sha256": "ceb2167800ad087f043654d0013eb304f88aea4d02baf9b1a583fb2580595b43"
+    },
+    {
+      "path": "lib/format.ts",
+      "bytes": 1726,
+      "sha256": "0120b179f66d9c17fe210535b1367a4c504f7b117204aa5d5cd3ef023c4b1197"
+    },
+    {
+      "path": "lib/mock-data.ts",
+      "bytes": 2829,
+      "sha256": "112b685310308163cc3b5d0a0eb8f09b2c4e0de5fb12ebf4c61cd309f5d1bfff"
+    },
+    {
+      "path": "lib/mock-engine.ts",
+      "bytes": 16052,
+      "sha256": "a0d2a6e815bd47fac20b5110d234b6a5e55a4fe0a50766915494b36ba2b5c3d5"
+    },
+    {
+      "path": "lib/mock-notes.ts",
+      "bytes": 2991,
+      "sha256": "d0f0cab29a4fd6c37e06609354f74a5293755793e7bb850084e952a12e0ef65c"
+    },
+    {
+      "path": "lib/types.ts",
+      "bytes": 4011,
+      "sha256": "760c7287aaa8b8f02755e189d22478467253cc3884396878c20fffc9696569c3"
+    },
+    {
+      "path": "public/file.svg",
+      "bytes": 391,
+      "sha256": "2b67812c325c199a02536cdbeea0c593a72f707d323b72ee3e08dbab06753bd4"
+    },
+    {
+      "path": "public/globe.svg",
+      "bytes": 1035,
+      "sha256": "b614b9bf183925957661ac851498fe1d8029fd43a62fbfed86f9e2624a57e7cf"
+    },
+    {
+      "path": "public/next.svg",
+      "bytes": 1375,
+      "sha256": "55995dfad6ecb4945a1e856ddca03c5e16aa5bf13fd21b4df6a74ae79357bcfc"
+    },
+    {
+      "path": "public/vercel.svg",
+      "bytes": 128,
+      "sha256": "f081337b2fee635b455b63275406a3e7f39d6a014e25ad90dab5a67e62a12ac4"
+    },
+    {
+      "path": "public/window.svg",
+      "bytes": 385,
+      "sha256": "644768c4aaeb4767bce293344eeb0c125fb804a94d801440424072202d85e3a1"
+    }
+  ],
+  "backend_contract_reference": {
+    "path": "../deliverables/apexvibe5-handoff-v1/contracts/openapi.json",
+    "sha256": "355f1f4cfacf038c9276e41503772e62e0ad0b0b9cb6cf53a7a7040ba0f15492"
+  },
+  "note": "Hashes describe original archive contents. Setup and documentation changes are listed in docs/04-verification.md. Backend reference is a review snapshot, not evidence of a running service.",
+  "backend_source_review": [
+    {
+      "path": "backend/src/apexdefend/api.py",
+      "sha256": "cec302ddf264fcecee56d8abfceebbd9cf25016fc4bd765773836dc6fd8814d0"
+    },
+    {
+      "path": "backend/src/apexdefend/config.py",
+      "sha256": "ecf6db85664b0f54c6025f71a86d691d3be68f5b8a6d6053520fdc877dab8f31"
+    },
+    {
+      "path": "backend/src/apexdefend/parsers.py",
+      "sha256": "689823f069b528a753a503aefff7de1209c5cbca0b9e6eb3b74110b16cffbc93"
+    }
+  ]
+}

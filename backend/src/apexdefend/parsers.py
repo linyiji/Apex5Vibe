@@ -21,25 +21,27 @@ def money(value):
             raise InvalidOperation
         return str(d.quantize(Decimal(".01")))
     except (InvalidOperation, ValueError):
-        raise AppError("INVALID_AMOUNT", "金额必须为非负的两位小数") from None
+        raise AppError(
+            "INVALID_AMOUNT", "Amounts must be non-negative with at most two decimal places."
+        ) from None
 
 
 def validate_upload(filename, data, maximum):
     if not data or len(data) > maximum:
-        raise AppError("FILE_TOO_LARGE", "文件为空或超过20 MiB限制", 413)
+        raise AppError("FILE_TOO_LARGE", "The file is empty or exceeds the 20 MiB limit.", 413)
     ext = Path(filename).suffix.lower()
     if ext not in [".pdf", ".xlsx", ".csv"]:
-        raise AppError("UNSUPPORTED_PARSER", "当前已启用PDF、XLSX和CSV解析", 415)
+        raise AppError("UNSUPPORTED_PARSER", "Only PDF, XLSX, and CSV parsing is available.", 415)
     if ext == ".pdf" and not data.startswith(b"%PDF-"):
-        raise AppError("INVALID_FILE_SIGNATURE", "PDF文件签名不匹配", 415)
+        raise AppError("INVALID_FILE_SIGNATURE", "The file does not have a valid PDF signature.", 415)
     if ext == ".xlsx":
         if not zipfile.is_zipfile(BytesIO(data)):
-            raise AppError("INVALID_FILE_SIGNATURE", "XLSX文件签名不匹配", 415)
+            raise AppError("INVALID_FILE_SIGNATURE", "The file does not have a valid XLSX signature.", 415)
         with zipfile.ZipFile(BytesIO(data)) as archive:
             if sum(i.file_size for i in archive.infolist()) > 50 * 1024 * 1024:
-                raise AppError("FILE_TOO_LARGE", "XLSX解压后超过50 MiB限制", 413)
+                raise AppError("FILE_TOO_LARGE", "The expanded XLSX exceeds the 50 MiB limit.", 413)
             if "[Content_Types].xml" not in archive.namelist():
-                raise AppError("INVALID_FILE_SIGNATURE", "不是有效的Office文件", 415)
+                raise AppError("INVALID_FILE_SIGNATURE", "The file is not a valid Office document.", 415)
     return ext
 
 
@@ -47,9 +49,9 @@ def parse_invoice(data, evidence_id):
     try:
         reader = PdfReader(BytesIO(data))
         if reader.is_encrypted:
-            raise AppError("ENCRYPTED_PDF", "请上传未加密的发票PDF")
+            raise AppError("ENCRYPTED_PDF", "Upload an unencrypted invoice PDF.")
         if len(reader.pages) > 100:
-            raise AppError("FILE_TOO_LARGE", "PDF超过100页限制", 413)
+            raise AppError("FILE_TOO_LARGE", "The PDF exceeds the 100-page limit.", 413)
         fields = {k: str(v.get("/V", "")).strip() for k, v in (reader.get_fields() or {}).items()}
         required = [
             "invoice no",
@@ -63,10 +65,13 @@ def parse_invoice(data, evidence_id):
             "if other___purpose of shipment",
         ]
         if not all(fields.get(k) for k in required):
-            raise AppError("UNSUPPORTED_INVOICE_TEMPLATE", "主发票需要当前商业发票表单格式；未套用演示答案")
+            raise AppError(
+                "UNSUPPORTED_INVOICE_TEMPLATE",
+                "Use the supplied commercial invoice PDF form. This invoice template is not supported.",
+            )
         # /no is this template's selected appearance, not a general false boolean.
         if fields.get("Check Box3") != "/no" or fields.get("Radio Button1") not in ["/yes", "/no"]:
-            raise AppError("INVOICE_REVIEW_REQUIRED", "买方/关联方复选框需要人工复核")
+            raise AppError("INVOICE_REVIEW_REQUIRED", "The buyer or related-party checkboxes require review.")
         # Verify the selected widget appearance, not just the canonical field value.
         for field_name in ["Check Box3", "Radio Button1"]:
             selected = []
@@ -79,7 +84,9 @@ def parse_invoice(data, evidence_id):
                     if state != "/Off":
                         selected.append(state)
             if selected != [fields[field_name]]:
-                raise AppError("INVOICE_REVIEW_REQUIRED", "PDF表单值与显示勾选状态不一致")
+                raise AppError(
+                    "INVOICE_REVIEW_REQUIRED", "The PDF form value conflicts with the visible checkbox state."
+                )
 
         def party(prefix):
             parts = fields[f"{prefix} co name_address"].splitlines()
@@ -96,19 +103,24 @@ def parse_invoice(data, evidence_id):
         due_date = re.search(r"Payment due date:\s*(\d{4}-\d{2}-\d{2})", date_text)
         terms = re.search(r"Net\s+(\d+)\s+days", fields.get("payment terms", ""))
         if not invoice_date or not due_date or not terms:
-            raise AppError("MISSING_INVOICE_DATES", "无法确定发票日、到期日或付款条款")
+            raise AppError(
+                "MISSING_INVOICE_DATES",
+                "The invoice date, due date, or payment terms could not be determined.",
+            )
         invoice_date = date.fromisoformat(invoice_date[1]).isoformat()
         due_date = date.fromisoformat(due_date[1]).isoformat()
         description = fields.get("description of goods 01", "")
         sku = re.search(r"SKU:\s*([^;\s]+)", description)
         if not sku:
-            raise AppError("MISSING_SKU", "缺少商品SKU，无法选择可比历史资料")
+            raise AppError(
+                "MISSING_SKU", "A product SKU is required to select comparable historical records."
+            )
         quantity = Decimal(fields["no of units 1"])
         if quantity <= 0 or quantity != int(quantity):
-            raise AppError("INVALID_QUANTITY", "商品数量必须为正整数")
+            raise AppError("INVALID_QUANTITY", "Product quantity must be a positive whole number.")
         currency = fields.get("currency code name", "").upper()
         if not re.fullmatch("[A-Z]{3}", currency):
-            raise AppError("INVALID_CURRENCY", "缺少有效币种")
+            raise AppError("INVALID_CURRENCY", "A valid currency is required.")
         source = {"source_id": evidence_id, "locator": "page=1; AcroForm", "kind": "user_pdf"}
         return {
             "invoice_id": f"invoice_{evidence_id}",
@@ -152,7 +164,9 @@ def parse_invoice(data, evidence_id):
     except AppError:
         raise
     except Exception:
-        raise AppError("PARSE_FAILED", "无法读取发票表单，请检查文件完整性") from None
+        raise AppError(
+            "PARSE_FAILED", "The invoice form could not be read. Check the file and upload it again."
+        ) from None
 
 
 def parse_evidence(filename, data):
@@ -161,10 +175,10 @@ def parse_evidence(filename, data):
         if ext == ".pdf":
             reader = PdfReader(BytesIO(data))
             if reader.is_encrypted or len(reader.pages) > 100:
-                raise AppError("PDF_NOT_SUPPORTED", "PDF加密或页数超限")
+                raise AppError("PDF_NOT_SUPPORTED", "The PDF is encrypted or exceeds the page limit.")
             pages = [{"page": i + 1, "text": p.extract_text() or ""} for i, p in enumerate(reader.pages)]
             if not any(p["text"].strip() for p in pages):
-                raise AppError("OCR_NOT_CONFIGURED", "当前未配置扫描PDF的OCR")
+                raise AppError("OCR_NOT_CONFIGURED", "OCR for scanned PDFs is not configured.")
             return {"type": "pdf", "pages": pages}
         if ext == ".xlsx":
             workbook = load_workbook(BytesIO(data), read_only=True, data_only=False)
@@ -175,22 +189,27 @@ def parse_evidence(filename, data):
                         if cell.value is not None:
                             if cell.data_type == "f":
                                 raise AppError(
-                                    "FORMULA_REQUIRES_VALUES", "请将公式转换为值后再上传，避免使用未核验缓存"
+                                    "FORMULA_REQUIRES_VALUES",
+                                    "Convert spreadsheet formulas to values before uploading.",
                                 )
                             cells.append(
                                 {"sheet": sheet.title, "cell": cell.coordinate, "value": str(cell.value)}
                             )
                             if len(cells) > 100000:
-                                raise AppError("FILE_TOO_LARGE", "超过100,000个有效单元格", 413)
+                                raise AppError(
+                                    "FILE_TOO_LARGE", "The spreadsheet exceeds 100,000 populated cells.", 413
+                                )
             workbook.close()
             return {"type": "xlsx", "cells": cells}
         if ext == ".csv":
             rows = list(csv.reader(data.decode("utf-8-sig").splitlines()))
             if sum(len(row) for row in rows) > 100000:
-                raise AppError("FILE_TOO_LARGE", "CSV单元格超限", 413)
+                raise AppError("FILE_TOO_LARGE", "The CSV exceeds the cell limit.", 413)
             return {"type": "csv", "rows": rows}
-        raise AppError("UNSUPPORTED_PARSER", "未启用此文件解析器", 415)
+        raise AppError("UNSUPPORTED_PARSER", "Parsing is not available for this file type.", 415)
     except AppError:
         raise
     except Exception:
-        raise AppError("PARSE_FAILED", "证据解析失败；请确认格式或使用UTF-8 CSV") from None
+        raise AppError(
+            "PARSE_FAILED", "Evidence could not be parsed. Check the format or use a UTF-8 CSV."
+        ) from None

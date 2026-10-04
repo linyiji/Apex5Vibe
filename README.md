@@ -1,85 +1,103 @@
-# ApexVibe5 — Modular Assessment Backend
+# Apex5Vibe — Modular Assessment Workspace
 
-本地发票风险评估后端。FastAPI 提供 API，SQLite 保存业务数据，独立 Worker 调用 TeamRouter 的 **`gpt-6.1-sol`**，按七个模块生成带证据引用的分析。风险指数 **越高越危险**：`< 30 → LOW`，`≥ 30 → HIGH`。
+A local **English-language PC Web demo** with a Next.js frontend, FastAPI backend, SQLite database, and independent workers. The backend calls TeamRouter using **gpt-6.1-sol** to assess seven invoice risk modules against selected local evidence.
 
-本次交付范围是后端、Case 1 闭环测试及前端接入契约。仓库中的 `frontend/`（如已另行放入）是独立工作，不属于本次后端实现。历史架构资料位于 `deliverables/apexvibe5-handoff-v1/`；实际运行接口以 **[`contracts/openapi.json`](contracts/openapi.json)** 为准。
+**Higher scores mean higher invoice risk. LOW < 30; HIGH ≥ 30.** Corrected evidence can remove a finding and lower the module and aggregate scores. A risk reduction does not automatically imply LOW: Case 2 demonstrates **35 → 50 → 35 HIGH**.
 
-## 本地启动
+The frontend uses the real `/v1` API by default. It uploads file bytes and displays persisted AI results; it does not calculate scores locally or fall back to a mock result on failure. Scope is desktop PC browsers. Mobile adaptation and production deployment are outside this demo.
 
-需要 Python 3.12，以下命令在仓库根目录运行：
+## Start locally
+
+Python 3.12 and Node 24 are used in this workspace. From the repository root:
 
 ```bash
 python3.12 -m venv .venv
 source .venv/bin/activate
 python -m pip install -r requirements-dev.lock
 python -m pip install --no-deps -e .
-cp .env.example .env  # 仅首次；已有 .env 时不要覆盖
+cp -n .env.example .env
 ```
 
-在 `.env` 填入 `TEAMROUTER_API_KEY`。默认地址为 `https://api.teamorouter.com/v1`，模型为 `gpt-6.1-sol`，使用 OpenAI 兼容 Chat Completions 接口。密钥只在后端读取，`.env` 被 Git 忽略。
+Set `TEAMROUTER_API_KEY` in the root `.env`. The configured endpoint is `https://api.teamorouter.com/v1` and the model is `gpt-6.1-sol`. Keep this key on the backend. Initialize the database and start the API:
 
 ```bash
 python -m apexdefend.manage init
 uvicorn apexdefend.api:create_app --factory --host 127.0.0.1 --port 18080
 ```
 
-另开终端，进入仓库并激活同一虚拟环境：
+Start a worker in another terminal with the same virtual environment and working directory:
 
 ```bash
 python -m apexdefend.worker
 ```
 
-- API / Swagger：<http://127.0.0.1:18080/docs>
-- 健康状态：<http://127.0.0.1:18080/health>
-- SQLite：`runtime/apex.sqlite3`；原件：`runtime/files/`
-- API 与 Worker 必须使用同一 `.env` / `APEX_DATA_DIR`。修改模型配置或密钥后，两者均需重启。
+One worker is sufficient; two workers were used during browser acceptance to process independent modules concurrently. Both must share the API's `.env` and `APEX_DATA_DIR`.
 
-## Case 1 真实闭环
+Start the frontend in a third terminal:
 
 ```bash
-python scripts/live_case1.py --verify-rerun
+cd frontend
+npm ci
+cp -n .env.example .env.local
+npm run dev -- --hostname 127.0.0.1 --port 3000
 ```
 
-脚本通过实际 HTTP API 创建 Case，上传原始 PDF，等待解析，执行七个 AI 模块，验证自动进入结果页，再分别上传原始 Excel、补充文字，验证仅目标模块重跑。每次执行创建一个新 Case，产生真实 TeamRouter 调用；没有 Mock 回退。
+Existing frontend settings must be `NEXT_PUBLIC_API_MODE=live` and `NEXT_PUBLIC_API_BASE_URL=http://127.0.0.1:18080` (no `/v1` suffix).
 
-预期结果：发票 `CV-2026-1002-001`、GBP 8,000.00、风险指数 **5 / 100 LOW**、`eligible`、80% 演示预支额度 **GBP 6,400.00**。预期来自公开的合成参考数据和演示计分规则，服务端没有按文件名或 Case 编号硬编码结果。任何断言失败都会保留运行记录并以非零状态退出。
+- Application: <http://127.0.0.1:3000>
+- API reference: <http://127.0.0.1:18080/docs>
+- Configuration/health: <http://127.0.0.1:18080/health>
+- Default storage: `runtime/apex.sqlite3` and `runtime/files/`, configurable with `APEX_DATA_DIR`.
+- This machine's English demo uses `runtime/english-demo/`. Earlier acceptance data remains in `runtime/` and has not been deleted. Both are ignored by Git.
 
-详细输出保存到 `runtime/live-case1.json`。实际验收记录见 [`docs/validation/`](docs/validation/)。
+## Demonstrate the two cases
 
-补充规格已扩展到 Case 2 的错误字段表和修正版替代流程：
+Use the source files in `deliverables/apexvibe5-handoff-v1/source/`. They are synthetic demo documents.
 
-```bash
-python scripts/live_case2.py
-```
+| Flow | Expected result |
+|---|---|
+| Case 1 PDF → Run Assessment | 5 / LOW, eligible, GBP 6,400.00 indicative advance |
+| Case 2 PDF → Run Assessment | 35 / HIGH, manual review, no automatic advance |
+| Case 2 Invoice Integrity → Errors.xlsx → Send & reassess | 50 / HIGH; integrity increases from 0 to 15 |
+| Same module → Corrected.xlsx → Replace current field sheet → Send & reassess | 35 / HIGH; integrity decreases from 15 to 0 |
 
-该脚本期望真实 AI 得到 **35 → 50 → 35 HIGH**，两次均只重跑 `invoice_integrity`，主 PDF 金额始终 GBP 50,000.00。字段映射、参考资料筛选及替代接口见 [补充实现说明](docs/local-data-and-replacement.md)。本轮仅本地测试；GitHub 上传等待前后端联调完成后再执行。
+The corrected sheet supersedes the erroneous sheet only after successful parsing and validation. The old evidence and AI run stay in history. The main PDF and the other six modules remain unchanged.
 
-## 已实现的行为
+Buyer and Seller independently support Skip, Select existing, and Manual. Review displays the original PDF and read-only extracted fields. Resolve any company conflict before starting. Step 3 automatically opens the result after the initial batch settles, including failed or incomplete assessments.
 
-- Buyer / Seller 各自支持 Skip、Existing、Manual；跳过时从发票识别并匹配/创建本地实体；主体冲突需明确解决。
-- 七个模块独立保存输入版本、AI 运行、证据、文字说明、人工调整、状态及审计事件。
-- 补件或文字使对应模块过期；`rerun=true` 保存并重跑，`false` 仅保存；其他模块的有效结果保留。
-- AI 根据当前证据选择规则并提供引用；后端验证结构、引用和规则，映射分数并聚合。人工调整独立保存，AI 重跑后需要重新确认。
-- 初评批次全部结束后 `navigation.target=result`；失败与缺资料也结束等待，但不生成虚假的零分或 Low 结果。
-- 持久任务队列、有限重试、租约恢复、旧任务提交保护、版本冲突检查与请求幂等。
-- Excel 按字段键映射及与 PDF 的差异校验；精确筛选本地参考资料；证据组显式版本替代，解析成功后原子激活，失败保留旧证据。
-- PDF 发票表单解析；PDF 文本、XLSX、CSV 补件。未实现的 XLS、Word、图片/OCR 在 capabilities 中明确标为 unavailable。
+Modules support supplementary text, PDF/XLSX/CSV evidence, Save only, Send & reassess, independent AI reruns, manual adjustments, and Full view. Pending or stale assessments show the previous score as historical and withhold a current financing amount. Manual adjustments are separate from AI scores and require confirmation after a new AI run.
 
-## 验证与交接
+## Verification and contracts
 
 ```bash
 ruff check backend scripts
 ruff format --check backend scripts
 pytest
 python scripts/export_openapi.py --check
+cd frontend
+npm run generate:api
+npm run lint
+npm run typecheck
+npm run build
 ```
 
-自动化测试使用仅存在于 `backend/tests/` 的分析器替身，验证业务、存储、并发及契约；**不等同真实模型验收**。真实验收使用上面的 `live_case1.py`。GitHub Actions 运行离线测试，不需要 TeamRouter 密钥。
+The runtime contract is [`contracts/openapi.json`](contracts/openapi.json). The frontend generates its DTOs from that file. Older contracts in the architecture archive are design history.
 
-- [后端实现与数据流](docs/backend-implementation.md)
-- [前端接入说明](docs/frontend-integration.md)
-- [演示与排错](docs/demo-runbook.md)
-- [实际 OpenAPI](contracts/openapi.json)
-- [完整历史架构包](deliverables/apexvibe5-handoff-v1/README.md)
+Optional real-model API acceptance scripts (each creates a new case and calls TeamRouter):
 
-当前是单机展示服务：默认仅监听 loopback，使用固定的本地演示分析师身份，不含用户登录、多租户或生产部署。源发票、主体档案、交易与付款记录均为合成数据；融资输出用于演示。
+```bash
+python scripts/live_case1.py --verify-rerun
+python scripts/live_case2.py
+```
+
+Offline tests use an explicitly marked test analyzer. They are separate from real AI and browser acceptance.
+
+- [PC Web integration and frontend startup](frontend/README.md)
+- [Live browser acceptance](frontend/docs/05-live-integration-verification.md)
+- [Backend implementation](docs/backend-implementation.md)
+- [API integration](docs/frontend-integration.md)
+- [Demo runbook](docs/demo-runbook.md)
+- [Earlier backend acceptance](docs/validation/README.md)
+- [Original architecture archive](deliverables/apexvibe5-handoff-v1/README.md)
+
+The service is a local demonstration with a fixed analyst identity and synthetic reference data. It supports the supplied invoice AcroForm template and text-based evidence, not general scanned-invoice OCR. Images, Word, and legacy XLS are unavailable. Authentication, multi-tenancy, external registries, and actual financing execution are outside scope. Work and tests remain local; no GitHub push has been performed.

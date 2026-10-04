@@ -1,7 +1,7 @@
 {
   "openapi": "3.1.0",
   "info": {
-    "title": "ApexVibe5 Assessment Backend",
+    "title": "Apex5Vibe Assessment Backend",
     "description": "Local TeamRouter assessment API. Higher scores mean higher invoice risk.",
     "version": "0.1.0"
   },

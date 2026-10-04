@@ -66,24 +66,33 @@ def score_analysis(analysis, inputs, run_id, model):
     rules = {r["rule_id"]: r for r in POLICY["rules"][key]}
     source_ids = [s for f in analysis.findings for s in f.source_ids]
     if any(s not in allowed_sources for s in source_ids):
-        raise AppError("INVALID_AI_CITATION", "AI引用了本次输入快照之外的来源")
+        raise AppError("INVALID_AI_CITATION", "The AI cited a source outside the current input snapshot.")
     if analysis.status == "complete":
         missing = set(REFERENCE_KINDS[key]) - {r["kind"] for r in inputs["reference_records"]}
         if missing:
-            raise AppError("INVALID_AI_OUTPUT", "缺少必需参考资料时不能生成完成结果")
+            raise AppError(
+                "INVALID_AI_OUTPUT",
+                "Required reference data is missing; a completed result cannot be produced.",
+            )
         if len(analysis.matched_rule_ids) != 1 or analysis.matched_rule_ids[0] not in rules:
-            raise AppError("INVALID_AI_RULE", "AI未选择有效的模块计分规则")
+            raise AppError("INVALID_AI_RULE", "The AI did not select a valid scoring rule for this module.")
         if (
             analysis.missing_inputs
             or not analysis.findings
             or any(not f.source_ids for f in analysis.findings)
         ):
-            raise AppError("INVALID_AI_OUTPUT", "完成的评估必须有事实、引用且无缺失输入")
+            raise AppError(
+                "INVALID_AI_OUTPUT",
+                "A completed assessment requires findings, citations, and no missing required inputs.",
+            )
         ai_score = rules[analysis.matched_rule_ids[0]]["points"]
         state = "succeeded"
     else:
         if not analysis.missing_inputs or analysis.matched_rule_ids:
-            raise AppError("INVALID_AI_OUTPUT", "缺资料结果必须说明缺失项且不计分")
+            raise AppError(
+                "INVALID_AI_OUTPUT",
+                "An incomplete assessment must identify missing inputs and must not assign a score.",
+            )
         ai_score, state = None, "needs_info"
     blocking_map = {
         "ACTIVE_FINANCING_MATCH": "confirmed_duplicate_financing",
@@ -125,7 +134,7 @@ def score_analysis(analysis, inputs, run_id, model):
 
 def adjusted_score(ai_score, requested, cap):
     if not -cap <= requested <= cap:
-        raise AppError("INVALID_ADJUSTMENT", f"人工调整必须在{-cap}到{cap}之间")
+        raise AppError("INVALID_ADJUSTMENT", f"The manual adjustment must be between {-cap} and {cap}.")
     final = max(0, min(cap, ai_score + requested))
     return final, final - ai_score
 

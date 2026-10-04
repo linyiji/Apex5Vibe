@@ -1,0 +1,49 @@
+@import "tailwindcss";
+
+/* Apex5Vibe palette: dark navy, one cyan accent, status colours only for status. */
+@theme {
+  --color-bg: #07111f;
+  --color-surface: #0c1a2b;
+  --color-surface-2: #10223a;
+  --color-line: #1e3450;
+  --color-line-strong: #2c4868;
+  --color-text: #edf5ff;
+  --color-muted: #8fa7c0;
+  --color-faint: #5d7894;
+  --color-accent: #5ce1d6;
+  --color-accent-2: #62a8ff;
+  --color-ok: #47d18c;
+  --color-warn: #f8c15c;
+  --color-risk: #ff7a8a;
+
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+}
+
+html {
+  color-scheme: dark;
+}
+
+body {
+  background: var(--color-bg);
+  color: var(--color-text);
+}
+
+.num {
+  font-variant-numeric: tabular-nums;
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.fade-up {
+  animation: fade-up 0.35s ease-out both;
+}

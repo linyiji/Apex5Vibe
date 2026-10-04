@@ -89,7 +89,11 @@ class Worker:
             self.fail(job_id, token, error)
         except Exception:
             logger.exception("Unexpected job failure: %s", job_id)
-            self.fail(job_id, token, AppError("JOB_FAILED", "后台任务执行失败，请检查服务端日志", 500))
+            self.fail(
+                job_id,
+                token,
+                AppError("JOB_FAILED", "The background job failed. Check the server logs.", 500),
+            )
         finally:
             stop.set()
             heartbeat.join(timeout=2)
@@ -101,7 +105,7 @@ class Worker:
             if not job:
                 return
             if job.attempt > 3:
-                raise AppError("ATTEMPTS_EXHAUSTED", "任务中断恢复超过重试上限")
+                raise AppError("ATTEMPTS_EXHAUSTED", "Job recovery exceeded the retry limit.")
             kind, payload, case_id = job.kind, job.payload, job.case_id
             if kind == "module_run":
                 case = self.service.case(s, case_id)
@@ -116,7 +120,7 @@ class Worker:
             else:
                 evidence = s.get(Evidence, payload["evidence_id"])
                 if not evidence or evidence.case_id != case_id:
-                    raise AppError("FILE_NOT_FOUND", "任务文件不存在", 404)
+                    raise AppError("FILE_NOT_FOUND", "The file for this job could not be found.", 404)
                 path = self.service.storage / evidence.storage_key
                 filename, evidence_id = evidence.filename, evidence.id
                 group, target_module = evidence.evidence_group, job.module_key
@@ -129,7 +133,7 @@ class Worker:
             if missing:
                 analysis = AIAnalysis(
                     status="needs_info",
-                    summary="缺少符合筛选条件的本地参考资料",
+                    summary="Required local reference data matching this invoice is missing.",
                     matched_rule_ids=[],
                     findings=[],
                     missing_inputs=sorted(missing),
@@ -157,7 +161,9 @@ class Worker:
             if kind == "parse_evidence" and target_module == "invoice_integrity":
                 mapped = field_sheet(output, evidence_id, invoice_snapshot)
                 if group == "invoice_field_sheet" and not mapped:
-                    raise AppError("INVALID_FIELD_SHEET", "字段表需要Invoice Fields工作表")
+                    raise AppError(
+                        "INVALID_FIELD_SHEET", "The field sheet requires a worksheet named Invoice Fields."
+                    )
                 if mapped:
                     output["field_sheet"] = mapped
         with self.db.transaction() as s:

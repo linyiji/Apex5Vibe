@@ -1,0 +1,1095 @@
+{
+  "case_id": "case_ce305ab264ac40429f8b7b5a4c3d14c9",
+  "case_revision": 28,
+  "stage": "result",
+  "initial_assessment_status": "settled",
+  "invoice": {
+    "invoice_id": "invoice_file_5802798add45453d9ac0893864568134",
+    "invoice_number": "CV-2026-1002-002",
+    "invoice_date": "2026-10-02",
+    "ship_date": "2026-10-02",
+    "due_date": "2026-11-01",
+    "payment_terms": "Net 30 days from invoice date",
+    "payment_term_days": 30,
+    "currency": "GBP",
+    "seller": {
+      "entity_id": "ent_cedarvale",
+      "legal_name": "Cedarvale Office Goods Limited",
+      "address": "Unit 8, 18 Fictional Harbour Road\nKowloon, Hong Kong",
+      "tax_id": "HK-SYN-100001",
+      "country": "Hong Kong"
+    },
+    "buyer": {
+      "entity_id": "ent_meridianleaf",
+      "legal_name": "Meridianleaf Workplace Ltd.",
+      "address": "30 Fictional Orchard Lane\nBristol, ZZ1 0ZZ",
+      "tax_id": "UK-SYN-200001",
+      "country": "United Kingdom"
+    },
+    "consignee_same_as_buyer": true,
+    "declared_related": false,
+    "purchase_order_number": "ML-PO-2026-0925-002",
+    "air_waybill_number": "SYN-AWB-261002-002",
+    "line_items": [
+      {
+        "sku": "CV-TOTE-01",
+        "description": "Cotton canvas tote bags\nSKU: CV-TOTE-01; natural beige\n100% cotton; 38 x 42 cm\nFor office supply resale\n50 pieces per carton",
+        "quantity": 6250,
+        "unit": "PCS",
+        "unit_price": "8.00",
+        "line_total": "50000.00",
+        "hs_code": "420292",
+        "country_of_manufacture": "China"
+      }
+    ],
+    "subtotal": "50000.00",
+    "charges": {
+      "insurance": "0.00",
+      "freight": "0.00",
+      "packing": "0.00",
+      "handling": "0.00",
+      "other": "0.00"
+    },
+    "total": "50000.00",
+    "trade_terms": "DAP",
+    "delivery_location": "Bristol, UK",
+    "source_refs": [
+      {
+        "source_id": "file_5802798add45453d9ac0893864568134",
+        "locator": "page=1; AcroForm",
+        "kind": "user_pdf"
+      }
+    ],
+    "extraction_method": "acroform_verified",
+    "synthetic": true
+  },
+  "parties": [
+    {
+      "side": "seller",
+      "selection": {
+        "mode": "skip"
+      },
+      "invoice_entity": {
+        "entity_id": "ent_cedarvale",
+        "legal_name": "Cedarvale Office Goods Limited",
+        "address": "Unit 8, 18 Fictional Harbour Road\nKowloon, Hong Kong",
+        "tax_id": "HK-SYN-100001",
+        "country": "Hong Kong"
+      },
+      "resolved_entity_id": "ent_cedarvale",
+      "status": "matched",
+      "reason": "Matched invoice registration number and jurisdiction against local records.",
+      "resolution_action": null
+    },
+    {
+      "side": "buyer",
+      "selection": {
+        "mode": "skip"
+      },
+      "invoice_entity": {
+        "entity_id": "ent_meridianleaf",
+        "legal_name": "Meridianleaf Workplace Ltd.",
+        "address": "30 Fictional Orchard Lane\nBristol, ZZ1 0ZZ",
+        "tax_id": "UK-SYN-200001",
+        "country": "United Kingdom"
+      },
+      "resolved_entity_id": "ent_meridianleaf",
+      "status": "matched",
+      "reason": "Matched invoice registration number and jurisdiction against local records.",
+      "resolution_action": null
+    }
+  ],
+  "modules": [
+    {
+      "case_id": "case_ce305ab264ac40429f8b7b5a4c3d14c9",
+      "module_key": "invoice_integrity",
+      "cap": 15,
+      "module_version": 10,
+      "input_version": 4,
+      "evaluated_input_version": 4,
+      "state": "succeeded",
+      "freshness": "current",
+      "current_run": {
+        "case_id": "case_ce305ab264ac40429f8b7b5a4c3d14c9",
+        "module_key": "invoice_integrity",
+        "run_id": "run_5e9048b89a44426d9ba54d02325a91e0",
+        "input_version": 4,
+        "state": "succeeded",
+        "ai_score": 15,
+        "summary": "Confirmed invoice integrity conflicts exist between the main invoice PDF and the active field sheet: the buyer address differs, and the field sheet reports an invoice total of GBP 80,000 while the PDF reports GBP 50,000. The PDF's own arithmetic and payment-term checks pass.",
+        "matched_rule_ids": [
+          "INTEGRITY_CONFLICT"
+        ],
+        "findings": [
+          {
+            "code": "BUYER_ADDRESS_CONFLICT",
+            "statement": "The buyer address on the main invoice PDF is \"30 Fictional Orchard Lane, Bristol, ZZ1 0ZZ\", while the active field sheet lists \"Unit 8, 18 Fictional Harbour Road, Kowloon, Hong Kong\" at Invoice Fields!C25.",
+            "source_refs": [
+              {
+                "source_id": "file_5802798add45453d9ac0893864568134",
+                "locator": "page=1; AcroForm",
+                "kind": "user_pdf"
+              },
+              {
+                "source_id": "file_73e77b8c9b1548e889092cae949c441c",
+                "locator": "parsed_content",
+                "kind": "uploaded_file"
+              }
+            ]
+          },
+          {
+            "code": "INVOICE_TOTAL_CONFLICT",
+            "statement": "The main invoice PDF reports a total of GBP 50,000.00, whereas the active field sheet reports GBP 80,000.00 at Invoice Fields!C51. The field sheet's subtotal-plus-charges check therefore fails because GBP 50,000.00 does not equal GBP 80,000.00.",
+            "source_refs": [
+              {
+                "source_id": "file_5802798add45453d9ac0893864568134",
+                "locator": "page=1; AcroForm",
+                "kind": "user_pdf"
+              },
+              {
+                "source_id": "file_73e77b8c9b1548e889092cae949c441c",
+                "locator": "parsed_content",
+                "kind": "uploaded_file"
+              }
+            ]
+          }
+        ],
+        "blocking_flags": [
+          "invoice_integrity_conflict"
+        ],
+        "missing_inputs": [],
+        "provenance": {
+          "engine_mode": "llm",
+          "analyzer": "teamrouter",
+          "model": "gpt-6.1-sol",
+          "prompt_version": "module-analysis-v2",
+          "policy_version": "demo-risk-v1",
+          "parser_version": "acroform-v1",
+          "input_hash": "fe82f08f9b88d8c0310c70a6271fd9e2f4351732050d81ad7f3cbc252a9ccc85",
+          "generated_at": "2026-10-04T07:56:15.977196+00:00"
+        }
+      },
+      "adjustment_status": "none",
+      "requested_adjustment": 0,
+      "effective_adjustment": 0,
+      "final_score": 15,
+      "allowed_actions": [
+        "upload_evidence",
+        "save_information",
+        "full_view",
+        "save_and_rerun",
+        "rerun",
+        "adjust"
+      ],
+      "error": null,
+      "evidence": [
+        {
+          "evidence_id": "file_5802798add45453d9ac0893864568134",
+          "source_id": "file_5802798add45453d9ac0893864568134",
+          "kind": "file",
+          "file_id": "file_5802798add45453d9ac0893864568134",
+          "filename": "ApexDefend_Case_2_Invoice.pdf",
+          "sha256": "c6a2ff4ce0ebad480c1988d8630fc1ccc547f4d2c6151c4859545e14f5f0ba60",
+          "parse_status": "ready",
+          "status": "active",
+          "evidence_group": null,
+          "version": 1,
+          "supersedes_evidence_id": null,
+          "error": null,
+          "source_ref": {
+            "source_id": "file_5802798add45453d9ac0893864568134",
+            "locator": "parsed_content",
+            "kind": "user_pdf"
+          }
+        },
+        {
+          "evidence_id": "file_73e77b8c9b1548e889092cae949c441c",
+          "source_id": "file_73e77b8c9b1548e889092cae949c441c",
+          "kind": "file",
+          "file_id": "file_73e77b8c9b1548e889092cae949c441c",
+          "filename": "ApexDefend_Case_2_Errors.xlsx",
+          "sha256": "d11617a8043178ae0023b1145958c3c38d0e386471f05d2ea37e65bf10544a9a",
+          "parse_status": "ready",
+          "status": "active",
+          "evidence_group": "invoice_field_sheet",
+          "version": 1,
+          "supersedes_evidence_id": null,
+          "error": null,
+          "source_ref": {
+            "source_id": "file_73e77b8c9b1548e889092cae949c441c",
+            "locator": "parsed_content",
+            "kind": "uploaded_file"
+          }
+        }
+      ],
+      "supplements": [],
+      "manual_adjustments": [],
+      "run_history": [
+        {
+          "run_id": "run_22b04a614256416ab480205eaa3f3fbf",
+          "input_version": 2,
+          "status": "succeeded",
+          "ai_score": 0,
+          "created_at": "2026-10-04T07:53:10.134858+00:00",
+          "finished_at": "2026-10-04T07:54:38.019045+00:00"
+        },
+        {
+          "run_id": "run_5e9048b89a44426d9ba54d02325a91e0",
+          "input_version": 4,
+          "status": "succeeded",
+          "ai_score": 15,
+          "created_at": "2026-10-04T07:55:57.971897+00:00",
+          "finished_at": "2026-10-04T07:56:15.983850+00:00"
+        }
+      ]
+    },
+    {
+      "case_id": "case_ce305ab264ac40429f8b7b5a4c3d14c9",
+      "module_key": "buyer_verification",
+      "cap": 10,
+      "module_version": 5,
+      "input_version": 2,
+      "evaluated_input_version": 2,
+      "state": "succeeded",
+      "freshness": "current",
+      "current_run": {
+        "case_id": "case_ce305ab264ac40429f8b7b5a4c3d14c9",
+        "module_key": "buyer_verification",
+        "run_id": "run_d0ae5bca587b405b965e6a402387dcd0",
+        "input_version": 2,
+        "state": "succeeded",
+        "ai_score": 0,
+        "summary": "The invoice buyer matches the supplied synthetic local profile. BUYER_MATCH applies with 0 risk points.",
+        "matched_rule_ids": [
+          "BUYER_MATCH"
+        ],
+        "findings": [
+          {
+            "code": "BUYER_MATCH",
+            "statement": "The invoice buyer, Meridianleaf Workplace Ltd., matches the local reference in entity ID (ent_meridianleaf), legal name, tax ID (UK-SYN-200001), country (United Kingdom), and address (30 Fictional Orchard Lane, Bristol, ZZ1 0ZZ). This is a match against a synthetic demo reference, not independent real-world verification.",
+            "source_refs": [
+              {
+                "source_id": "file_5802798add45453d9ac0893864568134",
+                "locator": "page=1; AcroForm",
+                "kind": "user_pdf"
+              },
+              {
+                "source_id": "ref_buyer_v1",
+                "locator": "local_reference",
+                "kind": "authored_demo_seed"
+              }
+            ]
+          }
+        ],
+        "blocking_flags": [],
+        "missing_inputs": [],
+        "provenance": {
+          "engine_mode": "llm",
+          "analyzer": "teamrouter",
+          "model": "gpt-6.1-sol",
+          "prompt_version": "module-analysis-v2",
+          "policy_version": "demo-risk-v1",
+          "parser_version": "acroform-v1",
+          "input_hash": "465dadc8e015a3465d2fa37ca0e20ce7ecf4b710d9c291201c8bfbfee7df5586",
+          "generated_at": "2026-10-04T07:54:41.467561+00:00"
+        }
+      },
+      "adjustment_status": "none",
+      "requested_adjustment": 0,
+      "effective_adjustment": 0,
+      "final_score": 0,
+      "allowed_actions": [
+        "upload_evidence",
+        "save_information",
+        "full_view",
+        "save_and_rerun",
+        "rerun",
+        "adjust"
+      ],
+      "error": null,
+      "evidence": [
+        {
+          "evidence_id": "file_5802798add45453d9ac0893864568134",
+          "source_id": "file_5802798add45453d9ac0893864568134",
+          "kind": "file",
+          "file_id": "file_5802798add45453d9ac0893864568134",
+          "filename": "ApexDefend_Case_2_Invoice.pdf",
+          "sha256": "c6a2ff4ce0ebad480c1988d8630fc1ccc547f4d2c6151c4859545e14f5f0ba60",
+          "parse_status": "ready",
+          "status": "active",
+          "evidence_group": null,
+          "version": 1,
+          "supersedes_evidence_id": null,
+          "error": null,
+          "source_ref": {
+            "source_id": "file_5802798add45453d9ac0893864568134",
+            "locator": "parsed_content",
+            "kind": "user_pdf"
+          }
+        },
+        {
+          "evidence_id": "ref_buyer_v1",
+          "source_id": "ref_buyer_v1",
+          "kind": "reference",
+          "file_id": null,
+          "filename": null,
+          "sha256": null,
+          "parse_status": "ready",
+          "status": "active",
+          "error": null,
+          "source_ref": {
+            "source_id": "ref_buyer_v1",
+            "locator": "local_reference",
+            "kind": "authored_demo_seed"
+          }
+        }
+      ],
+      "supplements": [],
+      "manual_adjustments": [],
+      "run_history": [
+        {
+          "run_id": "run_d0ae5bca587b405b965e6a402387dcd0",
+          "input_version": 2,
+          "status": "succeeded",
+          "ai_score": 0,
+          "created_at": "2026-10-04T07:53:10.138335+00:00",
+          "finished_at": "2026-10-04T07:54:41.470648+00:00"
+        }
+      ]
+    },
+    {
+      "case_id": "case_ce305ab264ac40429f8b7b5a4c3d14c9",
+      "module_key": "seller_verification",
+      "cap": 10,
+      "module_version": 5,
+      "input_version": 2,
+      "evaluated_input_version": 2,
+      "state": "succeeded",
+      "freshness": "current",
+      "current_run": {
+        "case_id": "case_ce305ab264ac40429f8b7b5a4c3d14c9",
+        "module_key": "seller_verification",
+        "run_id": "run_e2d33e100c59496bbded460ab9ecfadc",
+        "input_version": 2,
+        "state": "succeeded",
+        "ai_score": 0,
+        "summary": "The invoice seller matches the supplied synthetic local profile. SELLER_MATCH applies with 0 risk points.",
+        "matched_rule_ids": [
+          "SELLER_MATCH"
+        ],
+        "findings": [
+          {
+            "code": "SELLER_MATCH",
+            "statement": "The invoice seller, Cedarvale Office Goods Limited, matches the local reference on entity ID ent_cedarvale, legal name, tax ID HK-SYN-100001, country Hong Kong, and address Unit 8, 18 Fictional Harbour Road, Kowloon, Hong Kong. No entity conflict is present in the supplied fields. The reference is a synthetic demo record, so this finding establishes only a local record match.",
+            "source_refs": [
+              {
+                "source_id": "file_5802798add45453d9ac0893864568134",
+                "locator": "page=1; AcroForm",
+                "kind": "user_pdf"
+              },
+              {
+                "source_id": "ref_seller_v1",
+                "locator": "local_reference",
+                "kind": "authored_demo_seed"
+              }
+            ]
+          }
+        ],
+        "blocking_flags": [],
+        "missing_inputs": [],
+        "provenance": {
+          "engine_mode": "llm",
+          "analyzer": "teamrouter",
+          "model": "gpt-6.1-sol",
+          "prompt_version": "module-analysis-v2",
+          "policy_version": "demo-risk-v1",
+          "parser_version": "acroform-v1",
+          "input_hash": "825b2243bca1edcba7725c44e9364d1450d24fca7dde973315829dfe624f092e",
+          "generated_at": "2026-10-04T07:55:17.981034+00:00"
+        }
+      },
+      "adjustment_status": "none",
+      "requested_adjustment": 0,
+      "effective_adjustment": 0,
+      "final_score": 0,
+      "allowed_actions": [
+        "upload_evidence",
+        "save_information",
+        "full_view",
+        "save_and_rerun",
+        "rerun",
+        "adjust"
+      ],
+      "error": null,
+      "evidence": [
+        {
+          "evidence_id": "file_5802798add45453d9ac0893864568134",
+          "source_id": "file_5802798add45453d9ac0893864568134",
+          "kind": "file",
+          "file_id": "file_5802798add45453d9ac0893864568134",
+          "filename": "ApexDefend_Case_2_Invoice.pdf",
+          "sha256": "c6a2ff4ce0ebad480c1988d8630fc1ccc547f4d2c6151c4859545e14f5f0ba60",
+          "parse_status": "ready",
+          "status": "active",
+          "evidence_group": null,
+          "version": 1,
+          "supersedes_evidence_id": null,
+          "error": null,
+          "source_ref": {
+            "source_id": "file_5802798add45453d9ac0893864568134",
+            "locator": "parsed_content",
+            "kind": "user_pdf"
+          }
+        },
+        {
+          "evidence_id": "ref_seller_v1",
+          "source_id": "ref_seller_v1",
+          "kind": "reference",
+          "file_id": null,
+          "filename": null,
+          "sha256": null,
+          "parse_status": "ready",
+          "status": "active",
+          "error": null,
+          "source_ref": {
+            "source_id": "ref_seller_v1",
+            "locator": "local_reference",
+            "kind": "authored_demo_seed"
+          }
+        }
+      ],
+      "supplements": [],
+      "manual_adjustments": [],
+      "run_history": [
+        {
+          "run_id": "run_e2d33e100c59496bbded460ab9ecfadc",
+          "input_version": 2,
+          "status": "succeeded",
+          "ai_score": 0,
+          "created_at": "2026-10-04T07:53:10.139512+00:00",
+          "finished_at": "2026-10-04T07:55:17.984605+00:00"
+        }
+      ]
+    },
+    {
+      "case_id": "case_ce305ab264ac40429f8b7b5a4c3d14c9",
+      "module_key": "relationship",
+      "cap": 30,
+      "module_version": 5,
+      "input_version": 2,
+      "evaluated_input_version": 2,
+      "state": "succeeded",
+      "freshness": "current",
+      "current_run": {
+        "case_id": "case_ce305ab264ac40429f8b7b5a4c3d14c9",
+        "module_key": "relationship",
+        "run_id": "run_19625bb50279400fb4a215f262c4eea7",
+        "input_version": 2,
+        "state": "succeeded",
+        "ai_score": 30,
+        "summary": "The GBP 50,000.00 invoice is 6.25 times the GBP 8,000.00 median of comparable historical trades, triggering TRADE_SCALE_HIGH (30 risk points). The related-party declaration matches the synthetic local reference. The trade size alone is not proof of fraud.",
+        "matched_rule_ids": [
+          "TRADE_SCALE_HIGH"
+        ],
+        "findings": [
+          {
+            "code": "TRADE_SCALE_HIGH",
+            "statement": "The 12 completed reference trades match the invoice's seller, buyer, SKU and currency and precede its date. Their median is GBP 8,000.00. The invoice amount of GBP 50,000.00 divided by this median is 6.25, meeting the ratio >= 5 condition for 30 risk points. The historical records are synthetic demo references, not real-world due diligence.",
+            "source_refs": [
+              {
+                "source_id": "file_5802798add45453d9ac0893864568134",
+                "locator": "page=1; AcroForm",
+                "kind": "user_pdf"
+              },
+              {
+                "source_id": "ref_trade_history_v1",
+                "locator": "local_reference",
+                "kind": "authored_demo_seed"
+              }
+            ]
+          },
+          {
+            "code": "RELATED_PARTY_DECLARATION_CONSISTENT",
+            "statement": "The invoice declares the parties are not related, consistent with declared_related=false in the supplied local reference. No related-party declaration conflict is established by the supplied evidence.",
+            "source_refs": [
+              {
+                "source_id": "file_5802798add45453d9ac0893864568134",
+                "locator": "page=1; AcroForm",
+                "kind": "user_pdf"
+              },
+              {
+                "source_id": "ref_trade_history_v1",
+                "locator": "local_reference",
+                "kind": "authored_demo_seed"
+              }
+            ]
+          }
+        ],
+        "blocking_flags": [],
+        "missing_inputs": [],
+        "provenance": {
+          "engine_mode": "llm",
+          "analyzer": "teamrouter",
+          "model": "gpt-6.1-sol",
+          "prompt_version": "module-analysis-v2",
+          "policy_version": "demo-risk-v1",
+          "parser_version": "acroform-v1",
+          "input_hash": "fb8ea84c9abbf3f97c20b82834fa3122cb7c45538d656840a1af634ace0f9dca",
+          "generated_at": "2026-10-04T07:54:55.074103+00:00"
+        }
+      },
+      "adjustment_status": "none",
+      "requested_adjustment": 0,
+      "effective_adjustment": 0,
+      "final_score": 30,
+      "allowed_actions": [
+        "upload_evidence",
+        "save_information",
+        "full_view",
+        "save_and_rerun",
+        "rerun",
+        "adjust"
+      ],
+      "error": null,
+      "evidence": [
+        {
+          "evidence_id": "file_5802798add45453d9ac0893864568134",
+          "source_id": "file_5802798add45453d9ac0893864568134",
+          "kind": "file",
+          "file_id": "file_5802798add45453d9ac0893864568134",
+          "filename": "ApexDefend_Case_2_Invoice.pdf",
+          "sha256": "c6a2ff4ce0ebad480c1988d8630fc1ccc547f4d2c6151c4859545e14f5f0ba60",
+          "parse_status": "ready",
+          "status": "active",
+          "evidence_group": null,
+          "version": 1,
+          "supersedes_evidence_id": null,
+          "error": null,
+          "source_ref": {
+            "source_id": "file_5802798add45453d9ac0893864568134",
+            "locator": "parsed_content",
+            "kind": "user_pdf"
+          }
+        },
+        {
+          "evidence_id": "ref_trade_history_v1",
+          "source_id": "ref_trade_history_v1",
+          "kind": "reference",
+          "file_id": null,
+          "filename": null,
+          "sha256": null,
+          "parse_status": "ready",
+          "status": "active",
+          "error": null,
+          "source_ref": {
+            "source_id": "ref_trade_history_v1",
+            "locator": "local_reference",
+            "kind": "authored_demo_seed"
+          }
+        }
+      ],
+      "supplements": [],
+      "manual_adjustments": [],
+      "run_history": [
+        {
+          "run_id": "run_19625bb50279400fb4a215f262c4eea7",
+          "input_version": 2,
+          "status": "succeeded",
+          "ai_score": 30,
+          "created_at": "2026-10-04T07:53:10.140516+00:00",
+          "finished_at": "2026-10-04T07:54:55.080421+00:00"
+        }
+      ]
+    },
+    {
+      "case_id": "case_ce305ab264ac40429f8b7b5a4c3d14c9",
+      "module_key": "market_price",
+      "cap": 10,
+      "module_version": 5,
+      "input_version": 2,
+      "evaluated_input_version": 2,
+      "state": "succeeded",
+      "freshness": "current",
+      "current_run": {
+        "case_id": "case_ce305ab264ac40429f8b7b5a4c3d14c9",
+        "module_key": "market_price",
+        "run_id": "run_bac831a594d645fc95c3901192600895",
+        "input_version": 2,
+        "state": "succeeded",
+        "ai_score": 0,
+        "summary": "The invoice unit price of GBP 8.00 per piece is within the supplied comparable range of GBP 7.00–9.00. PRICE_IN_RANGE applies with 0 risk points, based solely on the synthetic local benchmark.",
+        "matched_rule_ids": [
+          "PRICE_IN_RANGE"
+        ],
+        "findings": [
+          {
+            "code": "COMPARABLE_BENCHMARK",
+            "statement": "The invoice and supplied benchmark match on SKU CV-TOTE-01, currency GBP, unit PCS, DAP trade terms, and delivery location Bristol, UK. The benchmark is an authored synthetic demo reference, not independently verified market data.",
+            "source_refs": [
+              {
+                "source_id": "file_5802798add45453d9ac0893864568134",
+                "locator": "page=1; AcroForm",
+                "kind": "user_pdf"
+              },
+              {
+                "source_id": "ref_market_v1",
+                "locator": "local_reference",
+                "kind": "authored_demo_seed"
+              }
+            ]
+          },
+          {
+            "code": "PRICE_IN_RANGE",
+            "statement": "The invoice unit price of GBP 8.00 per piece falls within the benchmark range of GBP 7.00–9.00 per piece, so there is no out-of-range price deviation.",
+            "source_refs": [
+              {
+                "source_id": "file_5802798add45453d9ac0893864568134",
+                "locator": "page=1; AcroForm",
+                "kind": "user_pdf"
+              },
+              {
+                "source_id": "ref_market_v1",
+                "locator": "local_reference",
+                "kind": "authored_demo_seed"
+              }
+            ]
+          }
+        ],
+        "blocking_flags": [],
+        "missing_inputs": [],
+        "provenance": {
+          "engine_mode": "llm",
+          "analyzer": "teamrouter",
+          "model": "gpt-6.1-sol",
+          "prompt_version": "module-analysis-v2",
+          "policy_version": "demo-risk-v1",
+          "parser_version": "acroform-v1",
+          "input_hash": "fb437884256ed5f289d8639974e6644d5607558e9f0a655dd238acc1b77206ad",
+          "generated_at": "2026-10-04T07:55:07.550921+00:00"
+        }
+      },
+      "adjustment_status": "none",
+      "requested_adjustment": 0,
+      "effective_adjustment": 0,
+      "final_score": 0,
+      "allowed_actions": [
+        "upload_evidence",
+        "save_information",
+        "full_view",
+        "save_and_rerun",
+        "rerun",
+        "adjust"
+      ],
+      "error": null,
+      "evidence": [
+        {
+          "evidence_id": "file_5802798add45453d9ac0893864568134",
+          "source_id": "file_5802798add45453d9ac0893864568134",
+          "kind": "file",
+          "file_id": "file_5802798add45453d9ac0893864568134",
+          "filename": "ApexDefend_Case_2_Invoice.pdf",
+          "sha256": "c6a2ff4ce0ebad480c1988d8630fc1ccc547f4d2c6151c4859545e14f5f0ba60",
+          "parse_status": "ready",
+          "status": "active",
+          "evidence_group": null,
+          "version": 1,
+          "supersedes_evidence_id": null,
+          "error": null,
+          "source_ref": {
+            "source_id": "file_5802798add45453d9ac0893864568134",
+            "locator": "parsed_content",
+            "kind": "user_pdf"
+          }
+        },
+        {
+          "evidence_id": "ref_market_v1",
+          "source_id": "ref_market_v1",
+          "kind": "reference",
+          "file_id": null,
+          "filename": null,
+          "sha256": null,
+          "parse_status": "ready",
+          "status": "active",
+          "error": null,
+          "source_ref": {
+            "source_id": "ref_market_v1",
+            "locator": "local_reference",
+            "kind": "authored_demo_seed"
+          }
+        }
+      ],
+      "supplements": [],
+      "manual_adjustments": [],
+      "run_history": [
+        {
+          "run_id": "run_bac831a594d645fc95c3901192600895",
+          "input_version": 2,
+          "status": "succeeded",
+          "ai_score": 0,
+          "created_at": "2026-10-04T07:53:10.141484+00:00",
+          "finished_at": "2026-10-04T07:55:07.554830+00:00"
+        }
+      ]
+    },
+    {
+      "case_id": "case_ce305ab264ac40429f8b7b5a4c3d14c9",
+      "module_key": "payment_history",
+      "cap": 15,
+      "module_version": 5,
+      "input_version": 2,
+      "evaluated_input_version": 2,
+      "state": "succeeded",
+      "freshness": "current",
+      "current_run": {
+        "case_id": "case_ce305ab264ac40429f8b7b5a4c3d14c9",
+        "module_key": "payment_history",
+        "run_id": "run_db65e1e9864f4dad9d970e047117676b",
+        "input_version": 2,
+        "state": "succeeded",
+        "ai_score": 5,
+        "summary": "The synthetic local payment history shows 2 late payments out of 12 (16.67%) and no defaults. PAYMENT_MINOR_DELAY applies, corresponding to 5 risk points.",
+        "matched_rule_ids": [
+          "PAYMENT_MINOR_DELAY"
+        ],
+        "findings": [
+          {
+            "code": "PAYMENT_LATE_RATIO",
+            "statement": "Within the supplied history window of 2026-01-01 through 2026-10-01, 2 of 12 payments were late: pay_04 by 3 days and pay_09 by 6 days. The late ratio is 2/12 (16.67%), within the range 0 < late ratio <= 0.2.",
+            "source_refs": [
+              {
+                "source_id": "ref_payments_v1",
+                "locator": "local_reference",
+                "kind": "authored_demo_seed"
+              }
+            ]
+          },
+          {
+            "code": "PAYMENT_NO_DEFAULTS",
+            "statement": "All 12 supplied payment records have defaulted=false, giving a default count of 0. Together with the late ratio, this satisfies PAYMENT_MINOR_DELAY. These records are synthetic demo references, not independent real-world verification.",
+            "source_refs": [
+              {
+                "source_id": "ref_payments_v1",
+                "locator": "local_reference",
+                "kind": "authored_demo_seed"
+              }
+            ]
+          }
+        ],
+        "blocking_flags": [],
+        "missing_inputs": [],
+        "provenance": {
+          "engine_mode": "llm",
+          "analyzer": "teamrouter",
+          "model": "gpt-6.1-sol",
+          "prompt_version": "module-analysis-v2",
+          "policy_version": "demo-risk-v1",
+          "parser_version": "acroform-v1",
+          "input_hash": "a52aec0e3ddc71afc2ae64830acb3b6a607a3be3cc52dac49e66ed0f29c7fd0e",
+          "generated_at": "2026-10-04T07:55:18.140385+00:00"
+        }
+      },
+      "adjustment_status": "none",
+      "requested_adjustment": 0,
+      "effective_adjustment": 0,
+      "final_score": 5,
+      "allowed_actions": [
+        "upload_evidence",
+        "save_information",
+        "full_view",
+        "save_and_rerun",
+        "rerun",
+        "adjust"
+      ],
+      "error": null,
+      "evidence": [
+        {
+          "evidence_id": "file_5802798add45453d9ac0893864568134",
+          "source_id": "file_5802798add45453d9ac0893864568134",
+          "kind": "file",
+          "file_id": "file_5802798add45453d9ac0893864568134",
+          "filename": "ApexDefend_Case_2_Invoice.pdf",
+          "sha256": "c6a2ff4ce0ebad480c1988d8630fc1ccc547f4d2c6151c4859545e14f5f0ba60",
+          "parse_status": "ready",
+          "status": "active",
+          "evidence_group": null,
+          "version": 1,
+          "supersedes_evidence_id": null,
+          "error": null,
+          "source_ref": {
+            "source_id": "file_5802798add45453d9ac0893864568134",
+            "locator": "parsed_content",
+            "kind": "user_pdf"
+          }
+        },
+        {
+          "evidence_id": "ref_payments_v1",
+          "source_id": "ref_payments_v1",
+          "kind": "reference",
+          "file_id": null,
+          "filename": null,
+          "sha256": null,
+          "parse_status": "ready",
+          "status": "active",
+          "error": null,
+          "source_ref": {
+            "source_id": "ref_payments_v1",
+            "locator": "local_reference",
+            "kind": "authored_demo_seed"
+          }
+        }
+      ],
+      "supplements": [],
+      "manual_adjustments": [],
+      "run_history": [
+        {
+          "run_id": "run_db65e1e9864f4dad9d970e047117676b",
+          "input_version": 2,
+          "status": "succeeded",
+          "ai_score": 5,
+          "created_at": "2026-10-04T07:53:10.142341+00:00",
+          "finished_at": "2026-10-04T07:55:18.142371+00:00"
+        }
+      ]
+    },
+    {
+      "case_id": "case_ce305ab264ac40429f8b7b5a4c3d14c9",
+      "module_key": "duplicate_financing",
+      "cap": 10,
+      "module_version": 5,
+      "input_version": 2,
+      "evaluated_input_version": 2,
+      "state": "succeeded",
+      "freshness": "current",
+      "current_run": {
+        "case_id": "case_ce305ab264ac40429f8b7b5a4c3d14c9",
+        "module_key": "duplicate_financing",
+        "run_id": "run_7660e5bf550949978e41b17a57127e6c",
+        "input_version": 2,
+        "state": "succeeded",
+        "ai_score": 0,
+        "summary": "No active financing match was found within the supplied local demo registry's stated coverage. The applicable rule is NO_LOCAL_FINANCING_MATCH (0 risk points).",
+        "matched_rule_ids": [
+          "NO_LOCAL_FINANCING_MATCH"
+        ],
+        "findings": [
+          {
+            "code": "NO_LOCAL_FINANCING_MATCH",
+            "statement": "Invoice CV-2026-1002-002, dated 2026-10-02, identifies seller HK-SYN-100001, buyer UK-SYN-200001, and a total of GBP 50,000.00. As of 2026-10-04, the supplied synthetic financing registry declares complete coverage for the local demo and contains no records, so there is no active unsettled financing match within that coverage. This finding is limited to the supplied demo registry.",
+            "source_refs": [
+              {
+                "source_id": "file_5802798add45453d9ac0893864568134",
+                "locator": "page=1; AcroForm",
+                "kind": "user_pdf"
+              },
+              {
+                "source_id": "ref_financing_v1",
+                "locator": "local_reference",
+                "kind": "authored_demo_seed"
+              }
+            ]
+          }
+        ],
+        "blocking_flags": [],
+        "missing_inputs": [],
+        "provenance": {
+          "engine_mode": "llm",
+          "analyzer": "teamrouter",
+          "model": "gpt-6.1-sol",
+          "prompt_version": "module-analysis-v2",
+          "policy_version": "demo-risk-v1",
+          "parser_version": "acroform-v1",
+          "input_hash": "ebd35910f4532efedd1406e3a6755aa6bb580b90c6f73eb8b297268a42c03f2d",
+          "generated_at": "2026-10-04T07:55:28.496368+00:00"
+        }
+      },
+      "adjustment_status": "none",
+      "requested_adjustment": 0,
+      "effective_adjustment": 0,
+      "final_score": 0,
+      "allowed_actions": [
+        "upload_evidence",
+        "save_information",
+        "full_view",
+        "save_and_rerun",
+        "rerun",
+        "adjust"
+      ],
+      "error": null,
+      "evidence": [
+        {
+          "evidence_id": "file_5802798add45453d9ac0893864568134",
+          "source_id": "file_5802798add45453d9ac0893864568134",
+          "kind": "file",
+          "file_id": "file_5802798add45453d9ac0893864568134",
+          "filename": "ApexDefend_Case_2_Invoice.pdf",
+          "sha256": "c6a2ff4ce0ebad480c1988d8630fc1ccc547f4d2c6151c4859545e14f5f0ba60",
+          "parse_status": "ready",
+          "status": "active",
+          "evidence_group": null,
+          "version": 1,
+          "supersedes_evidence_id": null,
+          "error": null,
+          "source_ref": {
+            "source_id": "file_5802798add45453d9ac0893864568134",
+            "locator": "parsed_content",
+            "kind": "user_pdf"
+          }
+        },
+        {
+          "evidence_id": "ref_financing_v1",
+          "source_id": "ref_financing_v1",
+          "kind": "reference",
+          "file_id": null,
+          "filename": null,
+          "sha256": null,
+          "parse_status": "ready",
+          "status": "active",
+          "error": null,
+          "source_ref": {
+            "source_id": "ref_financing_v1",
+            "locator": "local_reference",
+            "kind": "authored_demo_seed"
+          }
+        }
+      ],
+      "supplements": [],
+      "manual_adjustments": [],
+      "run_history": [
+        {
+          "run_id": "run_7660e5bf550949978e41b17a57127e6c",
+          "input_version": 2,
+          "status": "succeeded",
+          "ai_score": 0,
+          "created_at": "2026-10-04T07:53:10.143058+00:00",
+          "finished_at": "2026-10-04T07:55:28.508367+00:00"
+        }
+      ]
+    }
+  ],
+  "aggregate": {
+    "status": "current",
+    "current_result": {
+      "snapshot_id": "snapshot_0f5a043192324bbfba141a9fef701e42",
+      "aggregate_revision": 2,
+      "ai_total": 50,
+      "effective_adjustment_total": 0,
+      "final_risk_score": 50,
+      "risk_band": "HIGH",
+      "module_versions": [
+        {
+          "module_key": "invoice_integrity",
+          "run_id": "run_5e9048b89a44426d9ba54d02325a91e0",
+          "input_version": 4,
+          "final_score": 15
+        },
+        {
+          "module_key": "buyer_verification",
+          "run_id": "run_d0ae5bca587b405b965e6a402387dcd0",
+          "input_version": 2,
+          "final_score": 0
+        },
+        {
+          "module_key": "seller_verification",
+          "run_id": "run_e2d33e100c59496bbded460ab9ecfadc",
+          "input_version": 2,
+          "final_score": 0
+        },
+        {
+          "module_key": "relationship",
+          "run_id": "run_19625bb50279400fb4a215f262c4eea7",
+          "input_version": 2,
+          "final_score": 30
+        },
+        {
+          "module_key": "market_price",
+          "run_id": "run_bac831a594d645fc95c3901192600895",
+          "input_version": 2,
+          "final_score": 0
+        },
+        {
+          "module_key": "payment_history",
+          "run_id": "run_db65e1e9864f4dad9d970e047117676b",
+          "input_version": 2,
+          "final_score": 5
+        },
+        {
+          "module_key": "duplicate_financing",
+          "run_id": "run_7660e5bf550949978e41b17a57127e6c",
+          "input_version": 2,
+          "final_score": 0
+        }
+      ],
+      "policy_version": "demo-risk-v1",
+      "created_at": "2026-10-04T07:56:15.999754+00:00"
+    },
+    "last_valid_result": {
+      "snapshot_id": "snapshot_0f5a043192324bbfba141a9fef701e42",
+      "aggregate_revision": 2,
+      "ai_total": 50,
+      "effective_adjustment_total": 0,
+      "final_risk_score": 50,
+      "risk_band": "HIGH",
+      "module_versions": [
+        {
+          "module_key": "invoice_integrity",
+          "run_id": "run_5e9048b89a44426d9ba54d02325a91e0",
+          "input_version": 4,
+          "final_score": 15
+        },
+        {
+          "module_key": "buyer_verification",
+          "run_id": "run_d0ae5bca587b405b965e6a402387dcd0",
+          "input_version": 2,
+          "final_score": 0
+        },
+        {
+          "module_key": "seller_verification",
+          "run_id": "run_e2d33e100c59496bbded460ab9ecfadc",
+          "input_version": 2,
+          "final_score": 0
+        },
+        {
+          "module_key": "relationship",
+          "run_id": "run_19625bb50279400fb4a215f262c4eea7",
+          "input_version": 2,
+          "final_score": 30
+        },
+        {
+          "module_key": "market_price",
+          "run_id": "run_bac831a594d645fc95c3901192600895",
+          "input_version": 2,
+          "final_score": 0
+        },
+        {
+          "module_key": "payment_history",
+          "run_id": "run_db65e1e9864f4dad9d970e047117676b",
+          "input_version": 2,
+          "final_score": 5
+        },
+        {
+          "module_key": "duplicate_financing",
+          "run_id": "run_7660e5bf550949978e41b17a57127e6c",
+          "input_version": 2,
+          "final_score": 0
+        }
+      ],
+      "policy_version": "demo-risk-v1",
+      "created_at": "2026-10-04T07:56:15.999754+00:00"
+    },
+    "decision": {
+      "status": "manual_review",
+      "advance_rate": null,
+      "advance_amount": null,
+      "currency": "GBP",
+      "reasons": [
+        "invoice_integrity_conflict"
+      ]
+    }
+  },
+  "engine_mode": "llm",
+  "error": null,
+  "navigation": {
+    "target": "result",
+    "reason": "initial_assessment_settled"
+  }
+}

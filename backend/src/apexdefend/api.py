@@ -24,7 +24,7 @@ def create_app(settings=None, database=None):
     db = database or Database(settings)
     svc = Service(db, settings)
     app = FastAPI(
-        title="ApexVibe5 Assessment Backend",
+        title="Apex5Vibe Assessment Backend",
         version="0.1.0",
         description="Local TeamRouter assessment API. Higher scores mean higher invoice risk.",
     )
@@ -43,7 +43,7 @@ def create_app(settings=None, database=None):
     @app.exception_handler(RequestValidationError)
     async def validation_error(request: Request, exc: RequestValidationError):
         details = [{"loc": list(e["loc"]), "message": e["msg"]} for e in exc.errors()]
-        error = AppError("VALIDATION_ERROR", "请求字段未通过校验", details={"fields": details})
+        error = AppError("VALIDATION_ERROR", "Request fields failed validation.", details={"fields": details})
         return JSONResponse(error.body(uuid.uuid4().hex), status_code=422)
 
     def command(scope, key, payload, action):
@@ -203,7 +203,7 @@ def create_app(settings=None, database=None):
         supersedes_evidence_id: str | None = Form(None),
     ):
         if len(files) > settings.max_files:
-            raise AppError("INVALID_FILES", "每次最多10个文件")
+            raise AppError("INVALID_FILES", "Upload at most 10 files per request.")
         contents = []
         for file in files:
             contents.append((file.filename or "", await file.read(settings.max_file_bytes + 1)))
@@ -266,7 +266,7 @@ def create_app(settings=None, database=None):
             svc.module(s, case_id, module_key)
             run = s.get(Run, run_id)
             if not run or run.case_id != case_id or run.module_key != module_key:
-                raise AppError("RUN_NOT_FOUND", "运行记录不存在", 404)
+                raise AppError("RUN_NOT_FOUND", "Assessment run not found.", 404)
             return {
                 "run_id": run.id,
                 "case_id": case_id,
@@ -285,7 +285,7 @@ def create_app(settings=None, database=None):
         with db.sessions() as s:
             job = s.get(Job, job_id)
             if not job:
-                raise AppError("JOB_NOT_FOUND", "任务不存在", 404)
+                raise AppError("JOB_NOT_FOUND", "Job not found.", 404)
             return svc.job_view(job)
 
     @app.get("/v1/cases/{case_id}/events", tags=["cases"])
@@ -323,10 +323,10 @@ def create_app(settings=None, database=None):
             svc.case(s, case_id)
             evidence = s.get(Evidence, file_id)
             if not evidence or evidence.case_id != case_id or not evidence.storage_key:
-                raise AppError("FILE_NOT_FOUND", "文件不存在", 404)
+                raise AppError("FILE_NOT_FOUND", "File not found.", 404)
             target = (svc.storage / evidence.storage_key).resolve()
             if not target.is_relative_to(svc.storage.resolve()) or not target.is_file():
-                raise AppError("FILE_NOT_FOUND", "文件不存在", 404)
+                raise AppError("FILE_NOT_FOUND", "File not found.", 404)
             return FileResponse(target, filename=evidence.filename, content_disposition_type="attachment")
 
     install_contracts(app)
@@ -339,4 +339,4 @@ def after_cursor(records, cursor, key):
     for index, record in enumerate(records):
         if record[key] == cursor:
             return records[index + 1 :]
-    raise AppError("INVALID_CURSOR", "列表游标已失效，请重新加载", 400)
+    raise AppError("INVALID_CURSOR", "The list cursor is no longer valid. Reload the list.", 400)

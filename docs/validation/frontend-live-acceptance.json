@@ -1,0 +1,532 @@
+{
+  "recorded_at": "2026-10-04T08:02:15.186529+00:00",
+  "scope": "English PC Web local integration",
+  "frontend_mode": "live",
+  "backend_model": "gpt-6.1-sol",
+  "data_directory": "runtime/english-demo",
+  "previous_data_preserved_at": "runtime/apex.sqlite3",
+  "github_uploaded": false,
+  "offline_tests": {
+    "passed": 27,
+    "failed": 0,
+    "warnings": [
+      "Starlette TestClient httpx deprecation"
+    ]
+  },
+  "frontend_checks": {
+    "lint": "passed",
+    "typecheck": "passed",
+    "production_build": "passed",
+    "production_browser_smoke": "passed",
+    "desktop_viewports": [
+      [
+        1440,
+        1000
+      ],
+      [
+        1280,
+        900
+      ]
+    ],
+    "horizontal_overflow": false,
+    "uncaught_browser_errors": 0,
+    "visible_chinese_text_in_english_results": false
+  },
+  "cases": {
+    "case1": {
+      "case_id": "case_985c88465a2d45128164ff6b474fcdf4",
+      "final_score": 5,
+      "risk_band": "LOW",
+      "decision": {
+        "status": "eligible",
+        "advance_rate": 0.8,
+        "advance_amount": "6400.00",
+        "currency": "GBP",
+        "reasons": [
+          "current_low_risk"
+        ]
+      },
+      "runs": [
+        {
+          "module_key": "invoice_integrity",
+          "run_id": "run_0082dc0f4fe6443f839881d6ef6a3301",
+          "status": "succeeded",
+          "ai_score": 0,
+          "summary": "The invoice contains the required key fields, and the supplied arithmetic and payment-date checks are consistent.",
+          "provider": {
+            "provider": "teamrouter",
+            "requested_model": "gpt-6.1-sol",
+            "reported_model": "gpt-6.1-sol",
+            "response_id": "resp_07fcada30e791d4d016ac205fa72e087d085a9ff0c432a9c0a",
+            "request_id": "5db226fd-2912-42e3-8e49-98a01f87dd1b",
+            "usage": {
+              "prompt_tokens": 1730,
+              "completion_tokens": 234,
+              "total_tokens": 1964,
+              "completion_tokens_details": {
+                "reasoning_tokens": 59
+              }
+            }
+          }
+        },
+        {
+          "module_key": "buyer_verification",
+          "run_id": "run_64f56d9531904e75aa5895b0d719d271",
+          "status": "succeeded",
+          "ai_score": 0,
+          "summary": "The invoice buyer matches the supplied local entity profile on entity ID, legal name, address, tax ID, and country.",
+          "provider": {
+            "provider": "teamrouter",
+            "requested_model": "gpt-6.1-sol",
+            "reported_model": "gpt-6.1-sol",
+            "response_id": "resp_020e9e780d28872e016ac205fa56b487d0bf3c45b56aaa14dc",
+            "request_id": "c05667b8-511a-41ee-8b49-aa75c6094b7b",
+            "usage": {
+              "prompt_tokens": 1145,
+              "completion_tokens": 229,
+              "total_tokens": 1374,
+              "completion_tokens_details": {
+                "reasoning_tokens": 55
+              }
+            }
+          }
+        },
+        {
+          "module_key": "seller_verification",
+          "run_id": "run_743db9e35fc649b19ace033d950a2380",
+          "status": "succeeded",
+          "ai_score": 0,
+          "summary": "The invoice seller matches the local reference record on entity ID, legal name, address, tax ID, and country.",
+          "provider": {
+            "provider": "teamrouter",
+            "requested_model": "gpt-6.1-sol",
+            "reported_model": "gpt-6.1-sol",
+            "response_id": "resp_0e303b53f1b442f7016ac206033b1887d0b543b99a1538829d",
+            "request_id": "b227ac0f-a2cc-4ecd-add9-360fda3293b3",
+            "usage": {
+              "prompt_tokens": 6002,
+              "completion_tokens": 214,
+              "total_tokens": 6216,
+              "completion_tokens_details": {
+                "reasoning_tokens": 38
+              }
+            }
+          }
+        },
+        {
+          "module_key": "relationship",
+          "run_id": "run_6bc92149cb2a4212b43361affbdc522e",
+          "status": "succeeded",
+          "ai_score": 0,
+          "summary": "The invoice amount equals the synthetic local trade-history median, giving a ratio of 1.00. TRADE_SCALE_NORMAL applies with 0 risk points. The related-party declaration does not conflict with the supplied reference.",
+          "provider": {
+            "provider": "teamrouter",
+            "requested_model": "gpt-6.1-sol",
+            "reported_model": "gpt-6.1-sol",
+            "response_id": "resp_003aff5082bc4688016ac2060c23b087d0bebaa55d05b08218",
+            "request_id": "c243bf26-ebd6-4bb7-8f92-ee4a0537a0ef",
+            "usage": {
+              "prompt_tokens": 7053,
+              "completion_tokens": 306,
+              "total_tokens": 7359
+            }
+          }
+        },
+        {
+          "module_key": "market_price",
+          "run_id": "run_1895d79a626c4e06bc9080f0fe0dd200",
+          "status": "succeeded",
+          "ai_score": 0,
+          "summary": "The invoice unit price of GBP 8.00 per piece is within the supplied synthetic local benchmark range of GBP 7.00–9.00. PRICE_IN_RANGE applies, corresponding to 0 risk points.",
+          "provider": {
+            "provider": "teamrouter",
+            "requested_model": "gpt-6.1-sol",
+            "reported_model": "gpt-6.1-sol",
+            "response_id": "resp_06ff95c42643fe79016ac2061f7b4c87d1b052e1405ebcdd90",
+            "request_id": "de124a45-0d19-46c2-998b-5dd4e4106f8c",
+            "usage": {
+              "prompt_tokens": 6100,
+              "completion_tokens": 231,
+              "total_tokens": 6331
+            }
+          }
+        },
+        {
+          "module_key": "payment_history",
+          "run_id": "run_fe2f7f8a759d4b69a1e20b7911d5f547",
+          "status": "succeeded",
+          "ai_score": 5,
+          "summary": "The buyer has 2 late payments out of 12 recorded payments, giving a late ratio of 0.167, with 0 defaults. This matches PAYMENT_MINOR_DELAY for 5 points.",
+          "provider": {
+            "provider": "teamrouter",
+            "requested_model": "gpt-6.1-sol",
+            "reported_model": "gpt-6.1-sol",
+            "response_id": "resp_0dca1caa7b7f1dce016ac2062c85ac87d0ac1ccf66be161410",
+            "request_id": "720bc8a4-6465-4feb-b3b3-ff6d320f4bd1",
+            "usage": {
+              "prompt_tokens": 2118,
+              "completion_tokens": 357,
+              "total_tokens": 2475,
+              "completion_tokens_details": {
+                "reasoning_tokens": 76
+              }
+            }
+          }
+        },
+        {
+          "module_key": "payment_history",
+          "run_id": "run_c6a60b20b6224967bea3d02441024c16",
+          "status": "succeeded",
+          "ai_score": 5,
+          "summary": "The supplied synthetic local payment records show 2 late payments out of 12 (16.67%) and no defaults. PAYMENT_MINOR_DELAY applies, assigning 5 risk points.",
+          "provider": {
+            "provider": "teamrouter",
+            "requested_model": "gpt-6.1-sol",
+            "reported_model": "gpt-6.1-sol",
+            "response_id": "resp_05cac0ab5a6cd71d016ac206771e7487d194da8ee02fce525e",
+            "request_id": "2e8546de-1554-4e7e-bb19-338c0681cc9b",
+            "usage": {
+              "prompt_tokens": 6909,
+              "completion_tokens": 340,
+              "total_tokens": 7249
+            }
+          }
+        },
+        {
+          "module_key": "duplicate_financing",
+          "run_id": "run_142fe6eaab5e46ebafee397be3877fe2",
+          "status": "succeeded",
+          "ai_score": 0,
+          "summary": "No valid financing match was identified within the complete local demo registry coverage for invoice CV-2026-1002-001.",
+          "provider": {
+            "provider": "teamrouter",
+            "requested_model": "gpt-6.1-sol",
+            "reported_model": "gpt-6.1-sol",
+            "response_id": "resp_004cb494adb8df0b016ac2062cf35c81999c9601bf63bed3ba",
+            "request_id": "1e329b26-1ae8-4b5f-96e4-248859f42c0b",
+            "usage": {
+              "prompt_tokens": 1119,
+              "completion_tokens": 216,
+              "total_tokens": 1335,
+              "completion_tokens_details": {
+                "reasoning_tokens": 42
+              }
+            }
+          }
+        }
+      ],
+      "supplement_and_adjustment_checks": "passed: AI 5 retained; manual -5 → final 0; save-only → stale; AI rerun → pending review; reconfirm 0 → 5/eligible"
+    },
+    "case2": {
+      "case_id": "case_ce305ab264ac40429f8b7b5a4c3d14c9",
+      "final_score": 35,
+      "risk_band": "HIGH",
+      "decision": {
+        "status": "manual_review",
+        "advance_rate": null,
+        "advance_amount": null,
+        "currency": "GBP",
+        "reasons": [
+          "high_risk_score"
+        ]
+      },
+      "runs": [
+        {
+          "module_key": "invoice_integrity",
+          "run_id": "run_22b04a614256416ab480205eaa3f3fbf",
+          "status": "succeeded",
+          "ai_score": 0,
+          "summary": "The invoice contains the required key fields, and all supplied arithmetic and payment-term checks are consistent.",
+          "provider": {
+            "provider": "teamrouter",
+            "requested_model": "gpt-6.1-sol",
+            "reported_model": "gpt-6.1-sol",
+            "response_id": "resp_06bb6ad7c7e9f611016ac20634e4f487d0a04af8f475488fa3",
+            "request_id": "a93bc73a-664c-40d6-9480-0ccb20b9ab8d",
+            "usage": {
+              "prompt_tokens": 1688,
+              "completion_tokens": 261,
+              "total_tokens": 1949,
+              "completion_tokens_details": {
+                "reasoning_tokens": 62
+              }
+            }
+          }
+        },
+        {
+          "module_key": "invoice_integrity",
+          "run_id": "run_5e9048b89a44426d9ba54d02325a91e0",
+          "status": "succeeded",
+          "ai_score": 15,
+          "summary": "Confirmed invoice integrity conflicts exist between the main invoice PDF and the active field sheet: the buyer address differs, and the field sheet reports an invoice total of GBP 80,000 while the PDF reports GBP 50,000. The PDF's own arithmetic and payment-term checks pass.",
+          "provider": {
+            "provider": "teamrouter",
+            "requested_model": "gpt-6.1-sol",
+            "reported_model": "gpt-6.1-sol",
+            "response_id": "resp_077206ad8adcc28c016ac206918f9487d080c33f0e1cbdf211",
+            "request_id": "d5116abe-aa18-4b74-994c-7659ebe9f395",
+            "usage": {
+              "prompt_tokens": 12468,
+              "completion_tokens": 439,
+              "total_tokens": 12907,
+              "completion_tokens_details": {
+                "reasoning_tokens": 66
+              }
+            }
+          }
+        },
+        {
+          "module_key": "invoice_integrity",
+          "run_id": "run_b030dbcdc73945849933a275f2a2178c",
+          "status": "succeeded",
+          "ai_score": 0,
+          "summary": "Invoice CV-2026-1002-002 has complete key fields, consistent arithmetic and dates, and no confirmed conflicts with the supplied field sheet. INTEGRITY_OK applies with 0 risk points.",
+          "provider": {
+            "provider": "teamrouter",
+            "requested_model": "gpt-6.1-sol",
+            "reported_model": "gpt-6.1-sol",
+            "response_id": "resp_0086a2b3872c99af016ac206f57e9487d2bb14025eed738b18",
+            "request_id": "90b246f8-5127-4ec1-b8d6-522685a94891",
+            "usage": {
+              "prompt_tokens": 17076,
+              "completion_tokens": 614,
+              "total_tokens": 17690
+            }
+          }
+        },
+        {
+          "module_key": "buyer_verification",
+          "run_id": "run_d0ae5bca587b405b965e6a402387dcd0",
+          "status": "succeeded",
+          "ai_score": 0,
+          "summary": "The invoice buyer matches the supplied synthetic local profile. BUYER_MATCH applies with 0 risk points.",
+          "provider": {
+            "provider": "teamrouter",
+            "requested_model": "gpt-6.1-sol",
+            "reported_model": "gpt-6.1-sol",
+            "response_id": "resp_0e66a46a3975f3c6016ac2063a28a487d1bbbce82b4c39f9c6",
+            "request_id": "3377353c-b6d5-4637-8444-45f6c272e270",
+            "usage": {
+              "prompt_tokens": 5826,
+              "completion_tokens": 192,
+              "total_tokens": 6018
+            }
+          }
+        },
+        {
+          "module_key": "seller_verification",
+          "run_id": "run_e2d33e100c59496bbded460ab9ecfadc",
+          "status": "succeeded",
+          "ai_score": 0,
+          "summary": "The invoice seller matches the supplied synthetic local profile. SELLER_MATCH applies with 0 risk points.",
+          "provider": {
+            "provider": "teamrouter",
+            "requested_model": "gpt-6.1-sol",
+            "reported_model": "gpt-6.1-sol",
+            "response_id": "resp_04e47a0c7b9d6687016ac2065d239c87d197a0d2182cf0840e",
+            "request_id": "e2dd9937-ff1e-4ef7-a8b4-feb98c7a6ccb",
+            "usage": {
+              "prompt_tokens": 5832,
+              "completion_tokens": 204,
+              "total_tokens": 6036
+            }
+          }
+        },
+        {
+          "module_key": "relationship",
+          "run_id": "run_19625bb50279400fb4a215f262c4eea7",
+          "status": "succeeded",
+          "ai_score": 30,
+          "summary": "The GBP 50,000.00 invoice is 6.25 times the GBP 8,000.00 median of comparable historical trades, triggering TRADE_SCALE_HIGH (30 risk points). The related-party declaration matches the synthetic local reference. The trade size alone is not proof of fraud.",
+          "provider": {
+            "provider": "teamrouter",
+            "requested_model": "gpt-6.1-sol",
+            "reported_model": "gpt-6.1-sol",
+            "response_id": "resp_09c78d6c67db5e34016ac206438da887d0b383f0bb6118b1ed",
+            "request_id": "9ccfb27d-f101-4f0c-a019-f08def0716be",
+            "usage": {
+              "prompt_tokens": 7047,
+              "completion_tokens": 334,
+              "total_tokens": 7381
+            }
+          }
+        },
+        {
+          "module_key": "market_price",
+          "run_id": "run_bac831a594d645fc95c3901192600895",
+          "status": "succeeded",
+          "ai_score": 0,
+          "summary": "The invoice unit price of GBP 8.00 per piece is within the supplied comparable range of GBP 7.00–9.00. PRICE_IN_RANGE applies with 0 risk points, based solely on the synthetic local benchmark.",
+          "provider": {
+            "provider": "teamrouter",
+            "requested_model": "gpt-6.1-sol",
+            "reported_model": "gpt-6.1-sol",
+            "response_id": "resp_023de09c870e4cb8016ac2065083f487d2ab070db423955cf8",
+            "request_id": "621904c6-bce3-48c2-a11b-4c45333f1b2a",
+            "usage": {
+              "prompt_tokens": 6094,
+              "completion_tokens": 288,
+              "total_tokens": 6382
+            }
+          }
+        },
+        {
+          "module_key": "payment_history",
+          "run_id": "run_db65e1e9864f4dad9d970e047117676b",
+          "status": "succeeded",
+          "ai_score": 5,
+          "summary": "The synthetic local payment history shows 2 late payments out of 12 (16.67%) and no defaults. PAYMENT_MINOR_DELAY applies, corresponding to 5 risk points.",
+          "provider": {
+            "provider": "teamrouter",
+            "requested_model": "gpt-6.1-sol",
+            "reported_model": "gpt-6.1-sol",
+            "response_id": "resp_0d13dc29cd5ed75d016ac2065ca34887d199f480b6db8eb215",
+            "request_id": "4f767798-f36c-4561-a71e-69af0ebc7c2d",
+            "usage": {
+              "prompt_tokens": 6963,
+              "completion_tokens": 264,
+              "total_tokens": 7227
+            }
+          }
+        },
+        {
+          "module_key": "duplicate_financing",
+          "run_id": "run_7660e5bf550949978e41b17a57127e6c",
+          "status": "succeeded",
+          "ai_score": 0,
+          "summary": "No active financing match was found within the supplied local demo registry's stated coverage. The applicable rule is NO_LOCAL_FINANCING_MATCH (0 risk points).",
+          "provider": {
+            "provider": "teamrouter",
+            "requested_model": "gpt-6.1-sol",
+            "reported_model": "gpt-6.1-sol",
+            "response_id": "resp_0ec15815dd5bffff016ac20667093c87d183f607d51181368b",
+            "request_id": "15d996c6-9875-4a8b-bb6a-86d062f56ad8",
+            "usage": {
+              "prompt_tokens": 5800,
+              "completion_tokens": 240,
+              "total_tokens": 6040
+            }
+          }
+        }
+      ],
+      "score_sequence": [
+        35,
+        50,
+        35
+      ],
+      "integrity_score_sequence": [
+        0,
+        15,
+        0
+      ],
+      "other_six_run_ids_unchanged": true,
+      "main_pdf_amount_unchanged": "50000.00",
+      "evidence_versions": [
+        {
+          "evidence_id": "file_73e77b8c9b1548e889092cae949c441c",
+          "source_id": "file_73e77b8c9b1548e889092cae949c441c",
+          "kind": "file",
+          "file_id": "file_73e77b8c9b1548e889092cae949c441c",
+          "filename": "ApexDefend_Case_2_Errors.xlsx",
+          "sha256": "d11617a8043178ae0023b1145958c3c38d0e386471f05d2ea37e65bf10544a9a",
+          "parse_status": "ready",
+          "status": "superseded",
+          "evidence_group": "invoice_field_sheet",
+          "version": 1,
+          "supersedes_evidence_id": null,
+          "error": null,
+          "source_ref": {
+            "source_id": "file_73e77b8c9b1548e889092cae949c441c",
+            "locator": "parsed_content",
+            "kind": "uploaded_file"
+          }
+        },
+        {
+          "evidence_id": "file_3bc529cbd4f1412a9ceb9485e1b77f1d",
+          "source_id": "file_3bc529cbd4f1412a9ceb9485e1b77f1d",
+          "kind": "file",
+          "file_id": "file_3bc529cbd4f1412a9ceb9485e1b77f1d",
+          "filename": "ApexDefend_Case_2_Corrected.xlsx",
+          "sha256": "49c7ba42b00441dfbc84c2593f12366b15a963a1c318de349596657826cf3562",
+          "parse_status": "ready",
+          "status": "active",
+          "evidence_group": "invoice_field_sheet",
+          "version": 2,
+          "supersedes_evidence_id": "file_73e77b8c9b1548e889092cae949c441c",
+          "error": null,
+          "source_ref": {
+            "source_id": "file_3bc529cbd4f1412a9ceb9485e1b77f1d",
+            "locator": "parsed_content",
+            "kind": "uploaded_file"
+          }
+        }
+      ],
+      "drop_banner": "Risk decreased by 15 points: 50 → 35 · HIGH → HIGH."
+    }
+  },
+  "model_runs": {
+    "count": 17,
+    "all_succeeded": true,
+    "attempts": [
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1
+    ]
+  },
+  "browser_checks": [
+    "real PDF bytes uploaded",
+    "server-derived extracted fields and PDF preview",
+    "automatic step 3 to 4",
+    "Low/High queue filters",
+    "module-only evidence rerun",
+    "explicit replacement required",
+    "risk decreases after corrected evidence",
+    "English findings and errors",
+    "full evidence/run history",
+    "manual adjustments preserve AI score",
+    "save-only invalidates current financing",
+    "post-rerun adjustment reconfirmation",
+    "production reload persistence",
+    "1440px and 1280px desktop layouts"
+  ],
+  "earlier_integration_checks": {
+    "data_directory": "runtime",
+    "checks": [
+      "Existing and Manual company conflict blocked start and was explicitly resolved",
+      "needs_info settled to result with Pending and no amount",
+      "aborted API connection preserved note draft and disabled writes, no mock fallback",
+      "empty file rejected before backend write"
+    ],
+    "prompt_correction": "Clarified invoice facts provenance and optional field sheets after real AI incorrectly requested missing data."
+  },
+  "limits": [
+    "Desktop Chromium tested; Safari/Firefox and mobile not tested.",
+    "Browser-specific 409 recovery was implemented but not independently completed; backend optimistic conflict/idempotency behavior is covered by offline tests.",
+    "No production authentication, external registry queries, or generic scanned-invoice OCR."
+  ],
+  "product_name": "Apex5Vibe",
+  "frontend_integration_completed": true,
+  "branding_verification": {
+    "browser_title": "Apex5Vibe — Invoice Financing Assessment",
+    "header": "Apex5Vibe",
+    "api_title": "Apex5Vibe Assessment Backend",
+    "case_results_after_brand_update": [
+      5,
+      35
+    ]
+  }
+}

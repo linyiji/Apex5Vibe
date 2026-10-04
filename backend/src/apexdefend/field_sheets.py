@@ -97,7 +97,9 @@ def field_sheet(content, source_id, invoice):
         None,
     )
     if header is None:
-        raise AppError("INVALID_FIELD_SHEET", "Invoice Fields 缺少 Section / Field / Value / Unit 表头")
+        raise AppError(
+            "INVALID_FIELD_SHEET", "Invoice Fields requires Section / Field / Value / Unit column headers."
+        )
     fields, errors = {}, []
     for row, cells in sorted(rows.items()):
         if row <= header or not cells.get("B"):
@@ -130,7 +132,11 @@ def field_sheet(content, source_id, invoice):
     for key in MAPPING.keys() - fields.keys():
         errors.append({"field": key, "error": "missing_required_field"})
     if errors:
-        raise AppError("INVALID_FIELD_SHEET", "字段表存在重复、缺失或类型错误", details={"fields": errors})
+        raise AppError(
+            "INVALID_FIELD_SHEET",
+            "The field sheet contains duplicate, missing, or invalid values.",
+            details={"fields": errors},
+        )
     differences = []
     for key, path in MAPPING.items():
         value = invoice

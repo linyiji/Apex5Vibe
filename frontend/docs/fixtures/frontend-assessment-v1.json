@@ -1,0 +1,421 @@
+{
+  "id": "ASM-frontend-fixture",
+  "version": 1,
+  "createdAt": "2026-10-04T06:59:25.341Z",
+  "invoice": {
+    "file_name": "INV-2026-014_Adaeze_Okonkwo_Studio.pdf",
+    "simulated": false,
+    "fields": {
+      "seller": {
+        "value": "Adaeze Okonkwo Studio",
+        "status": "extracted",
+        "source": "Adaeze Okonkwo Studio, 18 Shoreditch High Street, London"
+      },
+      "buyer": {
+        "value": "Harbour & Vine Ltd",
+        "status": "extracted",
+        "source": "Bill to: Harbour & Vine Ltd, 22 Rivington Street"
+      },
+      "buyer_registration": {
+        "value": null,
+        "status": "missing",
+        "source": null
+      },
+      "invoice_number": {
+        "value": "INV-2026-014",
+        "status": "extracted",
+        "source": "Invoice No. INV-2026-014"
+      },
+      "invoice_date": {
+        "value": "2026-09-14",
+        "status": "extracted",
+        "source": "Issue date: 14 Sep 2026"
+      },
+      "due_date": {
+        "value": "2026-10-14",
+        "status": "extracted",
+        "source": "Due: 14 Oct 2026"
+      },
+      "amount": {
+        "value": "4030.00",
+        "status": "extracted",
+        "source": "TOTAL £4,030.00"
+      },
+      "currency": {
+        "value": "GBP",
+        "status": "extracted",
+        "source": "All amounts in GBP"
+      },
+      "bank_account": {
+        "value": "20-45-77 ••••4821",
+        "status": "extracted",
+        "source": "Sort code 20-45-77  Account 6119 4821"
+      },
+      "po_reference": {
+        "value": "PO-20931",
+        "status": "uncertain",
+        "source": "Your ref: P0-20931 (smudged: 0 or O?)"
+      }
+    },
+    "line_items": [
+      {
+        "description": "Brand Identity Package",
+        "quantity": 1,
+        "unit_price": 2400,
+        "amount": 2400
+      },
+      {
+        "description": "Website Design",
+        "quantity": 3,
+        "unit_price": 450,
+        "amount": 1350
+      },
+      {
+        "description": "Post-launch Support (hours)",
+        "quantity": 6,
+        "unit_price": 80,
+        "amount": 480
+      }
+    ]
+  },
+  "score": 23,
+  "band": "medium",
+  "recommendation": "manual_review",
+  "advanceRate": null,
+  "financingAmount": null,
+  "modules": [
+    {
+      "id": "invoice_integrity",
+      "name": "Invoice Integrity",
+      "description": "Arithmetic, dates, numbering and document manipulation",
+      "status": "clear",
+      "points": 0,
+      "summary": "Totals, dates and numbering are consistent.",
+      "checks": [
+        {
+          "label": "Invoice arithmetic",
+          "result": "pass",
+          "detail": "£4,230 − £200 discount + £0 tax = £4,030"
+        },
+        {
+          "label": "Date consistency",
+          "result": "pass",
+          "detail": "Due 30 days after issue; issue date not in the future"
+        },
+        {
+          "label": "Invoice number pattern",
+          "result": "pass",
+          "detail": "Follows the seller's sequence (INV-2026-013 → 014)"
+        },
+        {
+          "label": "Document manipulation",
+          "result": "pass",
+          "detail": "No editing-tool metadata detected"
+        }
+      ],
+      "evidence": [
+        {
+          "label": "Source invoice",
+          "value": "INV-2026-014_Adaeze_Okonkwo_Studio.pdf",
+          "source": "Uploaded document"
+        }
+      ]
+    },
+    {
+      "id": "buyer_verification",
+      "name": "Buyer Verification",
+      "description": "Company existence, status and registered address",
+      "status": "clear",
+      "points": 0,
+      "summary": "Harbour & Vine Ltd is active and the address matches the registry.",
+      "checks": [
+        {
+          "label": "Company exists",
+          "result": "pass",
+          "detail": "Found in company registry (synthetic record)"
+        },
+        {
+          "label": "Active status",
+          "result": "pass",
+          "detail": "Active, incorporated 2014"
+        },
+        {
+          "label": "Registered address",
+          "result": "pass",
+          "detail": "22 Rivington Street matches registry"
+        }
+      ],
+      "evidence": [
+        {
+          "label": "Company profile",
+          "value": "Harbour & Vine Ltd · ENT-002",
+          "source": "Reference data (synthetic)"
+        }
+      ]
+    },
+    {
+      "id": "seller_verification",
+      "name": "Seller Verification",
+      "description": "Seller identity, business activity and bank account consistency",
+      "status": "risk",
+      "points": 16,
+      "summary": "Payment account differs from the seller's verified account.",
+      "checks": [
+        {
+          "label": "Company exists",
+          "result": "pass",
+          "detail": "Adaeze Okonkwo Studio, active (synthetic record)"
+        },
+        {
+          "label": "Business activity",
+          "result": "pass",
+          "detail": "Design studio; invoiced services match activity"
+        },
+        {
+          "label": "Bank account consistency",
+          "result": "fail",
+          "detail": "Invoice account 20-45-77 ••••4821 differs from verified account 20-45-77 ••••0937. Change not yet confirmed."
+        }
+      ],
+      "evidence": [
+        {
+          "label": "Account on invoice",
+          "value": "20-45-77 ••••4821",
+          "source": "Uploaded document"
+        },
+        {
+          "label": "Verified account on file",
+          "value": "20-45-77 ••••0937 (verified 3 Nov 2025)",
+          "source": "Reference data (synthetic)"
+        }
+      ]
+    },
+    {
+      "id": "transaction_plausibility",
+      "name": "Transaction Plausibility",
+      "description": "Purchase order, pricing and transaction size",
+      "status": "watch",
+      "points": 4,
+      "summary": "Pricing is normal, but the purchase order could not be verified.",
+      "checks": [
+        {
+          "label": "Purchase order / contract",
+          "result": "unknown",
+          "detail": "PO-20931 not found in the buyer's purchase-order records."
+        },
+        {
+          "label": "Unit price vs benchmark",
+          "result": "pass",
+          "detail": "Website design £450/day within £350–£600 per website-design day"
+        },
+        {
+          "label": "Transaction size",
+          "result": "pass",
+          "detail": "£4,030 within seller's typical £3,200–£4,800"
+        },
+        {
+          "label": "Round-number anomaly",
+          "result": "pass",
+          "detail": "Line amounts are not suspiciously round"
+        }
+      ],
+      "evidence": [
+        {
+          "label": "PO on invoice",
+          "value": "PO-20931",
+          "source": "Uploaded document"
+        }
+      ]
+    },
+    {
+      "id": "relationship",
+      "name": "Buyer–Seller Relationship",
+      "description": "Related parties, history and behaviour change",
+      "status": "clear",
+      "points": 0,
+      "summary": "Established relationship: 6 prior invoices since Mar 2024.",
+      "checks": [
+        {
+          "label": "Related-party indicators",
+          "result": "pass",
+          "detail": "No shared directors or addresses"
+        },
+        {
+          "label": "Transaction history",
+          "result": "pass",
+          "detail": "6 invoices settled since Mar 2024"
+        },
+        {
+          "label": "Behaviour change",
+          "result": "pass",
+          "detail": "Invoice frequency and size consistent"
+        }
+      ],
+      "evidence": [
+        {
+          "label": "Relationship record",
+          "value": "6 invoices · no related-party flags",
+          "source": "Reference data (synthetic)"
+        }
+      ]
+    },
+    {
+      "id": "payment_behaviour",
+      "name": "Payment Behaviour",
+      "description": "Buyer's historical lateness, defaults and disputes",
+      "status": "watch",
+      "points": 3,
+      "summary": "2 of 12 past invoices paid late (avg 6 days); no defaults.",
+      "checks": [
+        {
+          "label": "Historical lateness",
+          "result": "warn",
+          "detail": "2 late payments, average 6 days"
+        },
+        {
+          "label": "Defaults",
+          "result": "pass",
+          "detail": "None recorded"
+        },
+        {
+          "label": "Disputes",
+          "result": "pass",
+          "detail": "None recorded"
+        }
+      ],
+      "evidence": [
+        {
+          "label": "Payment history",
+          "value": "12 invoices · 10 on time · 2 late",
+          "source": "Reference data (synthetic)"
+        }
+      ]
+    },
+    {
+      "id": "duplicate_financing",
+      "name": "Duplicate Financing",
+      "description": "Duplicate invoices and previously financed receivables",
+      "status": "clear",
+      "points": 0,
+      "summary": "No duplicate or previously financed invoice found.",
+      "checks": [
+        {
+          "label": "Exact duplicate",
+          "result": "pass",
+          "detail": "INV-2026-014 not in invoice history"
+        },
+        {
+          "label": "Near-duplicate number",
+          "result": "pass",
+          "detail": "No similar number with the same amount"
+        },
+        {
+          "label": "Previously financed",
+          "result": "pass",
+          "detail": "Not in financing history (internal only)"
+        }
+      ],
+      "evidence": [
+        {
+          "label": "Financing history search",
+          "value": "0 matches",
+          "source": "Reference data (synthetic)"
+        }
+      ]
+    }
+  ],
+  "drivers": [
+    {
+      "id": "bank_changed",
+      "moduleId": "seller_verification",
+      "title": "Bank details changed",
+      "explanation": "The payment destination (20-45-77 ••••4821) differs from the seller's previously verified account (20-45-77 ••••0937).",
+      "points": 16,
+      "whatToCheck": [
+        "Confirm the change directly with the seller using contact details from your records, not the invoice.",
+        "Request proof of account ownership (bank letter or statement header).",
+        "Check when the change first appeared compared with previous invoices."
+      ]
+    },
+    {
+      "id": "po_unverified",
+      "moduleId": "transaction_plausibility",
+      "title": "Purchase order not verified",
+      "explanation": "The invoice cites PO-20931, which isn't in the buyer's records. Without it, there's no independent proof the buyer ordered these services.",
+      "points": 4,
+      "whatToCheck": [
+        "Request the PO or signed contract from the seller.",
+        "Confirm delivery or service completion with the buyer.",
+        "Note the PO reference was hard to read: check for an O / 0 mix-up."
+      ]
+    },
+    {
+      "id": "late_payments",
+      "moduleId": "payment_behaviour",
+      "title": "Buyer has paid late before",
+      "explanation": "2 of the buyer's last 12 invoices were paid late (average 6 days). No defaults.",
+      "points": 3,
+      "whatToCheck": [
+        "Allow for a short delay in the repayment schedule.",
+        "Check for any open disputes with the buyer."
+      ]
+    }
+  ],
+  "completeness": {
+    "percent": 71,
+    "items": [
+      {
+        "id": "invoice_details",
+        "label": "Invoice details",
+        "status": "verified",
+        "note": "Extracted and reviewed",
+        "moduleId": null
+      },
+      {
+        "id": "buyer_identity",
+        "label": "Buyer identity",
+        "status": "verified",
+        "note": "Registry match",
+        "moduleId": null
+      },
+      {
+        "id": "seller_identity",
+        "label": "Seller identity",
+        "status": "verified",
+        "note": "Registry match",
+        "moduleId": null
+      },
+      {
+        "id": "payment_history",
+        "label": "Historical payments",
+        "status": "verified",
+        "note": "12 invoices on record",
+        "moduleId": null
+      },
+      {
+        "id": "duplicate_search",
+        "label": "Duplicate financing search",
+        "status": "verified",
+        "note": "Internal history searched",
+        "moduleId": null
+      },
+      {
+        "id": "bank_change",
+        "label": "Bank account change",
+        "status": "missing",
+        "note": "Not yet confirmed with the seller",
+        "moduleId": "seller_verification"
+      },
+      {
+        "id": "purchase_order",
+        "label": "Purchase order",
+        "status": "missing",
+        "note": "Not found in buyer records",
+        "moduleId": "transaction_plausibility"
+      }
+    ]
+  },
+  "evidence": [],
+  "preliminary": true,
+  "previous": null
+}

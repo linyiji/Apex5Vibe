@@ -85,7 +85,7 @@ def test_untrusted_model_cannot_invent_source_or_emit_zero_for_missing_data(syst
     inputs = next(i for i in analyzer.calls if i["module_key"] == "payment_history")
     analysis, _ = analyzer.analyze(inputs, POLICY)
     analysis.findings[0].source_ids = ["invented_source"]
-    with pytest.raises(AppError, match="本次输入快照之外"):
+    with pytest.raises(AppError, match="outside the current input snapshot"):
         score_analysis(analysis, inputs, "run_test", "gpt-6.1-sol")
     missing = AIAnalysis(
         status="needs_info",

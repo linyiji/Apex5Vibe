@@ -1,0 +1,1953 @@
+{
+  "run_id": "run_5e9048b89a44426d9ba54d02325a91e0",
+  "case_id": "case_ce305ab264ac40429f8b7b5a4c3d14c9",
+  "module_key": "invoice_integrity",
+  "status": "succeeded",
+  "input": {
+    "case_id": "case_ce305ab264ac40429f8b7b5a4c3d14c9",
+    "module_key": "invoice_integrity",
+    "input_version": 4,
+    "as_of": "2026-10-04",
+    "policy_version": "demo-risk-v1",
+    "facts": {
+      "invoice": {
+        "invoice_id": "invoice_file_5802798add45453d9ac0893864568134",
+        "invoice_number": "CV-2026-1002-002",
+        "invoice_date": "2026-10-02",
+        "ship_date": "2026-10-02",
+        "due_date": "2026-11-01",
+        "payment_terms": "Net 30 days from invoice date",
+        "payment_term_days": 30,
+        "currency": "GBP",
+        "seller": {
+          "entity_id": "ent_cedarvale",
+          "legal_name": "Cedarvale Office Goods Limited",
+          "address": "Unit 8, 18 Fictional Harbour Road\nKowloon, Hong Kong",
+          "tax_id": "HK-SYN-100001",
+          "country": "Hong Kong"
+        },
+        "buyer": {
+          "entity_id": "ent_meridianleaf",
+          "legal_name": "Meridianleaf Workplace Ltd.",
+          "address": "30 Fictional Orchard Lane\nBristol, ZZ1 0ZZ",
+          "tax_id": "UK-SYN-200001",
+          "country": "United Kingdom"
+        },
+        "consignee_same_as_buyer": true,
+        "declared_related": false,
+        "purchase_order_number": "ML-PO-2026-0925-002",
+        "air_waybill_number": "SYN-AWB-261002-002",
+        "line_items": [
+          {
+            "sku": "CV-TOTE-01",
+            "description": "Cotton canvas tote bags\nSKU: CV-TOTE-01; natural beige\n100% cotton; 38 x 42 cm\nFor office supply resale\n50 pieces per carton",
+            "quantity": 6250,
+            "unit": "PCS",
+            "unit_price": "8.00",
+            "line_total": "50000.00",
+            "hs_code": "420292",
+            "country_of_manufacture": "China"
+          }
+        ],
+        "subtotal": "50000.00",
+        "charges": {
+          "insurance": "0.00",
+          "freight": "0.00",
+          "packing": "0.00",
+          "handling": "0.00",
+          "other": "0.00"
+        },
+        "total": "50000.00",
+        "trade_terms": "DAP",
+        "delivery_location": "Bristol, UK",
+        "source_refs": [
+          {
+            "source_id": "file_5802798add45453d9ac0893864568134",
+            "locator": "page=1; AcroForm",
+            "kind": "user_pdf"
+          }
+        ],
+        "extraction_method": "acroform_verified",
+        "synthetic": true
+      },
+      "deterministic_checks": [
+        {
+          "code": "quantity_times_unit_price",
+          "expected": "50000.00",
+          "actual": "50000.00",
+          "passed": true,
+          "source_id": "file_5802798add45453d9ac0893864568134"
+        },
+        {
+          "code": "line_items_sum",
+          "expected": "50000.00",
+          "actual": "50000.00",
+          "passed": true,
+          "source_id": "file_5802798add45453d9ac0893864568134"
+        },
+        {
+          "code": "subtotal_plus_charges",
+          "expected": "50000.00",
+          "actual": "50000.00",
+          "passed": true,
+          "source_id": "file_5802798add45453d9ac0893864568134"
+        },
+        {
+          "code": "payment_term_days",
+          "expected": 30,
+          "actual": 30,
+          "passed": true,
+          "source_id": "file_5802798add45453d9ac0893864568134"
+        }
+      ]
+    },
+    "reference_records": [],
+    "sources": [
+      {
+        "source_id": "file_5802798add45453d9ac0893864568134",
+        "locator": "page=1; AcroForm",
+        "kind": "user_pdf"
+      },
+      {
+        "source_id": "file_73e77b8c9b1548e889092cae949c441c",
+        "locator": "parsed_content",
+        "kind": "uploaded_file"
+      }
+    ],
+    "evidence": [
+      {
+        "source_id": "file_73e77b8c9b1548e889092cae949c441c",
+        "kind": "file",
+        "content": {
+          "type": "xlsx",
+          "cells": [
+            {
+              "sheet": "Invoice Fields",
+              "cell": "A1",
+              "value": "ApexDefend Case 2 — Invoice fields"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "A2",
+              "value": "Fictional demo data. Buyer: retailer. Exporter: supplier."
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "A4",
+              "value": "Section"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "B4",
+              "value": "Field"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "C4",
+              "value": "Value"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "D4",
+              "value": "Unit"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "A5",
+              "value": "Invoice"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "B5",
+              "value": "invoice_number"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "C5",
+              "value": "CV-2026-1002-002"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "A6",
+              "value": "Invoice"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "B6",
+              "value": "invoice_date"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "C6",
+              "value": "2026-10-02 00:00:00"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "A7",
+              "value": "Invoice"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "B7",
+              "value": "ship_date"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "C7",
+              "value": "2026-10-02 00:00:00"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "A8",
+              "value": "Invoice"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "B8",
+              "value": "payment_due_date"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "C8",
+              "value": "2026-11-01 00:00:00"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "A9",
+              "value": "Invoice"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "B9",
+              "value": "payment_terms"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "C9",
+              "value": "Net 30 days from invoice date"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "A10",
+              "value": "Invoice"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "B10",
+              "value": "payment_term_days"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "C10",
+              "value": "30"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "D10",
+              "value": "days"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "A11",
+              "value": "Invoice"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "B11",
+              "value": "currency"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "C11",
+              "value": "GBP"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "A12",
+              "value": "Invoice"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "B12",
+              "value": "purchase_order_number"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "C12",
+              "value": "ML-PO-2026-0925-002"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "A13",
+              "value": "Invoice"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "B13",
+              "value": "air_waybill_number"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "C13",
+              "value": "SYN-AWB-261002-002"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "A14",
+              "value": "Invoice"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "B14",
+              "value": "bill_of_lading"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "C14",
+              "value": "N/A - air shipment"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "A15",
+              "value": "Invoice"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "B15",
+              "value": "purpose_of_shipment"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "C15",
+              "value": "COMMERCIAL SALE"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "A16",
+              "value": "Exporter"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "B16",
+              "value": "exporter_name"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "C16",
+              "value": "Cedarvale Office Goods Limited"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "A17",
+              "value": "Exporter"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "B17",
+              "value": "exporter_address"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "C17",
+              "value": "Unit 8, 18 Fictional Harbour Road\nKowloon, Hong Kong"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "A18",
+              "value": "Exporter"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "B18",
+              "value": "exporter_country"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "C18",
+              "value": "Hong Kong"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "A19",
+              "value": "Exporter"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "B19",
+              "value": "exporter_tax_id_type"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "C19",
+              "value": "CR"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "A20",
+              "value": "Exporter"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "B20",
+              "value": "exporter_tax_id"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "C20",
+              "value": "HK-SYN-100001"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "A21",
+              "value": "Exporter"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "B21",
+              "value": "exporter_contact_name"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "C21",
+              "value": "Adrian Vale"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "A22",
+              "value": "Exporter"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "B22",
+              "value": "exporter_phone"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "C22",
+              "value": "+852 0000 0101"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "A23",
+              "value": "Exporter"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "B23",
+              "value": "exporter_email"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "C23",
+              "value": "sales@cedarvale.example"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "A24",
+              "value": "Buyer"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "B24",
+              "value": "buyer_name"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "C24",
+              "value": "Meridianleaf Workplace Ltd."
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "A25",
+              "value": "Buyer"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "B25",
+              "value": "buyer_address"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "C25",
+              "value": "Unit 8, 18 Fictional Harbour Road\nKowloon, Hong Kong"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "A26",
+              "value": "Buyer"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "B26",
+              "value": "buyer_country"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "C26",
+              "value": "United Kingdom"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "A27",
+              "value": "Buyer"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "B27",
+              "value": "buyer_tax_id_type"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "C27",
+              "value": "VAT"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "A28",
+              "value": "Buyer"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "B28",
+              "value": "buyer_tax_id"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "C28",
+              "value": "UK-SYN-200001"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "A29",
+              "value": "Buyer"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "B29",
+              "value": "buyer_contact_name"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "C29",
+              "value": "Mira Rowan"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "A30",
+              "value": "Buyer"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "B30",
+              "value": "buyer_phone"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "C30",
+              "value": "+44 0000 000202"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "A31",
+              "value": "Buyer"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "B31",
+              "value": "buyer_email"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "C31",
+              "value": "orders@meridianleaf.example"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "A32",
+              "value": "Buyer"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "B32",
+              "value": "sold_to_same_as_consignee"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "C32",
+              "value": "True"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "D32",
+              "value": "boolean"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "A33",
+              "value": "Buyer"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "B33",
+              "value": "parties_related"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "C33",
+              "value": "False"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "D33",
+              "value": "boolean"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "A34",
+              "value": "Goods"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "B34",
+              "value": "product_description"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "C34",
+              "value": "Cotton canvas tote bags\nSKU: CV-TOTE-01; natural beige\n100% cotton; 38 x 42 cm\nFor office supply resale\n50 pieces per carton"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "A35",
+              "value": "Goods"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "B35",
+              "value": "product_sku"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "C35",
+              "value": "CV-TOTE-01"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "A36",
+              "value": "Goods"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "B36",
+              "value": "quantity"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "C36",
+              "value": "6250"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "D36",
+              "value": "PCS"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "A37",
+              "value": "Goods"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "B37",
+              "value": "unit_of_measure"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "C37",
+              "value": "PCS"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "A38",
+              "value": "Goods"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "B38",
+              "value": "unit_price"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "C38",
+              "value": "8"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "D38",
+              "value": "GBP"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "A39",
+              "value": "Goods"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "B39",
+              "value": "line_total"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "C39",
+              "value": "50000"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "D39",
+              "value": "GBP"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "A40",
+              "value": "Goods"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "B40",
+              "value": "number_of_packages"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "C40",
+              "value": "125"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "D40",
+              "value": "cartons"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "A41",
+              "value": "Goods"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "B41",
+              "value": "net_weight"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "C41",
+              "value": "1250"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "D41",
+              "value": "KGS"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "A42",
+              "value": "Goods"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "B42",
+              "value": "hs_code"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "C42",
+              "value": "420292"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "A43",
+              "value": "Goods"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "B43",
+              "value": "country_of_manufacture"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "C43",
+              "value": "China"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "A44",
+              "value": "Totals"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "B44",
+              "value": "subtotal"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "C44",
+              "value": "50000"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "D44",
+              "value": "GBP"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "A45",
+              "value": "Totals"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "B45",
+              "value": "insurance"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "C45",
+              "value": "0"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "D45",
+              "value": "GBP"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "A46",
+              "value": "Totals"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "B46",
+              "value": "freight"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "C46",
+              "value": "0"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "D46",
+              "value": "GBP"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "A47",
+              "value": "Totals"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "B47",
+              "value": "packing"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "C47",
+              "value": "0"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "D47",
+              "value": "GBP"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "A48",
+              "value": "Totals"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "B48",
+              "value": "handling"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "C48",
+              "value": "0"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "D48",
+              "value": "GBP"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "A49",
+              "value": "Totals"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "B49",
+              "value": "other_charges"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "C49",
+              "value": "0"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "D49",
+              "value": "GBP"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "A50",
+              "value": "Totals"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "B50",
+              "value": "other_charge_description"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "C50",
+              "value": "N/A"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "A51",
+              "value": "Totals"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "B51",
+              "value": "invoice_total"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "C51",
+              "value": "80000"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "D51",
+              "value": "GBP"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "A52",
+              "value": "Totals"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "B52",
+              "value": "total_packages"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "C52",
+              "value": "125"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "D52",
+              "value": "cartons"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "A53",
+              "value": "Totals"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "B53",
+              "value": "total_units"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "C53",
+              "value": "6250"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "D53",
+              "value": "PCS"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "A54",
+              "value": "Totals"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "B54",
+              "value": "total_net_weight"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "C54",
+              "value": "1250"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "D54",
+              "value": "KGS"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "A55",
+              "value": "Totals"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "B55",
+              "value": "total_gross_weight"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "C55",
+              "value": "1375"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "D55",
+              "value": "KGS"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "A56",
+              "value": "Shipping"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "B56",
+              "value": "terms_of_sale"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "C56",
+              "value": "DAP=Delivered at Place"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "A57",
+              "value": "Shipping"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "B57",
+              "value": "delivery_location_and_incoterms"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "C57",
+              "value": "Bristol, UK; Incoterms 2020"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "A58",
+              "value": "Shipping"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "B58",
+              "value": "duties_and_taxes_payable_by"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "C58",
+              "value": "Consignee"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "A59",
+              "value": "Shipping"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "B59",
+              "value": "broker_name"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "C59",
+              "value": "N/A - carrier clearance"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "A60",
+              "value": "Shipping"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "B60",
+              "value": "broker_phone"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "C60",
+              "value": "N/A"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "A61",
+              "value": "Shipping"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "B61",
+              "value": "broker_contact"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "C61",
+              "value": "N/A"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "A62",
+              "value": "Shipping"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "B62",
+              "value": "carrier_account_number"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "C62",
+              "value": "N/A"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "A63",
+              "value": "Shipping"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "B63",
+              "value": "special_instructions"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "C63",
+              "value": "Deliver to consignee address. Freight, insurance and packing included in unit price."
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "A64",
+              "value": "Declaration"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "B64",
+              "value": "declaration_statement"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "C64",
+              "value": "SYNTHETIC DEMO DATA - all parties and transaction details are fictional.\nApexDefend Test Case 2. Not valid for payment, shipping or customs clearance."
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "A65",
+              "value": "Declaration"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "B65",
+              "value": "originator"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "C65",
+              "value": "Adrian Vale / Cedarvale Office Goods Limited"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "A66",
+              "value": "Declaration"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "B66",
+              "value": "signature_title_date"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "C66",
+              "value": "Adrian Vale / Sales Manager / 2026-10-02 (synthetic sign-off)"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "A68",
+              "value": "Source PDF"
+            },
+            {
+              "sheet": "Invoice Fields",
+              "cell": "C68",
+              "value": "ApexDefend_Case_2_Invoice.pdf"
+            }
+          ],
+          "field_sheet": {
+            "template": "single_line_invoice_fields_v1",
+            "fields": {
+              "invoice_number": {
+                "field": "invoice_number",
+                "sheet": "Invoice Fields",
+                "cell": "C5",
+                "source_id": "file_73e77b8c9b1548e889092cae949c441c",
+                "raw_value": "CV-2026-1002-002",
+                "unit": null,
+                "target": "invoice_number",
+                "normalized_value": "CV-2026-1002-002"
+              },
+              "invoice_date": {
+                "field": "invoice_date",
+                "sheet": "Invoice Fields",
+                "cell": "C6",
+                "source_id": "file_73e77b8c9b1548e889092cae949c441c",
+                "raw_value": "2026-10-02 00:00:00",
+                "unit": null,
+                "target": "invoice_date",
+                "normalized_value": "2026-10-02"
+              },
+              "ship_date": {
+                "field": "ship_date",
+                "sheet": "Invoice Fields",
+                "cell": "C7",
+                "source_id": "file_73e77b8c9b1548e889092cae949c441c",
+                "raw_value": "2026-10-02 00:00:00",
+                "unit": null,
+                "target": "ship_date",
+                "normalized_value": "2026-10-02"
+              },
+              "payment_due_date": {
+                "field": "payment_due_date",
+                "sheet": "Invoice Fields",
+                "cell": "C8",
+                "source_id": "file_73e77b8c9b1548e889092cae949c441c",
+                "raw_value": "2026-11-01 00:00:00",
+                "unit": null,
+                "target": "due_date",
+                "normalized_value": "2026-11-01"
+              },
+              "payment_terms": {
+                "field": "payment_terms",
+                "sheet": "Invoice Fields",
+                "cell": "C9",
+                "source_id": "file_73e77b8c9b1548e889092cae949c441c",
+                "raw_value": "Net 30 days from invoice date",
+                "unit": null,
+                "target": null,
+                "normalized_value": "Net 30 days from invoice date"
+              },
+              "payment_term_days": {
+                "field": "payment_term_days",
+                "sheet": "Invoice Fields",
+                "cell": "C10",
+                "source_id": "file_73e77b8c9b1548e889092cae949c441c",
+                "raw_value": "30",
+                "unit": "days",
+                "target": "payment_term_days",
+                "normalized_value": 30
+              },
+              "currency": {
+                "field": "currency",
+                "sheet": "Invoice Fields",
+                "cell": "C11",
+                "source_id": "file_73e77b8c9b1548e889092cae949c441c",
+                "raw_value": "GBP",
+                "unit": null,
+                "target": "currency",
+                "normalized_value": "GBP"
+              },
+              "purchase_order_number": {
+                "field": "purchase_order_number",
+                "sheet": "Invoice Fields",
+                "cell": "C12",
+                "source_id": "file_73e77b8c9b1548e889092cae949c441c",
+                "raw_value": "ML-PO-2026-0925-002",
+                "unit": null,
+                "target": null,
+                "normalized_value": "ML-PO-2026-0925-002"
+              },
+              "air_waybill_number": {
+                "field": "air_waybill_number",
+                "sheet": "Invoice Fields",
+                "cell": "C13",
+                "source_id": "file_73e77b8c9b1548e889092cae949c441c",
+                "raw_value": "SYN-AWB-261002-002",
+                "unit": null,
+                "target": null,
+                "normalized_value": "SYN-AWB-261002-002"
+              },
+              "bill_of_lading": {
+                "field": "bill_of_lading",
+                "sheet": "Invoice Fields",
+                "cell": "C14",
+                "source_id": "file_73e77b8c9b1548e889092cae949c441c",
+                "raw_value": "N/A - air shipment",
+                "unit": null,
+                "target": null,
+                "normalized_value": "N/A - air shipment"
+              },
+              "purpose_of_shipment": {
+                "field": "purpose_of_shipment",
+                "sheet": "Invoice Fields",
+                "cell": "C15",
+                "source_id": "file_73e77b8c9b1548e889092cae949c441c",
+                "raw_value": "COMMERCIAL SALE",
+                "unit": null,
+                "target": null,
+                "normalized_value": "COMMERCIAL SALE"
+              },
+              "exporter_name": {
+                "field": "exporter_name",
+                "sheet": "Invoice Fields",
+                "cell": "C16",
+                "source_id": "file_73e77b8c9b1548e889092cae949c441c",
+                "raw_value": "Cedarvale Office Goods Limited",
+                "unit": null,
+                "target": "seller.legal_name",
+                "normalized_value": "Cedarvale Office Goods Limited"
+              },
+              "exporter_address": {
+                "field": "exporter_address",
+                "sheet": "Invoice Fields",
+                "cell": "C17",
+                "source_id": "file_73e77b8c9b1548e889092cae949c441c",
+                "raw_value": "Unit 8, 18 Fictional Harbour Road\nKowloon, Hong Kong",
+                "unit": null,
+                "target": "seller.address",
+                "normalized_value": "Unit 8, 18 Fictional Harbour Road Kowloon, Hong Kong"
+              },
+              "exporter_country": {
+                "field": "exporter_country",
+                "sheet": "Invoice Fields",
+                "cell": "C18",
+                "source_id": "file_73e77b8c9b1548e889092cae949c441c",
+                "raw_value": "Hong Kong",
+                "unit": null,
+                "target": "seller.country",
+                "normalized_value": "Hong Kong"
+              },
+              "exporter_tax_id_type": {
+                "field": "exporter_tax_id_type",
+                "sheet": "Invoice Fields",
+                "cell": "C19",
+                "source_id": "file_73e77b8c9b1548e889092cae949c441c",
+                "raw_value": "CR",
+                "unit": null,
+                "target": null,
+                "normalized_value": "CR"
+              },
+              "exporter_tax_id": {
+                "field": "exporter_tax_id",
+                "sheet": "Invoice Fields",
+                "cell": "C20",
+                "source_id": "file_73e77b8c9b1548e889092cae949c441c",
+                "raw_value": "HK-SYN-100001",
+                "unit": null,
+                "target": "seller.tax_id",
+                "normalized_value": "HK-SYN-100001"
+              },
+              "exporter_contact_name": {
+                "field": "exporter_contact_name",
+                "sheet": "Invoice Fields",
+                "cell": "C21",
+                "source_id": "file_73e77b8c9b1548e889092cae949c441c",
+                "raw_value": "Adrian Vale",
+                "unit": null,
+                "target": null,
+                "normalized_value": "Adrian Vale"
+              },
+              "exporter_phone": {
+                "field": "exporter_phone",
+                "sheet": "Invoice Fields",
+                "cell": "C22",
+                "source_id": "file_73e77b8c9b1548e889092cae949c441c",
+                "raw_value": "+852 0000 0101",
+                "unit": null,
+                "target": null,
+                "normalized_value": "+852 0000 0101"
+              },
+              "exporter_email": {
+                "field": "exporter_email",
+                "sheet": "Invoice Fields",
+                "cell": "C23",
+                "source_id": "file_73e77b8c9b1548e889092cae949c441c",
+                "raw_value": "sales@cedarvale.example",
+                "unit": null,
+                "target": null,
+                "normalized_value": "sales@cedarvale.example"
+              },
+              "buyer_name": {
+                "field": "buyer_name",
+                "sheet": "Invoice Fields",
+                "cell": "C24",
+                "source_id": "file_73e77b8c9b1548e889092cae949c441c",
+                "raw_value": "Meridianleaf Workplace Ltd.",
+                "unit": null,
+                "target": "buyer.legal_name",
+                "normalized_value": "Meridianleaf Workplace Ltd."
+              },
+              "buyer_address": {
+                "field": "buyer_address",
+                "sheet": "Invoice Fields",
+                "cell": "C25",
+                "source_id": "file_73e77b8c9b1548e889092cae949c441c",
+                "raw_value": "Unit 8, 18 Fictional Harbour Road\nKowloon, Hong Kong",
+                "unit": null,
+                "target": "buyer.address",
+                "normalized_value": "Unit 8, 18 Fictional Harbour Road Kowloon, Hong Kong"
+              },
+              "buyer_country": {
+                "field": "buyer_country",
+                "sheet": "Invoice Fields",
+                "cell": "C26",
+                "source_id": "file_73e77b8c9b1548e889092cae949c441c",
+                "raw_value": "United Kingdom",
+                "unit": null,
+                "target": "buyer.country",
+                "normalized_value": "United Kingdom"
+              },
+              "buyer_tax_id_type": {
+                "field": "buyer_tax_id_type",
+                "sheet": "Invoice Fields",
+                "cell": "C27",
+                "source_id": "file_73e77b8c9b1548e889092cae949c441c",
+                "raw_value": "VAT",
+                "unit": null,
+                "target": null,
+                "normalized_value": "VAT"
+              },
+              "buyer_tax_id": {
+                "field": "buyer_tax_id",
+                "sheet": "Invoice Fields",
+                "cell": "C28",
+                "source_id": "file_73e77b8c9b1548e889092cae949c441c",
+                "raw_value": "UK-SYN-200001",
+                "unit": null,
+                "target": "buyer.tax_id",
+                "normalized_value": "UK-SYN-200001"
+              },
+              "buyer_contact_name": {
+                "field": "buyer_contact_name",
+                "sheet": "Invoice Fields",
+                "cell": "C29",
+                "source_id": "file_73e77b8c9b1548e889092cae949c441c",
+                "raw_value": "Mira Rowan",
+                "unit": null,
+                "target": null,
+                "normalized_value": "Mira Rowan"
+              },
+              "buyer_phone": {
+                "field": "buyer_phone",
+                "sheet": "Invoice Fields",
+                "cell": "C30",
+                "source_id": "file_73e77b8c9b1548e889092cae949c441c",
+                "raw_value": "+44 0000 000202",
+                "unit": null,
+                "target": null,
+                "normalized_value": "+44 0000 000202"
+              },
+              "buyer_email": {
+                "field": "buyer_email",
+                "sheet": "Invoice Fields",
+                "cell": "C31",
+                "source_id": "file_73e77b8c9b1548e889092cae949c441c",
+                "raw_value": "orders@meridianleaf.example",
+                "unit": null,
+                "target": null,
+                "normalized_value": "orders@meridianleaf.example"
+              },
+              "sold_to_same_as_consignee": {
+                "field": "sold_to_same_as_consignee",
+                "sheet": "Invoice Fields",
+                "cell": "C32",
+                "source_id": "file_73e77b8c9b1548e889092cae949c441c",
+                "raw_value": "True",
+                "unit": "boolean",
+                "target": null,
+                "normalized_value": "True"
+              },
+              "parties_related": {
+                "field": "parties_related",
+                "sheet": "Invoice Fields",
+                "cell": "C33",
+                "source_id": "file_73e77b8c9b1548e889092cae949c441c",
+                "raw_value": "False",
+                "unit": "boolean",
+                "target": "declared_related",
+                "normalized_value": false
+              },
+              "product_description": {
+                "field": "product_description",
+                "sheet": "Invoice Fields",
+                "cell": "C34",
+                "source_id": "file_73e77b8c9b1548e889092cae949c441c",
+                "raw_value": "Cotton canvas tote bags\nSKU: CV-TOTE-01; natural beige\n100% cotton; 38 x 42 cm\nFor office supply resale\n50 pieces per carton",
+                "unit": null,
+                "target": null,
+                "normalized_value": "Cotton canvas tote bags\nSKU: CV-TOTE-01; natural beige\n100% cotton; 38 x 42 cm\nFor office supply resale\n50 pieces per carton"
+              },
+              "product_sku": {
+                "field": "product_sku",
+                "sheet": "Invoice Fields",
+                "cell": "C35",
+                "source_id": "file_73e77b8c9b1548e889092cae949c441c",
+                "raw_value": "CV-TOTE-01",
+                "unit": null,
+                "target": "line_items.0.sku",
+                "normalized_value": "CV-TOTE-01"
+              },
+              "quantity": {
+                "field": "quantity",
+                "sheet": "Invoice Fields",
+                "cell": "C36",
+                "source_id": "file_73e77b8c9b1548e889092cae949c441c",
+                "raw_value": "6250",
+                "unit": "PCS",
+                "target": "line_items.0.quantity",
+                "normalized_value": 6250
+              },
+              "unit_of_measure": {
+                "field": "unit_of_measure",
+                "sheet": "Invoice Fields",
+                "cell": "C37",
+                "source_id": "file_73e77b8c9b1548e889092cae949c441c",
+                "raw_value": "PCS",
+                "unit": null,
+                "target": "line_items.0.unit",
+                "normalized_value": "PCS"
+              },
+              "unit_price": {
+                "field": "unit_price",
+                "sheet": "Invoice Fields",
+                "cell": "C38",
+                "source_id": "file_73e77b8c9b1548e889092cae949c441c",
+                "raw_value": "8",
+                "unit": "GBP",
+                "target": "line_items.0.unit_price",
+                "normalized_value": "8.00"
+              },
+              "line_total": {
+                "field": "line_total",
+                "sheet": "Invoice Fields",
+                "cell": "C39",
+                "source_id": "file_73e77b8c9b1548e889092cae949c441c",
+                "raw_value": "50000",
+                "unit": "GBP",
+                "target": "line_items.0.line_total",
+                "normalized_value": "50000.00"
+              },
+              "number_of_packages": {
+                "field": "number_of_packages",
+                "sheet": "Invoice Fields",
+                "cell": "C40",
+                "source_id": "file_73e77b8c9b1548e889092cae949c441c",
+                "raw_value": "125",
+                "unit": "cartons",
+                "target": null,
+                "normalized_value": "125"
+              },
+              "net_weight": {
+                "field": "net_weight",
+                "sheet": "Invoice Fields",
+                "cell": "C41",
+                "source_id": "file_73e77b8c9b1548e889092cae949c441c",
+                "raw_value": "1250",
+                "unit": "KGS",
+                "target": null,
+                "normalized_value": "1250"
+              },
+              "hs_code": {
+                "field": "hs_code",
+                "sheet": "Invoice Fields",
+                "cell": "C42",
+                "source_id": "file_73e77b8c9b1548e889092cae949c441c",
+                "raw_value": "420292",
+                "unit": null,
+                "target": null,
+                "normalized_value": "420292"
+              },
+              "country_of_manufacture": {
+                "field": "country_of_manufacture",
+                "sheet": "Invoice Fields",
+                "cell": "C43",
+                "source_id": "file_73e77b8c9b1548e889092cae949c441c",
+                "raw_value": "China",
+                "unit": null,
+                "target": null,
+                "normalized_value": "China"
+              },
+              "subtotal": {
+                "field": "subtotal",
+                "sheet": "Invoice Fields",
+                "cell": "C44",
+                "source_id": "file_73e77b8c9b1548e889092cae949c441c",
+                "raw_value": "50000",
+                "unit": "GBP",
+                "target": "subtotal",
+                "normalized_value": "50000.00"
+              },
+              "insurance": {
+                "field": "insurance",
+                "sheet": "Invoice Fields",
+                "cell": "C45",
+                "source_id": "file_73e77b8c9b1548e889092cae949c441c",
+                "raw_value": "0",
+                "unit": "GBP",
+                "target": "charges.insurance",
+                "normalized_value": "0.00"
+              },
+              "freight": {
+                "field": "freight",
+                "sheet": "Invoice Fields",
+                "cell": "C46",
+                "source_id": "file_73e77b8c9b1548e889092cae949c441c",
+                "raw_value": "0",
+                "unit": "GBP",
+                "target": "charges.freight",
+                "normalized_value": "0.00"
+              },
+              "packing": {
+                "field": "packing",
+                "sheet": "Invoice Fields",
+                "cell": "C47",
+                "source_id": "file_73e77b8c9b1548e889092cae949c441c",
+                "raw_value": "0",
+                "unit": "GBP",
+                "target": "charges.packing",
+                "normalized_value": "0.00"
+              },
+              "handling": {
+                "field": "handling",
+                "sheet": "Invoice Fields",
+                "cell": "C48",
+                "source_id": "file_73e77b8c9b1548e889092cae949c441c",
+                "raw_value": "0",
+                "unit": "GBP",
+                "target": "charges.handling",
+                "normalized_value": "0.00"
+              },
+              "other_charges": {
+                "field": "other_charges",
+                "sheet": "Invoice Fields",
+                "cell": "C49",
+                "source_id": "file_73e77b8c9b1548e889092cae949c441c",
+                "raw_value": "0",
+                "unit": "GBP",
+                "target": "charges.other",
+                "normalized_value": "0.00"
+              },
+              "other_charge_description": {
+                "field": "other_charge_description",
+                "sheet": "Invoice Fields",
+                "cell": "C50",
+                "source_id": "file_73e77b8c9b1548e889092cae949c441c",
+                "raw_value": "N/A",
+                "unit": null,
+                "target": null,
+                "normalized_value": "N/A"
+              },
+              "invoice_total": {
+                "field": "invoice_total",
+                "sheet": "Invoice Fields",
+                "cell": "C51",
+                "source_id": "file_73e77b8c9b1548e889092cae949c441c",
+                "raw_value": "80000",
+                "unit": "GBP",
+                "target": "total",
+                "normalized_value": "80000.00"
+              },
+              "total_packages": {
+                "field": "total_packages",
+                "sheet": "Invoice Fields",
+                "cell": "C52",
+                "source_id": "file_73e77b8c9b1548e889092cae949c441c",
+                "raw_value": "125",
+                "unit": "cartons",
+                "target": null,
+                "normalized_value": "125"
+              },
+              "total_units": {
+                "field": "total_units",
+                "sheet": "Invoice Fields",
+                "cell": "C53",
+                "source_id": "file_73e77b8c9b1548e889092cae949c441c",
+                "raw_value": "6250",
+                "unit": "PCS",
+                "target": null,
+                "normalized_value": "6250"
+              },
+              "total_net_weight": {
+                "field": "total_net_weight",
+                "sheet": "Invoice Fields",
+                "cell": "C54",
+                "source_id": "file_73e77b8c9b1548e889092cae949c441c",
+                "raw_value": "1250",
+                "unit": "KGS",
+                "target": null,
+                "normalized_value": "1250"
+              },
+              "total_gross_weight": {
+                "field": "total_gross_weight",
+                "sheet": "Invoice Fields",
+                "cell": "C55",
+                "source_id": "file_73e77b8c9b1548e889092cae949c441c",
+                "raw_value": "1375",
+                "unit": "KGS",
+                "target": null,
+                "normalized_value": "1375"
+              },
+              "terms_of_sale": {
+                "field": "terms_of_sale",
+                "sheet": "Invoice Fields",
+                "cell": "C56",
+                "source_id": "file_73e77b8c9b1548e889092cae949c441c",
+                "raw_value": "DAP=Delivered at Place",
+                "unit": null,
+                "target": null,
+                "normalized_value": "DAP=Delivered at Place"
+              },
+              "delivery_location_and_incoterms": {
+                "field": "delivery_location_and_incoterms",
+                "sheet": "Invoice Fields",
+                "cell": "C57",
+                "source_id": "file_73e77b8c9b1548e889092cae949c441c",
+                "raw_value": "Bristol, UK; Incoterms 2020",
+                "unit": null,
+                "target": null,
+                "normalized_value": "Bristol, UK; Incoterms 2020"
+              },
+              "duties_and_taxes_payable_by": {
+                "field": "duties_and_taxes_payable_by",
+                "sheet": "Invoice Fields",
+                "cell": "C58",
+                "source_id": "file_73e77b8c9b1548e889092cae949c441c",
+                "raw_value": "Consignee",
+                "unit": null,
+                "target": null,
+                "normalized_value": "Consignee"
+              },
+              "broker_name": {
+                "field": "broker_name",
+                "sheet": "Invoice Fields",
+                "cell": "C59",
+                "source_id": "file_73e77b8c9b1548e889092cae949c441c",
+                "raw_value": "N/A - carrier clearance",
+                "unit": null,
+                "target": null,
+                "normalized_value": "N/A - carrier clearance"
+              },
+              "broker_phone": {
+                "field": "broker_phone",
+                "sheet": "Invoice Fields",
+                "cell": "C60",
+                "source_id": "file_73e77b8c9b1548e889092cae949c441c",
+                "raw_value": "N/A",
+                "unit": null,
+                "target": null,
+                "normalized_value": "N/A"
+              },
+              "broker_contact": {
+                "field": "broker_contact",
+                "sheet": "Invoice Fields",
+                "cell": "C61",
+                "source_id": "file_73e77b8c9b1548e889092cae949c441c",
+                "raw_value": "N/A",
+                "unit": null,
+                "target": null,
+                "normalized_value": "N/A"
+              },
+              "carrier_account_number": {
+                "field": "carrier_account_number",
+                "sheet": "Invoice Fields",
+                "cell": "C62",
+                "source_id": "file_73e77b8c9b1548e889092cae949c441c",
+                "raw_value": "N/A",
+                "unit": null,
+                "target": null,
+                "normalized_value": "N/A"
+              },
+              "special_instructions": {
+                "field": "special_instructions",
+                "sheet": "Invoice Fields",
+                "cell": "C63",
+                "source_id": "file_73e77b8c9b1548e889092cae949c441c",
+                "raw_value": "Deliver to consignee address. Freight, insurance and packing included in unit price.",
+                "unit": null,
+                "target": null,
+                "normalized_value": "Deliver to consignee address. Freight, insurance and packing included in unit price."
+              },
+              "declaration_statement": {
+                "field": "declaration_statement",
+                "sheet": "Invoice Fields",
+                "cell": "C64",
+                "source_id": "file_73e77b8c9b1548e889092cae949c441c",
+                "raw_value": "SYNTHETIC DEMO DATA - all parties and transaction details are fictional.\nApexDefend Test Case 2. Not valid for payment, shipping or customs clearance.",
+                "unit": null,
+                "target": null,
+                "normalized_value": "SYNTHETIC DEMO DATA - all parties and transaction details are fictional.\nApexDefend Test Case 2. Not valid for payment, shipping or customs clearance."
+              },
+              "originator": {
+                "field": "originator",
+                "sheet": "Invoice Fields",
+                "cell": "C65",
+                "source_id": "file_73e77b8c9b1548e889092cae949c441c",
+                "raw_value": "Adrian Vale / Cedarvale Office Goods Limited",
+                "unit": null,
+                "target": null,
+                "normalized_value": "Adrian Vale / Cedarvale Office Goods Limited"
+              },
+              "signature_title_date": {
+                "field": "signature_title_date",
+                "sheet": "Invoice Fields",
+                "cell": "C66",
+                "source_id": "file_73e77b8c9b1548e889092cae949c441c",
+                "raw_value": "Adrian Vale / Sales Manager / 2026-10-02 (synthetic sign-off)",
+                "unit": null,
+                "target": null,
+                "normalized_value": "Adrian Vale / Sales Manager / 2026-10-02 (synthetic sign-off)"
+              }
+            },
+            "differences": [
+              {
+                "field": "buyer_address",
+                "target": "buyer.address",
+                "pdf_value": "30 Fictional Orchard Lane\nBristol, ZZ1 0ZZ",
+                "sheet_value": "Unit 8, 18 Fictional Harbour Road Kowloon, Hong Kong",
+                "sheet": "Invoice Fields",
+                "cell": "C25",
+                "source_ids": [
+                  "file_5802798add45453d9ac0893864568134",
+                  "file_73e77b8c9b1548e889092cae949c441c"
+                ]
+              },
+              {
+                "field": "invoice_total",
+                "target": "total",
+                "pdf_value": "50000.00",
+                "sheet_value": "80000.00",
+                "sheet": "Invoice Fields",
+                "cell": "C51",
+                "source_ids": [
+                  "file_5802798add45453d9ac0893864568134",
+                  "file_73e77b8c9b1548e889092cae949c441c"
+                ]
+              }
+            ],
+            "checks": [
+              {
+                "code": "quantity_times_unit_price",
+                "expected": "50000.00",
+                "actual": "50000.00",
+                "passed": true,
+                "source_id": "file_73e77b8c9b1548e889092cae949c441c"
+              },
+              {
+                "code": "line_items_sum",
+                "expected": "50000.00",
+                "actual": "50000.00",
+                "passed": true,
+                "source_id": "file_73e77b8c9b1548e889092cae949c441c"
+              },
+              {
+                "code": "subtotal_plus_charges",
+                "expected": "50000.00",
+                "actual": "80000.00",
+                "passed": false,
+                "source_id": "file_73e77b8c9b1548e889092cae949c441c"
+              },
+              {
+                "code": "payment_term_days",
+                "expected": 30,
+                "actual": 30,
+                "passed": true,
+                "source_id": "file_73e77b8c9b1548e889092cae949c441c"
+              }
+            ]
+          }
+        }
+      }
+    ]
+  },
+  "output": {
+    "case_id": "case_ce305ab264ac40429f8b7b5a4c3d14c9",
+    "module_key": "invoice_integrity",
+    "run_id": "run_5e9048b89a44426d9ba54d02325a91e0",
+    "input_version": 4,
+    "state": "succeeded",
+    "ai_score": 15,
+    "summary": "Confirmed invoice integrity conflicts exist between the main invoice PDF and the active field sheet: the buyer address differs, and the field sheet reports an invoice total of GBP 80,000 while the PDF reports GBP 50,000. The PDF's own arithmetic and payment-term checks pass.",
+    "matched_rule_ids": [
+      "INTEGRITY_CONFLICT"
+    ],
+    "findings": [
+      {
+        "code": "BUYER_ADDRESS_CONFLICT",
+        "statement": "The buyer address on the main invoice PDF is \"30 Fictional Orchard Lane, Bristol, ZZ1 0ZZ\", while the active field sheet lists \"Unit 8, 18 Fictional Harbour Road, Kowloon, Hong Kong\" at Invoice Fields!C25.",
+        "source_refs": [
+          {
+            "source_id": "file_5802798add45453d9ac0893864568134",
+            "locator": "page=1; AcroForm",
+            "kind": "user_pdf"
+          },
+          {
+            "source_id": "file_73e77b8c9b1548e889092cae949c441c",
+            "locator": "parsed_content",
+            "kind": "uploaded_file"
+          }
+        ]
+      },
+      {
+        "code": "INVOICE_TOTAL_CONFLICT",
+        "statement": "The main invoice PDF reports a total of GBP 50,000.00, whereas the active field sheet reports GBP 80,000.00 at Invoice Fields!C51. The field sheet's subtotal-plus-charges check therefore fails because GBP 50,000.00 does not equal GBP 80,000.00.",
+        "source_refs": [
+          {
+            "source_id": "file_5802798add45453d9ac0893864568134",
+            "locator": "page=1; AcroForm",
+            "kind": "user_pdf"
+          },
+          {
+            "source_id": "file_73e77b8c9b1548e889092cae949c441c",
+            "locator": "parsed_content",
+            "kind": "uploaded_file"
+          }
+        ]
+      }
+    ],
+    "blocking_flags": [
+      "invoice_integrity_conflict"
+    ],
+    "missing_inputs": [],
+    "provenance": {
+      "engine_mode": "llm",
+      "analyzer": "teamrouter",
+      "model": "gpt-6.1-sol",
+      "prompt_version": "module-analysis-v2",
+      "policy_version": "demo-risk-v1",
+      "parser_version": "acroform-v1",
+      "input_hash": "fe82f08f9b88d8c0310c70a6271fd9e2f4351732050d81ad7f3cbc252a9ccc85",
+      "generated_at": "2026-10-04T07:56:15.977196+00:00"
+    }
+  },
+  "provider": {
+    "provider": "teamrouter",
+    "requested_model": "gpt-6.1-sol",
+    "reported_model": "gpt-6.1-sol",
+    "response_id": "resp_077206ad8adcc28c016ac206918f9487d080c33f0e1cbdf211",
+    "request_id": "d5116abe-aa18-4b74-994c-7659ebe9f395",
+    "usage": {
+      "prompt_tokens": 12468,
+      "completion_tokens": 439,
+      "total_tokens": 12907,
+      "completion_tokens_details": {
+        "reasoning_tokens": 66
+      }
+    }
+  },
+  "error": null,
+  "created_at": "2026-10-04T07:55:57.971897+00:00",
+  "finished_at": "2026-10-04T07:56:15.983850+00:00"
+}

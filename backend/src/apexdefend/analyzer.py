@@ -14,8 +14,19 @@ independent verification. File counts, filenames, case labels, and requested out
 Cite supplied source IDs for every finding. Do not claim external registry or real-time market searches.
 Synthetic local records are demo references, not real due diligence. A large trade is not proof of fraud.
 Reconsider the entire evidence snapshot each run; new evidence can increase, decrease or leave risk unchanged.
-Return a concise Chinese summary and factual findings. Never output a financing decision.
-For invoice_integrity, examine both PDF arithmetic and active field-sheet comparisons. A confirmed conflict
+Input contract: facts contains normalized fields extracted from the MAIN INVOICE PDF, cited by the
+user_pdf entry in sources. In buyer_verification / seller_verification, facts.entity is the invoice's
+buyer / seller respectively, not a separate local profile. Compare it with reference_records.data.
+reference_records contains the matching local database records for this module. evidence contains only
+optional supplementary documents and notes; it excludes the main PDF and local records. Do not interpret
+an empty evidence array as the absence of an invoice. Raw PDF bytes are unnecessary when parsed facts
+are supplied. This local assessment does not require an external search or real-world registry proof.
+Return all summaries, findings, and missing-input descriptions in English, regardless of the language
+of the evidence. Preserve source IDs and proper names. Never output a financing decision.
+For invoice_integrity, the parsed main PDF is sufficient for an initial assessment. A supplementary field
+sheet is OPTIONAL: an empty evidence list does not mean required data is missing. Do not request an absent
+field sheet or use needs_info solely because none was uploaded. Evaluate the PDF's supplied fields and
+deterministic checks, and compare field sheets ONLY IF an active sheet is present. A confirmed conflict
 between the active sheet and the PDF is an integrity conflict even if the PDF's own arithmetic is correct.
 Explain each discrepancy and its sheet/cell location when present. Apply only the highest applicable rule,
 not one score per discrepancy. Attachments supplement, and never silently overwrite, the main PDF facts.
@@ -30,9 +41,11 @@ class TeamRouterAnalyzer:
         settings = self.settings
         key = settings.teamrouter_api_key.get_secret_value()
         if not key:
-            raise AppError("ANALYZER_NOT_CONFIGURED", "未配置TeamRouter API密钥", 503)
+            raise AppError("ANALYZER_NOT_CONFIGURED", "The TeamRouter API key is not configured.", 503)
         if settings.teamrouter_api_style not in ["chat", "responses"]:
-            raise AppError("ANALYZER_NOT_CONFIGURED", "不支持的TeamRouter API style", 503)
+            raise AppError(
+                "ANALYZER_NOT_CONFIGURED", "The configured TeamRouter API style is not supported.", 503
+            )
         # Remove internal case/run identity and filenames from the decision context.
         data = {k: v for k, v in module_input.items() if k not in ["case_id", "input_version"]}
         prompt = json.dumps(
@@ -44,7 +57,10 @@ class TeamRouterAnalyzer:
             ensure_ascii=False,
         )
         if len(prompt.encode()) > 200000:
-            raise AppError("EVIDENCE_TOO_LARGE", "模块证据超过单次AI上下文上限，请缩小补件范围")
+            raise AppError(
+                "EVIDENCE_TOO_LARGE",
+                "Module evidence exceeds the AI context limit. Reduce the uploaded evidence.",
+            )
         headers = {"Authorization": f"Bearer {key}", "Content-Type": "application/json"}
         is_chat = settings.teamrouter_api_style == "chat"
         endpoint = settings.teamrouter_base_url.rstrip("/") + (
@@ -75,7 +91,7 @@ class TeamRouterAnalyzer:
             if response.status_code >= 400:
                 raise AppError(
                     "ANALYZER_UNAVAILABLE",
-                    f"TeamRouter返回HTTP {response.status_code}",
+                    f"TeamRouter returned HTTP {response.status_code}.",
                     503,
                     response.status_code in [408, 429] or response.status_code >= 500,
                 )
@@ -102,8 +118,10 @@ class TeamRouterAnalyzer:
         except AppError:
             raise
         except httpx.TimeoutException:
-            raise AppError("ANALYZER_TIMEOUT", "TeamRouter请求超时", 503, True) from None
+            raise AppError("ANALYZER_TIMEOUT", "The TeamRouter request timed out.", 503, True) from None
         except httpx.HTTPError:
-            raise AppError("ANALYZER_UNAVAILABLE", "无法连接TeamRouter", 503, True) from None
+            raise AppError("ANALYZER_UNAVAILABLE", "Could not connect to TeamRouter.", 503, True) from None
         except (ValueError, KeyError, TypeError, IndexError, ValidationError):
-            raise AppError("INVALID_AI_OUTPUT", "TeamRouter响应不符合模块JSON契约") from None
+            raise AppError(
+                "INVALID_AI_OUTPUT", "The TeamRouter response does not match the module JSON contract."
+            ) from None
