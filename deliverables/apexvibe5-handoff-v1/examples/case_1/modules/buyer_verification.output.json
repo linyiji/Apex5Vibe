@@ -1,0 +1,43 @@
+{
+  "case_id": "case_1",
+  "module_key": "buyer_verification",
+  "run_id": "run_case_1_buyer_verification_1",
+  "input_version": 1,
+  "state": "succeeded",
+  "ai_score": 0,
+  "summary": "买方与本地合成参考档案一致。",
+  "findings": [
+    {
+      "code": "BUYER_MATCH",
+      "statement": "买方与本地合成参考档案一致。",
+      "source_refs": [
+        {
+          "source_id": "pdf_case_1",
+          "locator": "page=1; AcroForm verified against rendered page",
+          "kind": "user_pdf"
+        },
+        {
+          "source_id": "ref_buyer_v1",
+          "locator": "local-reference-data.json#ref_buyer_v1",
+          "kind": "authored_demo_seed"
+        }
+      ],
+      "confidence": 1.0
+    }
+  ],
+  "matched_rule_ids": [
+    "BUYER_MATCH"
+  ],
+  "blocking_flags": [],
+  "missing_inputs": [],
+  "provenance": {
+    "engine_mode": "demo_replay",
+    "analyzer": "reference_demo_analyzer",
+    "model": null,
+    "prompt_version": "module-analysis-v1",
+    "policy_version": "demo-risk-v1",
+    "parser_version": "source-review-v1",
+    "input_hash": "732cac7b0c62358b822c40e70df87a01f28365ec7e2fa6ccf815d5f6f021b561",
+    "generated_at": "2026-10-04T06:00:00Z"
+  }
+}

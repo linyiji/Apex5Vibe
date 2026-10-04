@@ -1,0 +1,345 @@
+{
+  "verified_at": "2026-10-04T07:10:33.427031+00:00",
+  "started_at": "2026-10-04T07:07:55.560981+00:00",
+  "passed": true,
+  "case_id": "case_0ae5943cfb4749b5a7cb97f6faa6f466",
+  "api_base_url": "http://127.0.0.1:18080",
+  "provider_base_url": "https://api.teamorouter.com/v1",
+  "model": "gpt-6.1-sol",
+  "engine_mode": "llm",
+  "synthetic_evidence": true,
+  "real_model_calls": 9,
+  "duration_seconds": 157.87,
+  "initial_score": 5,
+  "final_score": 5,
+  "risk_band": "LOW",
+  "decision": {
+    "status": "eligible",
+    "advance_rate": 0.8,
+    "advance_amount": "6400.00",
+    "currency": "GBP",
+    "reasons": [
+      "current_low_risk"
+    ]
+  },
+  "xlsx_target": "invoice_integrity",
+  "note_target": "payment_history",
+  "untargeted_runs_preserved": true,
+  "restart_persistence_verified": true,
+  "offline_tests_passed": 19,
+  "input_files": [
+    {
+      "name": "ApexDefend_Case_1_Invoice.pdf",
+      "sha256": "47b579d4f6764baa31447eea6637b79d02cf38997049222a8a35cf8dc54ab506"
+    },
+    {
+      "name": "ApexDefend_Case_1_Input_Fields.xlsx",
+      "sha256": "fb823a1a524a7debbd03bfb03a4154828040d8ee7da7454d5a64482460650899"
+    }
+  ],
+  "runs": [
+    {
+      "module_key": "invoice_integrity",
+      "run_id": "run_c0e9842a8183497d810c3ba852c995c8",
+      "input_version": 2,
+      "ai_score": 0,
+      "matched_rule_ids": [
+        "INTEGRITY_OK"
+      ],
+      "summary": "发票关键字段齐全，金额计算及付款期限一致，匹配INTEGRITY_OK规则（0分）。本结论仅基于所提供的合成发票资料。",
+      "provenance": {
+        "engine_mode": "llm",
+        "analyzer": "teamrouter",
+        "model": "gpt-6.1-sol",
+        "prompt_version": "module-analysis-v1",
+        "policy_version": "demo-risk-v1",
+        "parser_version": "acroform-v1",
+        "input_hash": "d5926eaf5289b6bb614bc821ed5f50f40aa95d236da15b6a169d735df6b4eef3",
+        "generated_at": "2026-10-04T07:08:11.331705+00:00"
+      },
+      "provider": {
+        "provider": "teamrouter",
+        "requested_model": "gpt-6.1-sol",
+        "reported_model": "gpt-6.1-sol",
+        "response_id": "resp_0c317788efd5c760016ac1fb4e446087d28bb91fa28fe96628",
+        "request_id": "40b79305-2212-443b-9416-c70e01b42bf6",
+        "usage": {
+          "prompt_tokens": 5749,
+          "completion_tokens": 374,
+          "total_tokens": 6123
+        }
+      }
+    },
+    {
+      "module_key": "buyer_verification",
+      "run_id": "run_e4463c0d06f74ca7bd8e1bc2334bf491",
+      "input_version": 2,
+      "ai_score": 0,
+      "matched_rule_ids": [
+        "BUYER_MATCH"
+      ],
+      "summary": "买方主体与本地档案完全匹配，适用本地档案匹配规则。",
+      "provenance": {
+        "engine_mode": "llm",
+        "analyzer": "teamrouter",
+        "model": "gpt-6.1-sol",
+        "prompt_version": "module-analysis-v1",
+        "policy_version": "demo-risk-v1",
+        "parser_version": "acroform-v1",
+        "input_hash": "f3d0c4d167aa5af678b3bfd58718253b735d6ef06506bac6b34f544b9fcba60e",
+        "generated_at": "2026-10-04T07:08:50.210596+00:00"
+      },
+      "provider": {
+        "provider": "teamrouter",
+        "requested_model": "gpt-6.1-sol",
+        "reported_model": "gpt-6.1-sol",
+        "response_id": "resp_09d6ba5a5ae1f60c016ac1fb62491887d091f771eed93ed8f3",
+        "request_id": "bd114828-7490-482c-b083-1afd5c8da9b1",
+        "usage": {
+          "prompt_tokens": 5405,
+          "completion_tokens": 182,
+          "total_tokens": 5587,
+          "completion_tokens_details": {
+            "reasoning_tokens": 81
+          }
+        }
+      }
+    },
+    {
+      "module_key": "seller_verification",
+      "run_id": "run_ed442f1dbda44c6d860859d368951552",
+      "input_version": 2,
+      "ai_score": 0,
+      "matched_rule_ids": [
+        "SELLER_MATCH"
+      ],
+      "summary": "卖方主体与本地档案中的法律名称、地址、税号及国家/地区一致，匹配本地档案。",
+      "provenance": {
+        "engine_mode": "llm",
+        "analyzer": "teamrouter",
+        "model": "gpt-6.1-sol",
+        "prompt_version": "module-analysis-v1",
+        "policy_version": "demo-risk-v1",
+        "parser_version": "acroform-v1",
+        "input_hash": "e687a06f611315c36926e7011aaa7617b063aada093542bc921e5acd36fb65dd",
+        "generated_at": "2026-10-04T07:09:11.071665+00:00"
+      },
+      "provider": {
+        "provider": "teamrouter",
+        "requested_model": "gpt-6.1-sol",
+        "reported_model": "gpt-6.1-sol",
+        "response_id": "resp_0437b7a36d9c1f91016ac1fb83b7b487d187c9b23f86351470",
+        "request_id": "90a29fe1-f540-4842-bf5c-b2cdfa267b53",
+        "usage": {
+          "prompt_tokens": 5411,
+          "completion_tokens": 198,
+          "total_tokens": 5609,
+          "prompt_tokens_details": {
+            "cached_tokens": 3840
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 32
+          }
+        }
+      }
+    },
+    {
+      "module_key": "relationship",
+      "run_id": "run_0d7c94f36afe4fc787dbeb4ba56fc12d",
+      "input_version": 2,
+      "ai_score": 0,
+      "matched_rule_ids": [
+        "TRADE_SCALE_NORMAL"
+      ],
+      "summary": "本笔金额为8,000 GBP，与可比历史交易中位数相同，比例为1，命中交易规模正常规则（0分）。参考记录为合成演示数据。",
+      "provenance": {
+        "engine_mode": "llm",
+        "analyzer": "teamrouter",
+        "model": "gpt-6.1-sol",
+        "prompt_version": "module-analysis-v1",
+        "policy_version": "demo-risk-v1",
+        "parser_version": "acroform-v1",
+        "input_hash": "9104e7057c6d63a75d4e8fd117183c904222b442d2e92ed9c53761bf8b8a86dd",
+        "generated_at": "2026-10-04T07:09:26.978247+00:00"
+      },
+      "provider": {
+        "provider": "teamrouter",
+        "requested_model": "gpt-6.1-sol",
+        "reported_model": "gpt-6.1-sol",
+        "response_id": "resp_04adf9a38177435d016ac1fb9a251887d19759cd1728be5abb",
+        "request_id": "e5fd8a1b-88db-4543-b48e-ced4db0551f5",
+        "usage": {
+          "prompt_tokens": 6298,
+          "completion_tokens": 269,
+          "total_tokens": 6567,
+          "completion_tokens_details": {
+            "reasoning_tokens": 64
+          }
+        }
+      }
+    },
+    {
+      "module_key": "market_price",
+      "run_id": "run_db7f781a197b4e6b8de8f0c2739a8a18",
+      "input_version": 2,
+      "ai_score": 0,
+      "matched_rule_ids": [
+        "PRICE_IN_RANGE"
+      ],
+      "summary": "发票单价为8.00 GBP/件，处于本地合成参考区间7.00–9.00 GBP/件内，匹配PRICE_IN_RANGE规则（0分）。该参考仅用于演示，不构成真实市场尽调。",
+      "provenance": {
+        "engine_mode": "llm",
+        "analyzer": "teamrouter",
+        "model": "gpt-6.1-sol",
+        "prompt_version": "module-analysis-v1",
+        "policy_version": "demo-risk-v1",
+        "parser_version": "acroform-v1",
+        "input_hash": "968ebd6a31db9d290ffc40daf2c6a1c230916e44995cff481fd84893edf4d2a9",
+        "generated_at": "2026-10-04T07:09:38.650904+00:00"
+      },
+      "provider": {
+        "provider": "teamrouter",
+        "requested_model": "gpt-6.1-sol",
+        "reported_model": "gpt-6.1-sol",
+        "response_id": "resp_0ed1a93c818f1f1a016ac1fba7dc6087d19079ff7957e775c7",
+        "request_id": "0241ce3b-7110-4b34-bf28-b1437073ade0",
+        "usage": {
+          "prompt_tokens": 953,
+          "completion_tokens": 295,
+          "total_tokens": 1248
+        }
+      }
+    },
+    {
+      "module_key": "payment_history",
+      "run_id": "run_ff80fd98a8164d189a07f47835c7fea3",
+      "input_version": 2,
+      "ai_score": 5,
+      "matched_rule_ids": [
+        "PAYMENT_MINOR_DELAY"
+      ],
+      "summary": "所供合成付款记录中，12笔有2笔延迟，延迟比例为16.67%，违约为0笔，匹配轻微延迟规则，风险分为5分。该结论仅基于本地演示数据。",
+      "provenance": {
+        "engine_mode": "llm",
+        "analyzer": "teamrouter",
+        "model": "gpt-6.1-sol",
+        "prompt_version": "module-analysis-v1",
+        "policy_version": "demo-risk-v1",
+        "parser_version": "acroform-v1",
+        "input_hash": "257fa4b99bb1184e659b9a8e5c5af2b32833e7586deebfb780c747f964879b79",
+        "generated_at": "2026-10-04T07:09:51.511641+00:00"
+      },
+      "provider": {
+        "provider": "teamrouter",
+        "requested_model": "gpt-6.1-sol",
+        "reported_model": "gpt-6.1-sol",
+        "response_id": "resp_0e845475a680de29016ac1fbb3eee487d1bf48a1e6107009e1",
+        "request_id": "e07c4877-8431-4178-964f-ea5a320fdfd9",
+        "usage": {
+          "prompt_tokens": 6355,
+          "completion_tokens": 327,
+          "total_tokens": 6682
+        }
+      }
+    },
+    {
+      "module_key": "duplicate_financing",
+      "run_id": "run_cd0f00e440364245a32adfbd36c15a69",
+      "input_version": 2,
+      "ai_score": 0,
+      "matched_rule_ids": [
+        "NO_LOCAL_FINANCING_MATCH"
+      ],
+      "summary": "本地演示台账覆盖范围内无有效融资匹配，适用0分规则；该结论不代表外部融资登记核验结果。",
+      "provenance": {
+        "engine_mode": "llm",
+        "analyzer": "teamrouter",
+        "model": "gpt-6.1-sol",
+        "prompt_version": "module-analysis-v1",
+        "policy_version": "demo-risk-v1",
+        "parser_version": "acroform-v1",
+        "input_hash": "559929b3fbd8c098520d585e64e596ff7bffbb778a6b8f805fa2e8398ea5fa48",
+        "generated_at": "2026-10-04T07:10:00.449136+00:00"
+      },
+      "provider": {
+        "provider": "teamrouter",
+        "requested_model": "gpt-6.1-sol",
+        "reported_model": "gpt-6.1-sol",
+        "response_id": "resp_0ba621070d8b55cb016ac1fbc0b62887d1a3c5f91afca31dc0",
+        "request_id": "6243da1b-777d-44b6-b43b-ca68b92cb0dd",
+        "usage": {
+          "prompt_tokens": 5379,
+          "completion_tokens": 168,
+          "total_tokens": 5547
+        }
+      }
+    },
+    {
+      "module_key": "invoice_integrity",
+      "run_id": "run_bee5bc253c944d1fb94b112c07299afd",
+      "input_version": 3,
+      "ai_score": 0,
+      "matched_rule_ids": [
+        "INTEGRITY_OK"
+      ],
+      "summary": "所供发票及表格关键字段齐全，金额计算、付款期限及对应字段一致，匹配 INTEGRITY_OK（0分）。本结论仅限合成演示材料的完整性核对，不代表真实交易核验。",
+      "provenance": {
+        "engine_mode": "llm",
+        "analyzer": "teamrouter",
+        "model": "gpt-6.1-sol",
+        "prompt_version": "module-analysis-v1",
+        "policy_version": "demo-risk-v1",
+        "parser_version": "acroform-v1",
+        "input_hash": "3ec21d3b562b8cd93a4ab1f7661aff41d1a6da22b33f7d7980be4532bc807c4e",
+        "generated_at": "2026-10-04T07:10:19.505500+00:00"
+      },
+      "provider": {
+        "provider": "teamrouter",
+        "requested_model": "gpt-6.1-sol",
+        "reported_model": "gpt-6.1-sol",
+        "response_id": "resp_011bebf53a43f276016ac1fbcbefb487d0a93fa1b6c2967f10",
+        "request_id": "70ff829d-63f1-424e-b67b-f2b0a6942007",
+        "usage": {
+          "prompt_tokens": 10546,
+          "completion_tokens": 465,
+          "total_tokens": 11011
+        }
+      }
+    },
+    {
+      "module_key": "payment_history",
+      "run_id": "run_f7ec25f1765843c2847d2b78f29f1331",
+      "input_version": 3,
+      "ai_score": 5,
+      "matched_rule_ids": [
+        "PAYMENT_MINOR_DELAY"
+      ],
+      "summary": "所供本地演示付款记录共12笔，其中2笔迟付，迟付比例为16.67%，违约记录为0，匹配轻微迟付规则，风险分值为5分。该结论仅基于合成演示记录，不代表真实尽调核验。",
+      "provenance": {
+        "engine_mode": "llm",
+        "analyzer": "teamrouter",
+        "model": "gpt-6.1-sol",
+        "prompt_version": "module-analysis-v1",
+        "policy_version": "demo-risk-v1",
+        "parser_version": "acroform-v1",
+        "input_hash": "7e0c3060407e97f3fe9126baab354da00e7d3cbfe113854b7fb243a3bfd006b9",
+        "generated_at": "2026-10-04T07:10:32.438297+00:00"
+      },
+      "provider": {
+        "provider": "teamrouter",
+        "requested_model": "gpt-6.1-sol",
+        "reported_model": "gpt-6.1-sol",
+        "response_id": "resp_0938f220677f8596016ac1fbdd4dcc87d0819b0ad4b550152c",
+        "request_id": "7bd6f3da-8f8c-4390-9735-69a2d50e0841",
+        "usage": {
+          "prompt_tokens": 6463,
+          "completion_tokens": 322,
+          "total_tokens": 6785,
+          "prompt_tokens_details": {
+            "cached_tokens": 6144
+          }
+        }
+      }
+    }
+  ]
+}

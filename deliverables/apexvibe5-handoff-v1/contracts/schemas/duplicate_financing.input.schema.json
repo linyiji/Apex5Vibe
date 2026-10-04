@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "allOf": [
+    {
+      "$ref": "common.schema.json#/$defs/ModuleInput"
+    },
+    {
+      "properties": {
+        "module_key": {
+          "const": "duplicate_financing"
+        },
+        "facts": {
+          "type": "object",
+          "properties": {
+            "invoice_number": {
+              "type": "string",
+              "minLength": 1
+            },
+            "seller_tax_id": {
+              "type": "string",
+              "minLength": 1
+            },
+            "buyer_tax_id": {
+              "type": "string",
+              "minLength": 1
+            },
+            "currency": {
+              "type": "string",
+              "minLength": 1
+            },
+            "total": {
+              "type": "string",
+              "pattern": "^\\d+\\.\\d{2}$"
+            },
+            "invoice_date": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          "required": [
+            "invoice_number",
+            "seller_tax_id",
+            "buyer_tax_id",
+            "currency",
+            "total",
+            "invoice_date"
+          ],
+          "additionalProperties": false
+        }
+      }
+    }
+  ]
+}

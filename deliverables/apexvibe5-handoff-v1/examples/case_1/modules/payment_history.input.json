@@ -1,0 +1,191 @@
+{
+  "case_id": "case_1",
+  "module_key": "payment_history",
+  "input_version": 1,
+  "as_of": "2026-10-04",
+  "policy_version": "demo-risk-v1",
+  "facts": {
+    "buyer_id": "ent_meridianleaf",
+    "invoice_date": "2026-10-02",
+    "amount": "8000.00",
+    "currency": "GBP"
+  },
+  "reference_records": [
+    {
+      "source_id": "ref_payments_v1",
+      "kind": "payment_history",
+      "synthetic": true,
+      "source_type": "authored_demo_seed",
+      "as_of": "2026-10-04",
+      "data": {
+        "records": [
+          {
+            "record_id": "pay_01",
+            "trade_id": "trade_01",
+            "buyer_id": "ent_meridianleaf",
+            "amount": "6000.00",
+            "currency": "GBP",
+            "due_date": "2026-02-04",
+            "paid_date": "2026-02-04",
+            "late_days": 0,
+            "defaulted": false
+          },
+          {
+            "record_id": "pay_02",
+            "trade_id": "trade_02",
+            "buyer_id": "ent_meridianleaf",
+            "amount": "7000.00",
+            "currency": "GBP",
+            "due_date": "2026-02-22",
+            "paid_date": "2026-02-22",
+            "late_days": 0,
+            "defaulted": false
+          },
+          {
+            "record_id": "pay_03",
+            "trade_id": "trade_03",
+            "buyer_id": "ent_meridianleaf",
+            "amount": "7500.00",
+            "currency": "GBP",
+            "due_date": "2026-03-12",
+            "paid_date": "2026-03-12",
+            "late_days": 0,
+            "defaulted": false
+          },
+          {
+            "record_id": "pay_04",
+            "trade_id": "trade_04",
+            "buyer_id": "ent_meridianleaf",
+            "amount": "8000.00",
+            "currency": "GBP",
+            "due_date": "2026-03-30",
+            "paid_date": "2026-04-02",
+            "late_days": 3,
+            "defaulted": false
+          },
+          {
+            "record_id": "pay_05",
+            "trade_id": "trade_05",
+            "buyer_id": "ent_meridianleaf",
+            "amount": "8000.00",
+            "currency": "GBP",
+            "due_date": "2026-04-17",
+            "paid_date": "2026-04-17",
+            "late_days": 0,
+            "defaulted": false
+          },
+          {
+            "record_id": "pay_06",
+            "trade_id": "trade_06",
+            "buyer_id": "ent_meridianleaf",
+            "amount": "8000.00",
+            "currency": "GBP",
+            "due_date": "2026-05-05",
+            "paid_date": "2026-05-05",
+            "late_days": 0,
+            "defaulted": false
+          },
+          {
+            "record_id": "pay_07",
+            "trade_id": "trade_07",
+            "buyer_id": "ent_meridianleaf",
+            "amount": "8000.00",
+            "currency": "GBP",
+            "due_date": "2026-05-23",
+            "paid_date": "2026-05-23",
+            "late_days": 0,
+            "defaulted": false
+          },
+          {
+            "record_id": "pay_08",
+            "trade_id": "trade_08",
+            "buyer_id": "ent_meridianleaf",
+            "amount": "8000.00",
+            "currency": "GBP",
+            "due_date": "2026-06-10",
+            "paid_date": "2026-06-10",
+            "late_days": 0,
+            "defaulted": false
+          },
+          {
+            "record_id": "pay_09",
+            "trade_id": "trade_09",
+            "buyer_id": "ent_meridianleaf",
+            "amount": "8500.00",
+            "currency": "GBP",
+            "due_date": "2026-06-28",
+            "paid_date": "2026-07-04",
+            "late_days": 6,
+            "defaulted": false
+          },
+          {
+            "record_id": "pay_10",
+            "trade_id": "trade_10",
+            "buyer_id": "ent_meridianleaf",
+            "amount": "9000.00",
+            "currency": "GBP",
+            "due_date": "2026-07-16",
+            "paid_date": "2026-07-16",
+            "late_days": 0,
+            "defaulted": false
+          },
+          {
+            "record_id": "pay_11",
+            "trade_id": "trade_11",
+            "buyer_id": "ent_meridianleaf",
+            "amount": "9500.00",
+            "currency": "GBP",
+            "due_date": "2026-08-03",
+            "paid_date": "2026-08-03",
+            "late_days": 0,
+            "defaulted": false
+          },
+          {
+            "record_id": "pay_12",
+            "trade_id": "trade_12",
+            "buyer_id": "ent_meridianleaf",
+            "amount": "10000.00",
+            "currency": "GBP",
+            "due_date": "2026-08-21",
+            "paid_date": "2026-08-21",
+            "late_days": 0,
+            "defaulted": false
+          }
+        ]
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "evidence_id": "ev_case_1_invoice",
+      "source_id": "pdf_case_1",
+      "kind": "file",
+      "file_id": "file_case_1_invoice",
+      "filename": "ApexDefend_Case_1_Invoice.pdf",
+      "sha256": "47b579d4f6764baa31447eea6637b79d02cf38997049222a8a35cf8dc54ab506",
+      "parse_status": "ready",
+      "status": "active",
+      "source_ref": {
+        "source_id": "pdf_case_1",
+        "locator": "page=1; AcroForm verified against rendered page",
+        "kind": "user_pdf"
+      }
+    },
+    {
+      "evidence_id": "ev_case_1_ref_payments_v1",
+      "source_id": "ref_payments_v1",
+      "kind": "reference",
+      "file_id": null,
+      "filename": null,
+      "sha256": null,
+      "parse_status": "ready",
+      "status": "active",
+      "source_ref": {
+        "source_id": "ref_payments_v1",
+        "locator": "local-reference-data.json#ref_payments_v1",
+        "kind": "authored_demo_seed"
+      }
+    }
+  ],
+  "supplements": []
+}

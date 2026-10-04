@@ -1,0 +1,66 @@
+{
+  "case_id": "case_1",
+  "module_key": "buyer_verification",
+  "input_version": 1,
+  "as_of": "2026-10-04",
+  "policy_version": "demo-risk-v1",
+  "facts": {
+    "entity": {
+      "entity_id": "ent_meridianleaf",
+      "legal_name": "Meridianleaf Workplace Ltd.",
+      "tax_id": "UK-SYN-200001",
+      "country": "United Kingdom",
+      "address": "30 Fictional Orchard Lane\nBristol, ZZ1 0ZZ"
+    }
+  },
+  "reference_records": [
+    {
+      "source_id": "ref_buyer_v1",
+      "kind": "entity_profile",
+      "synthetic": true,
+      "source_type": "authored_demo_seed",
+      "as_of": "2026-10-04",
+      "data": {
+        "entity_id": "ent_meridianleaf",
+        "legal_name": "Meridianleaf Workplace Ltd.",
+        "tax_id": "UK-SYN-200001",
+        "country": "United Kingdom",
+        "address": "30 Fictional Orchard Lane\nBristol, ZZ1 0ZZ",
+        "verification_status": "demo_local_verified"
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "evidence_id": "ev_case_1_invoice",
+      "source_id": "pdf_case_1",
+      "kind": "file",
+      "file_id": "file_case_1_invoice",
+      "filename": "ApexDefend_Case_1_Invoice.pdf",
+      "sha256": "47b579d4f6764baa31447eea6637b79d02cf38997049222a8a35cf8dc54ab506",
+      "parse_status": "ready",
+      "status": "active",
+      "source_ref": {
+        "source_id": "pdf_case_1",
+        "locator": "page=1; AcroForm verified against rendered page",
+        "kind": "user_pdf"
+      }
+    },
+    {
+      "evidence_id": "ev_case_1_ref_buyer_v1",
+      "source_id": "ref_buyer_v1",
+      "kind": "reference",
+      "file_id": null,
+      "filename": null,
+      "sha256": null,
+      "parse_status": "ready",
+      "status": "active",
+      "source_ref": {
+        "source_id": "ref_buyer_v1",
+        "locator": "local-reference-data.json#ref_buyer_v1",
+        "kind": "authored_demo_seed"
+      }
+    }
+  ],
+  "supplements": []
+}

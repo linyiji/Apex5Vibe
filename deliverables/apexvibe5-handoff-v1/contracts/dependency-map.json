@@ -1,0 +1,61 @@
+{
+  "policy_version": "demo-risk-v1",
+  "module_evidence": "explicit_target_modules_only",
+  "public_inputs": {
+    "buyer_identity": [
+      "buyer_verification",
+      "relationship",
+      "payment_history",
+      "duplicate_financing"
+    ],
+    "seller_identity": [
+      "seller_verification",
+      "relationship",
+      "duplicate_financing"
+    ],
+    "invoice_number": [
+      "invoice_integrity",
+      "duplicate_financing"
+    ],
+    "invoice_dates": [
+      "invoice_integrity",
+      "relationship",
+      "payment_history",
+      "duplicate_financing"
+    ],
+    "invoice_amount": [
+      "invoice_integrity",
+      "relationship",
+      "market_price",
+      "payment_history",
+      "duplicate_financing"
+    ],
+    "line_items": [
+      "invoice_integrity",
+      "relationship",
+      "market_price",
+      "duplicate_financing"
+    ],
+    "replace_invoice": [
+      "invoice_integrity",
+      "buyer_verification",
+      "seller_verification",
+      "relationship",
+      "market_price",
+      "payment_history",
+      "duplicate_financing"
+    ],
+    "payment_reference": [
+      "payment_history"
+    ],
+    "trade_reference": [
+      "relationship"
+    ],
+    "market_reference": [
+      "market_price"
+    ],
+    "financing_reference": [
+      "duplicate_financing"
+    ]
+  }
+}

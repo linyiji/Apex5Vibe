@@ -1,0 +1,206 @@
+[
+  {
+    "path": "examples/case_1/invoice.json",
+    "schema": "Invoice"
+  },
+  {
+    "path": "examples/case_1/modules/invoice_integrity.input.json",
+    "schema": "invoice_integrity.input"
+  },
+  {
+    "path": "examples/case_1/modules/invoice_integrity.output.json",
+    "schema": "invoice_integrity.output"
+  },
+  {
+    "path": "examples/case_1/modules/buyer_verification.input.json",
+    "schema": "buyer_verification.input"
+  },
+  {
+    "path": "examples/case_1/modules/buyer_verification.output.json",
+    "schema": "buyer_verification.output"
+  },
+  {
+    "path": "examples/case_1/modules/seller_verification.input.json",
+    "schema": "seller_verification.input"
+  },
+  {
+    "path": "examples/case_1/modules/seller_verification.output.json",
+    "schema": "seller_verification.output"
+  },
+  {
+    "path": "examples/case_1/modules/relationship.input.json",
+    "schema": "relationship.input"
+  },
+  {
+    "path": "examples/case_1/modules/relationship.output.json",
+    "schema": "relationship.output"
+  },
+  {
+    "path": "examples/case_1/modules/market_price.input.json",
+    "schema": "market_price.input"
+  },
+  {
+    "path": "examples/case_1/modules/market_price.output.json",
+    "schema": "market_price.output"
+  },
+  {
+    "path": "examples/case_1/modules/payment_history.input.json",
+    "schema": "payment_history.input"
+  },
+  {
+    "path": "examples/case_1/modules/payment_history.output.json",
+    "schema": "payment_history.output"
+  },
+  {
+    "path": "examples/case_1/modules/duplicate_financing.input.json",
+    "schema": "duplicate_financing.input"
+  },
+  {
+    "path": "examples/case_1/modules/duplicate_financing.output.json",
+    "schema": "duplicate_financing.output"
+  },
+  {
+    "path": "examples/case_1/workspace.json",
+    "schema": "Workspace"
+  },
+  {
+    "path": "examples/case_2/invoice.json",
+    "schema": "Invoice"
+  },
+  {
+    "path": "examples/case_2/modules/invoice_integrity.input.json",
+    "schema": "invoice_integrity.input"
+  },
+  {
+    "path": "examples/case_2/modules/invoice_integrity.output.json",
+    "schema": "invoice_integrity.output"
+  },
+  {
+    "path": "examples/case_2/modules/buyer_verification.input.json",
+    "schema": "buyer_verification.input"
+  },
+  {
+    "path": "examples/case_2/modules/buyer_verification.output.json",
+    "schema": "buyer_verification.output"
+  },
+  {
+    "path": "examples/case_2/modules/seller_verification.input.json",
+    "schema": "seller_verification.input"
+  },
+  {
+    "path": "examples/case_2/modules/seller_verification.output.json",
+    "schema": "seller_verification.output"
+  },
+  {
+    "path": "examples/case_2/modules/relationship.input.json",
+    "schema": "relationship.input"
+  },
+  {
+    "path": "examples/case_2/modules/relationship.output.json",
+    "schema": "relationship.output"
+  },
+  {
+    "path": "examples/case_2/modules/market_price.input.json",
+    "schema": "market_price.input"
+  },
+  {
+    "path": "examples/case_2/modules/market_price.output.json",
+    "schema": "market_price.output"
+  },
+  {
+    "path": "examples/case_2/modules/payment_history.input.json",
+    "schema": "payment_history.input"
+  },
+  {
+    "path": "examples/case_2/modules/payment_history.output.json",
+    "schema": "payment_history.output"
+  },
+  {
+    "path": "examples/case_2/modules/duplicate_financing.input.json",
+    "schema": "duplicate_financing.input"
+  },
+  {
+    "path": "examples/case_2/modules/duplicate_financing.output.json",
+    "schema": "duplicate_financing.output"
+  },
+  {
+    "path": "examples/case_2/workspace.json",
+    "schema": "Workspace"
+  },
+  {
+    "path": "examples/actions/create-case.request.json",
+    "schema": "CreateCaseRequest"
+  },
+  {
+    "path": "examples/actions/create-case.response.json",
+    "schema": "CaseCreated"
+  },
+  {
+    "path": "examples/actions/resolve-party.request.json",
+    "schema": "PartyPatchRequest"
+  },
+  {
+    "path": "examples/actions/start-assessment.request.json",
+    "schema": "InitialAssessmentRequest"
+  },
+  {
+    "path": "examples/actions/supplement.request.json",
+    "schema": "SupplementRequest"
+  },
+  {
+    "path": "examples/actions/rerun.request.json",
+    "schema": "RerunRequest"
+  },
+  {
+    "path": "examples/actions/adjustment.request.json",
+    "schema": "AdjustmentRequest"
+  },
+  {
+    "path": "examples/actions/job.response.json",
+    "schema": "Job"
+  },
+  {
+    "path": "examples/actions/rerun.response.json",
+    "schema": "MutationAccepted"
+  },
+  {
+    "path": "examples/actions/conflict.response.json",
+    "schema": "ErrorBody"
+  },
+  {
+    "path": "examples/actions/entities.response.json",
+    "schema": "EntityList"
+  },
+  {
+    "path": "examples/actions/capabilities.response.json",
+    "schema": "Capabilities"
+  },
+  {
+    "path": "examples/actions/queue.response.json",
+    "schema": "QueuePage"
+  },
+  {
+    "path": "examples/actions/events.response.json",
+    "schema": "EventPage"
+  },
+  {
+    "path": "examples/actions/workspace-stale.response.json",
+    "schema": "Workspace"
+  },
+  {
+    "path": "examples/actions/workspace-incomplete.response.json",
+    "schema": "Workspace"
+  },
+  {
+    "path": "examples/actions/adjustment.response.json",
+    "schema": "ModuleView"
+  },
+  {
+    "path": "examples/actions/workspace-adjusted.response.json",
+    "schema": "Workspace"
+  },
+  {
+    "path": "examples/actions/run-detail.response.json",
+    "schema": "RunDetail"
+  }
+]

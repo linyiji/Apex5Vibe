@@ -1,0 +1,9 @@
+{
+  "buyer": {
+    "mode": "skip"
+  },
+  "seller": {
+    "mode": "manual",
+    "legal_name": "Cedarvale Office Goods Limited"
+  }
+}

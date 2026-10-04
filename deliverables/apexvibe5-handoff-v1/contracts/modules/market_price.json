@@ -1,0 +1,32 @@
+{
+  "module_key": "market_price",
+  "name": "Product & Market Price",
+  "cap": 10,
+  "policy_version": "demo-risk-v1",
+  "required_reference_kinds": [
+    "market_benchmark"
+  ],
+  "input_schema": "../schemas/market_price.input.schema.json",
+  "output_schema": "../schemas/market_price.output.schema.json",
+  "rules": [
+    {
+      "rule_id": "PRICE_IN_RANGE",
+      "points": 0,
+      "condition": "单价在可比范围内"
+    },
+    {
+      "rule_id": "PRICE_DEVIATION_MINOR",
+      "points": 5,
+      "condition": "超范围比例 <= 0.25"
+    },
+    {
+      "rule_id": "PRICE_DEVIATION_HIGH",
+      "points": 10,
+      "condition": "超范围比例 > 0.25"
+    }
+  ],
+  "evidence_scope": "module",
+  "missing_data": "needs_info",
+  "recompute": "entire_current_input_snapshot",
+  "state_machine": "../module-state-machine.json"
+}

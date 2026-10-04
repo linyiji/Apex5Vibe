@@ -1,0 +1,37 @@
+{
+  "module_key": "payment_history",
+  "name": "Payment History",
+  "cap": 15,
+  "policy_version": "demo-risk-v1",
+  "required_reference_kinds": [
+    "payment_history"
+  ],
+  "input_schema": "../schemas/payment_history.input.schema.json",
+  "output_schema": "../schemas/payment_history.output.schema.json",
+  "rules": [
+    {
+      "rule_id": "PAYMENT_ON_TIME",
+      "points": 0,
+      "condition": "late ratio = 0 and defaults = 0"
+    },
+    {
+      "rule_id": "PAYMENT_MINOR_DELAY",
+      "points": 5,
+      "condition": "0 < late ratio <= 0.2 and defaults = 0"
+    },
+    {
+      "rule_id": "PAYMENT_DELAY",
+      "points": 10,
+      "condition": "0.2 < late ratio <= 0.5 and defaults = 0"
+    },
+    {
+      "rule_id": "PAYMENT_HIGH",
+      "points": 15,
+      "condition": "late ratio > 0.5 or defaults > 0"
+    }
+  ],
+  "evidence_scope": "module",
+  "missing_data": "needs_info",
+  "recompute": "entire_current_input_snapshot",
+  "state_machine": "../module-state-machine.json"
+}

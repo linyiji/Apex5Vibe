@@ -1,0 +1,197 @@
+{
+  "case_id": "case_1",
+  "module_key": "relationship",
+  "input_version": 1,
+  "as_of": "2026-10-04",
+  "policy_version": "demo-risk-v1",
+  "facts": {
+    "seller_id": "ent_cedarvale",
+    "buyer_id": "ent_meridianleaf",
+    "currency": "GBP",
+    "amount": "8000.00",
+    "sku": "CV-TOTE-01",
+    "invoice_date": "2026-10-02",
+    "declared_related": false
+  },
+  "reference_records": [
+    {
+      "source_id": "ref_trade_history_v1",
+      "kind": "trade_history",
+      "synthetic": true,
+      "source_type": "authored_demo_seed",
+      "as_of": "2026-10-04",
+      "data": {
+        "window_start": "2026-01-01",
+        "window_end": "2026-10-01",
+        "declared_related": false,
+        "trades": [
+          {
+            "record_id": "trade_01",
+            "invoice_number": "CV-HIST-2026-001",
+            "seller_id": "ent_cedarvale",
+            "buyer_id": "ent_meridianleaf",
+            "sku": "CV-TOTE-01",
+            "currency": "GBP",
+            "amount": "6000.00",
+            "invoice_date": "2026-01-05",
+            "status": "completed"
+          },
+          {
+            "record_id": "trade_02",
+            "invoice_number": "CV-HIST-2026-002",
+            "seller_id": "ent_cedarvale",
+            "buyer_id": "ent_meridianleaf",
+            "sku": "CV-TOTE-01",
+            "currency": "GBP",
+            "amount": "7000.00",
+            "invoice_date": "2026-01-23",
+            "status": "completed"
+          },
+          {
+            "record_id": "trade_03",
+            "invoice_number": "CV-HIST-2026-003",
+            "seller_id": "ent_cedarvale",
+            "buyer_id": "ent_meridianleaf",
+            "sku": "CV-TOTE-01",
+            "currency": "GBP",
+            "amount": "7500.00",
+            "invoice_date": "2026-02-10",
+            "status": "completed"
+          },
+          {
+            "record_id": "trade_04",
+            "invoice_number": "CV-HIST-2026-004",
+            "seller_id": "ent_cedarvale",
+            "buyer_id": "ent_meridianleaf",
+            "sku": "CV-TOTE-01",
+            "currency": "GBP",
+            "amount": "8000.00",
+            "invoice_date": "2026-02-28",
+            "status": "completed"
+          },
+          {
+            "record_id": "trade_05",
+            "invoice_number": "CV-HIST-2026-005",
+            "seller_id": "ent_cedarvale",
+            "buyer_id": "ent_meridianleaf",
+            "sku": "CV-TOTE-01",
+            "currency": "GBP",
+            "amount": "8000.00",
+            "invoice_date": "2026-03-18",
+            "status": "completed"
+          },
+          {
+            "record_id": "trade_06",
+            "invoice_number": "CV-HIST-2026-006",
+            "seller_id": "ent_cedarvale",
+            "buyer_id": "ent_meridianleaf",
+            "sku": "CV-TOTE-01",
+            "currency": "GBP",
+            "amount": "8000.00",
+            "invoice_date": "2026-04-05",
+            "status": "completed"
+          },
+          {
+            "record_id": "trade_07",
+            "invoice_number": "CV-HIST-2026-007",
+            "seller_id": "ent_cedarvale",
+            "buyer_id": "ent_meridianleaf",
+            "sku": "CV-TOTE-01",
+            "currency": "GBP",
+            "amount": "8000.00",
+            "invoice_date": "2026-04-23",
+            "status": "completed"
+          },
+          {
+            "record_id": "trade_08",
+            "invoice_number": "CV-HIST-2026-008",
+            "seller_id": "ent_cedarvale",
+            "buyer_id": "ent_meridianleaf",
+            "sku": "CV-TOTE-01",
+            "currency": "GBP",
+            "amount": "8000.00",
+            "invoice_date": "2026-05-11",
+            "status": "completed"
+          },
+          {
+            "record_id": "trade_09",
+            "invoice_number": "CV-HIST-2026-009",
+            "seller_id": "ent_cedarvale",
+            "buyer_id": "ent_meridianleaf",
+            "sku": "CV-TOTE-01",
+            "currency": "GBP",
+            "amount": "8500.00",
+            "invoice_date": "2026-05-29",
+            "status": "completed"
+          },
+          {
+            "record_id": "trade_10",
+            "invoice_number": "CV-HIST-2026-010",
+            "seller_id": "ent_cedarvale",
+            "buyer_id": "ent_meridianleaf",
+            "sku": "CV-TOTE-01",
+            "currency": "GBP",
+            "amount": "9000.00",
+            "invoice_date": "2026-06-16",
+            "status": "completed"
+          },
+          {
+            "record_id": "trade_11",
+            "invoice_number": "CV-HIST-2026-011",
+            "seller_id": "ent_cedarvale",
+            "buyer_id": "ent_meridianleaf",
+            "sku": "CV-TOTE-01",
+            "currency": "GBP",
+            "amount": "9500.00",
+            "invoice_date": "2026-07-04",
+            "status": "completed"
+          },
+          {
+            "record_id": "trade_12",
+            "invoice_number": "CV-HIST-2026-012",
+            "seller_id": "ent_cedarvale",
+            "buyer_id": "ent_meridianleaf",
+            "sku": "CV-TOTE-01",
+            "currency": "GBP",
+            "amount": "10000.00",
+            "invoice_date": "2026-07-22",
+            "status": "completed"
+          }
+        ]
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "evidence_id": "ev_case_1_invoice",
+      "source_id": "pdf_case_1",
+      "kind": "file",
+      "file_id": "file_case_1_invoice",
+      "filename": "ApexDefend_Case_1_Invoice.pdf",
+      "sha256": "47b579d4f6764baa31447eea6637b79d02cf38997049222a8a35cf8dc54ab506",
+      "parse_status": "ready",
+      "status": "active",
+      "source_ref": {
+        "source_id": "pdf_case_1",
+        "locator": "page=1; AcroForm verified against rendered page",
+        "kind": "user_pdf"
+      }
+    },
+    {
+      "evidence_id": "ev_case_1_ref_trade_history_v1",
+      "source_id": "ref_trade_history_v1",
+      "kind": "reference",
+      "file_id": null,
+      "filename": null,
+      "sha256": null,
+      "parse_status": "ready",
+      "status": "active",
+      "source_ref": {
+        "source_id": "ref_trade_history_v1",
+        "locator": "local-reference-data.json#ref_trade_history_v1",
+        "kind": "authored_demo_seed"
+      }
+    }
+  ],
+  "supplements": []
+}

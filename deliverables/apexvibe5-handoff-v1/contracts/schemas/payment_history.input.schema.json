@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "allOf": [
+    {
+      "$ref": "common.schema.json#/$defs/ModuleInput"
+    },
+    {
+      "properties": {
+        "module_key": {
+          "const": "payment_history"
+        },
+        "facts": {
+          "type": "object",
+          "properties": {
+            "buyer_id": {
+              "type": "string",
+              "minLength": 1
+            },
+            "invoice_date": {
+              "type": "string",
+              "format": "date"
+            },
+            "amount": {
+              "type": "string",
+              "pattern": "^\\d+\\.\\d{2}$"
+            },
+            "currency": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "required": [
+            "buyer_id",
+            "invoice_date",
+            "amount",
+            "currency"
+          ],
+          "additionalProperties": false
+        }
+      }
+    }
+  ]
+}

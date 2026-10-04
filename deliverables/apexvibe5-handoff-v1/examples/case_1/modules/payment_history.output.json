@@ -1,0 +1,43 @@
+{
+  "case_id": "case_1",
+  "module_key": "payment_history",
+  "run_id": "run_case_1_payment_history_1",
+  "input_version": 1,
+  "state": "succeeded",
+  "ai_score": 5,
+  "summary": "12笔历史交易中2笔迟付，比例16.67%，无违约。",
+  "findings": [
+    {
+      "code": "PAYMENT_MINOR_DELAY",
+      "statement": "12笔历史交易中2笔迟付，比例16.67%，无违约。",
+      "source_refs": [
+        {
+          "source_id": "pdf_case_1",
+          "locator": "page=1; AcroForm verified against rendered page",
+          "kind": "user_pdf"
+        },
+        {
+          "source_id": "ref_payments_v1",
+          "locator": "local-reference-data.json#ref_payments_v1",
+          "kind": "authored_demo_seed"
+        }
+      ],
+      "confidence": 1.0
+    }
+  ],
+  "matched_rule_ids": [
+    "PAYMENT_MINOR_DELAY"
+  ],
+  "blocking_flags": [],
+  "missing_inputs": [],
+  "provenance": {
+    "engine_mode": "demo_replay",
+    "analyzer": "reference_demo_analyzer",
+    "model": null,
+    "prompt_version": "module-analysis-v1",
+    "policy_version": "demo-risk-v1",
+    "parser_version": "source-review-v1",
+    "input_hash": "9a642deb48854c10f5079c4d772880f9cd3f3cfee52e82e8d250028ef73e04f0",
+    "generated_at": "2026-10-04T06:00:00Z"
+  }
+}

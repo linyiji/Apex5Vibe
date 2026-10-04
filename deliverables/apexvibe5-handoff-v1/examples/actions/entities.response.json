@@ -1,0 +1,19 @@
+{
+  "items": [
+    {
+      "entity_id": "ent_cedarvale",
+      "legal_name": "Cedarvale Office Goods Limited",
+      "tax_id": "HK-SYN-100001",
+      "country": "Hong Kong",
+      "address": "Unit 8, 18 Fictional Harbour Road\nKowloon, Hong Kong"
+    },
+    {
+      "entity_id": "ent_meridianleaf",
+      "legal_name": "Meridianleaf Workplace Ltd.",
+      "tax_id": "UK-SYN-200001",
+      "country": "United Kingdom",
+      "address": "30 Fictional Orchard Lane\nBristol, ZZ1 0ZZ"
+    }
+  ],
+  "next_cursor": null
+}

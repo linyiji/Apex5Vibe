@@ -1,0 +1,18 @@
+{
+  "items": [
+    {
+      "event_id": "evt_case_2_15",
+      "case_id": "case_2",
+      "seq": 15,
+      "module_key": "relationship",
+      "type": "supplement_saved",
+      "actor_id": "local_demo_analyst",
+      "occurred_at": "2026-10-04T06:00:00Z",
+      "payload": {
+        "input_version": 2,
+        "supplement_id": "sup_case_2_1"
+      }
+    }
+  ],
+  "next_after_seq": 15
+}

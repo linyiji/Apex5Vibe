@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "allOf": [
+    {
+      "$ref": "common.schema.json#/$defs/ModuleInput"
+    },
+    {
+      "properties": {
+        "module_key": {
+          "const": "market_price"
+        },
+        "facts": {
+          "type": "object",
+          "properties": {
+            "line_items": {
+              "type": "array",
+              "items": {
+                "$ref": "common.schema.json#/$defs/LineItem"
+              },
+              "minItems": 1
+            },
+            "currency": {
+              "type": "string",
+              "minLength": 1
+            },
+            "trade_terms": {
+              "type": "string",
+              "minLength": 1
+            },
+            "delivery_location": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "required": [
+            "line_items",
+            "currency",
+            "trade_terms",
+            "delivery_location"
+          ],
+          "additionalProperties": false
+        }
+      }
+    }
+  ]
+}

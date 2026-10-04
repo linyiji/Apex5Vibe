@@ -1,0 +1,27 @@
+{
+  "items": [
+    {
+      "case_id": "case_1",
+      "invoice_number": "CV-2026-1002-001",
+      "amount": "8000.00",
+      "currency": "GBP",
+      "stage": "result",
+      "aggregate_status": "current",
+      "risk_band": "LOW",
+      "risk_is_current": true,
+      "decision_status": "eligible"
+    },
+    {
+      "case_id": "case_2",
+      "invoice_number": "CV-2026-1002-002",
+      "amount": "50000.00",
+      "currency": "GBP",
+      "stage": "result",
+      "aggregate_status": "current",
+      "risk_band": "HIGH",
+      "risk_is_current": true,
+      "decision_status": "manual_review"
+    }
+  ],
+  "next_cursor": null
+}

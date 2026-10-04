@@ -1,0 +1,975 @@
+{
+  "case_id": "case_1",
+  "case_revision": 25,
+  "stage": "result",
+  "initial_assessment_status": "settled",
+  "invoice": {
+    "invoice_id": "inv_case_1_v1",
+    "invoice_number": "CV-2026-1002-001",
+    "invoice_date": "2026-10-02",
+    "ship_date": "2026-10-02",
+    "due_date": "2026-11-01",
+    "payment_terms": "Net 30 days from invoice date",
+    "payment_term_days": 30,
+    "currency": "GBP",
+    "seller": {
+      "entity_id": "ent_cedarvale",
+      "legal_name": "Cedarvale Office Goods Limited",
+      "tax_id": "HK-SYN-100001",
+      "country": "Hong Kong",
+      "address": "Unit 8, 18 Fictional Harbour Road\nKowloon, Hong Kong"
+    },
+    "buyer": {
+      "entity_id": "ent_meridianleaf",
+      "legal_name": "Meridianleaf Workplace Ltd.",
+      "tax_id": "UK-SYN-200001",
+      "country": "United Kingdom",
+      "address": "30 Fictional Orchard Lane\nBristol, ZZ1 0ZZ"
+    },
+    "consignee_same_as_buyer": true,
+    "declared_related": false,
+    "purchase_order_number": "ML-PO-2026-0925-001",
+    "air_waybill_number": "SYN-AWB-261002-001",
+    "line_items": [
+      {
+        "sku": "CV-TOTE-01",
+        "description": "Cotton canvas tote bags\nSKU: CV-TOTE-01; natural beige\n100% cotton; 38 x 42 cm\nFor office supply resale\n50 pieces per carton",
+        "quantity": 1000,
+        "unit": "PCS",
+        "unit_price": "8.00",
+        "line_total": "8000.00",
+        "hs_code": "420292",
+        "country_of_manufacture": "China"
+      }
+    ],
+    "subtotal": "8000.00",
+    "charges": {
+      "insurance": "0.00",
+      "freight": "0.00",
+      "packing": "0.00",
+      "handling": "0.00",
+      "other": "0.00"
+    },
+    "total": "8000.00",
+    "trade_terms": "DAP",
+    "delivery_location": "Bristol, UK",
+    "source_refs": [
+      {
+        "source_id": "pdf_case_1",
+        "locator": "page=1; AcroForm verified against rendered page",
+        "kind": "user_pdf"
+      },
+      {
+        "source_id": "xlsx_case_1",
+        "locator": "Invoice Fields!B5:D66",
+        "kind": "user_xlsx"
+      }
+    ],
+    "extraction_method": "acroform_verified",
+    "synthetic": true
+  },
+  "parties": [
+    {
+      "side": "seller",
+      "selection": {
+        "mode": "skip"
+      },
+      "invoice_entity": {
+        "entity_id": "ent_cedarvale",
+        "legal_name": "Cedarvale Office Goods Limited",
+        "tax_id": "HK-SYN-100001",
+        "country": "Hong Kong",
+        "address": "Unit 8, 18 Fictional Harbour Road\nKowloon, Hong Kong"
+      },
+      "resolved_entity_id": "ent_cedarvale",
+      "status": "matched",
+      "reason": "税号、辖区与本地合成档案一致"
+    },
+    {
+      "side": "buyer",
+      "selection": {
+        "mode": "skip"
+      },
+      "invoice_entity": {
+        "entity_id": "ent_meridianleaf",
+        "legal_name": "Meridianleaf Workplace Ltd.",
+        "tax_id": "UK-SYN-200001",
+        "country": "United Kingdom",
+        "address": "30 Fictional Orchard Lane\nBristol, ZZ1 0ZZ"
+      },
+      "resolved_entity_id": "ent_meridianleaf",
+      "status": "matched",
+      "reason": "税号、辖区与本地合成档案一致"
+    }
+  ],
+  "modules": [
+    {
+      "case_id": "case_1",
+      "module_key": "invoice_integrity",
+      "cap": 15,
+      "module_version": 3,
+      "input_version": 1,
+      "evaluated_input_version": 1,
+      "state": "succeeded",
+      "freshness": "current",
+      "adjustment_status": "none",
+      "current_run": {
+        "case_id": "case_1",
+        "module_key": "invoice_integrity",
+        "run_id": "run_case_1_invoice_integrity_1",
+        "input_version": 1,
+        "state": "succeeded",
+        "ai_score": 0,
+        "summary": "数量×单价与总额一致，日期与条款一致。",
+        "findings": [
+          {
+            "code": "INTEGRITY_OK",
+            "statement": "数量×单价与总额一致，日期与条款一致。",
+            "source_refs": [
+              {
+                "source_id": "pdf_case_1",
+                "locator": "page=1; AcroForm verified against rendered page",
+                "kind": "user_pdf"
+              }
+            ],
+            "confidence": 1.0
+          }
+        ],
+        "matched_rule_ids": [
+          "INTEGRITY_OK"
+        ],
+        "blocking_flags": [],
+        "missing_inputs": [],
+        "provenance": {
+          "engine_mode": "demo_replay",
+          "analyzer": "reference_demo_analyzer",
+          "model": null,
+          "prompt_version": "module-analysis-v1",
+          "policy_version": "demo-risk-v1",
+          "parser_version": "source-review-v1",
+          "input_hash": "71813cbbb7c4ea0cb78e04a7f42609fcaa9a8cca46982baa158caba02c9220fa",
+          "generated_at": "2026-10-04T06:00:00Z"
+        }
+      },
+      "requested_adjustment": 0,
+      "effective_adjustment": 0,
+      "final_score": 0,
+      "allowed_actions": [
+        "upload_evidence",
+        "save_information",
+        "save_and_rerun",
+        "rerun",
+        "adjust",
+        "full_view"
+      ],
+      "evidence": [
+        {
+          "evidence_id": "ev_case_1_invoice",
+          "source_id": "pdf_case_1",
+          "kind": "file",
+          "file_id": "file_case_1_invoice",
+          "filename": "ApexDefend_Case_1_Invoice.pdf",
+          "sha256": "47b579d4f6764baa31447eea6637b79d02cf38997049222a8a35cf8dc54ab506",
+          "parse_status": "ready",
+          "status": "active",
+          "source_ref": {
+            "source_id": "pdf_case_1",
+            "locator": "page=1; AcroForm verified against rendered page",
+            "kind": "user_pdf"
+          }
+        }
+      ],
+      "supplements": [],
+      "run_history": [
+        {
+          "run_id": "run_case_1_invoice_integrity_1",
+          "input_version": 1,
+          "status": "succeeded",
+          "ai_score": 0,
+          "created_at": "2026-10-04T06:00:00Z",
+          "finished_at": "2026-10-04T06:00:00Z"
+        }
+      ],
+      "manual_adjustments": []
+    },
+    {
+      "case_id": "case_1",
+      "module_key": "buyer_verification",
+      "cap": 10,
+      "module_version": 3,
+      "input_version": 1,
+      "evaluated_input_version": 1,
+      "state": "succeeded",
+      "freshness": "current",
+      "adjustment_status": "none",
+      "current_run": {
+        "case_id": "case_1",
+        "module_key": "buyer_verification",
+        "run_id": "run_case_1_buyer_verification_1",
+        "input_version": 1,
+        "state": "succeeded",
+        "ai_score": 0,
+        "summary": "买方与本地合成参考档案一致。",
+        "findings": [
+          {
+            "code": "BUYER_MATCH",
+            "statement": "买方与本地合成参考档案一致。",
+            "source_refs": [
+              {
+                "source_id": "pdf_case_1",
+                "locator": "page=1; AcroForm verified against rendered page",
+                "kind": "user_pdf"
+              },
+              {
+                "source_id": "ref_buyer_v1",
+                "locator": "local-reference-data.json#ref_buyer_v1",
+                "kind": "authored_demo_seed"
+              }
+            ],
+            "confidence": 1.0
+          }
+        ],
+        "matched_rule_ids": [
+          "BUYER_MATCH"
+        ],
+        "blocking_flags": [],
+        "missing_inputs": [],
+        "provenance": {
+          "engine_mode": "demo_replay",
+          "analyzer": "reference_demo_analyzer",
+          "model": null,
+          "prompt_version": "module-analysis-v1",
+          "policy_version": "demo-risk-v1",
+          "parser_version": "source-review-v1",
+          "input_hash": "732cac7b0c62358b822c40e70df87a01f28365ec7e2fa6ccf815d5f6f021b561",
+          "generated_at": "2026-10-04T06:00:00Z"
+        }
+      },
+      "requested_adjustment": 0,
+      "effective_adjustment": 0,
+      "final_score": 0,
+      "allowed_actions": [
+        "upload_evidence",
+        "save_information",
+        "save_and_rerun",
+        "rerun",
+        "adjust",
+        "full_view"
+      ],
+      "evidence": [
+        {
+          "evidence_id": "ev_case_1_invoice",
+          "source_id": "pdf_case_1",
+          "kind": "file",
+          "file_id": "file_case_1_invoice",
+          "filename": "ApexDefend_Case_1_Invoice.pdf",
+          "sha256": "47b579d4f6764baa31447eea6637b79d02cf38997049222a8a35cf8dc54ab506",
+          "parse_status": "ready",
+          "status": "active",
+          "source_ref": {
+            "source_id": "pdf_case_1",
+            "locator": "page=1; AcroForm verified against rendered page",
+            "kind": "user_pdf"
+          }
+        },
+        {
+          "evidence_id": "ev_case_1_ref_buyer_v1",
+          "source_id": "ref_buyer_v1",
+          "kind": "reference",
+          "file_id": null,
+          "filename": null,
+          "sha256": null,
+          "parse_status": "ready",
+          "status": "active",
+          "source_ref": {
+            "source_id": "ref_buyer_v1",
+            "locator": "local-reference-data.json#ref_buyer_v1",
+            "kind": "authored_demo_seed"
+          }
+        }
+      ],
+      "supplements": [],
+      "run_history": [
+        {
+          "run_id": "run_case_1_buyer_verification_1",
+          "input_version": 1,
+          "status": "succeeded",
+          "ai_score": 0,
+          "created_at": "2026-10-04T06:00:00Z",
+          "finished_at": "2026-10-04T06:00:00Z"
+        }
+      ],
+      "manual_adjustments": []
+    },
+    {
+      "case_id": "case_1",
+      "module_key": "seller_verification",
+      "cap": 10,
+      "module_version": 3,
+      "input_version": 1,
+      "evaluated_input_version": 1,
+      "state": "succeeded",
+      "freshness": "current",
+      "adjustment_status": "none",
+      "current_run": {
+        "case_id": "case_1",
+        "module_key": "seller_verification",
+        "run_id": "run_case_1_seller_verification_1",
+        "input_version": 1,
+        "state": "succeeded",
+        "ai_score": 0,
+        "summary": "卖方与本地合成参考档案一致。",
+        "findings": [
+          {
+            "code": "SELLER_MATCH",
+            "statement": "卖方与本地合成参考档案一致。",
+            "source_refs": [
+              {
+                "source_id": "pdf_case_1",
+                "locator": "page=1; AcroForm verified against rendered page",
+                "kind": "user_pdf"
+              },
+              {
+                "source_id": "ref_seller_v1",
+                "locator": "local-reference-data.json#ref_seller_v1",
+                "kind": "authored_demo_seed"
+              }
+            ],
+            "confidence": 1.0
+          }
+        ],
+        "matched_rule_ids": [
+          "SELLER_MATCH"
+        ],
+        "blocking_flags": [],
+        "missing_inputs": [],
+        "provenance": {
+          "engine_mode": "demo_replay",
+          "analyzer": "reference_demo_analyzer",
+          "model": null,
+          "prompt_version": "module-analysis-v1",
+          "policy_version": "demo-risk-v1",
+          "parser_version": "source-review-v1",
+          "input_hash": "ce7ac9cf030b0e1e337350bfb5d2eda586641b0e095fc06bb2a206d4bedb72dc",
+          "generated_at": "2026-10-04T06:00:00Z"
+        }
+      },
+      "requested_adjustment": 0,
+      "effective_adjustment": 0,
+      "final_score": 0,
+      "allowed_actions": [
+        "upload_evidence",
+        "save_information",
+        "save_and_rerun",
+        "rerun",
+        "adjust",
+        "full_view"
+      ],
+      "evidence": [
+        {
+          "evidence_id": "ev_case_1_invoice",
+          "source_id": "pdf_case_1",
+          "kind": "file",
+          "file_id": "file_case_1_invoice",
+          "filename": "ApexDefend_Case_1_Invoice.pdf",
+          "sha256": "47b579d4f6764baa31447eea6637b79d02cf38997049222a8a35cf8dc54ab506",
+          "parse_status": "ready",
+          "status": "active",
+          "source_ref": {
+            "source_id": "pdf_case_1",
+            "locator": "page=1; AcroForm verified against rendered page",
+            "kind": "user_pdf"
+          }
+        },
+        {
+          "evidence_id": "ev_case_1_ref_seller_v1",
+          "source_id": "ref_seller_v1",
+          "kind": "reference",
+          "file_id": null,
+          "filename": null,
+          "sha256": null,
+          "parse_status": "ready",
+          "status": "active",
+          "source_ref": {
+            "source_id": "ref_seller_v1",
+            "locator": "local-reference-data.json#ref_seller_v1",
+            "kind": "authored_demo_seed"
+          }
+        }
+      ],
+      "supplements": [],
+      "run_history": [
+        {
+          "run_id": "run_case_1_seller_verification_1",
+          "input_version": 1,
+          "status": "succeeded",
+          "ai_score": 0,
+          "created_at": "2026-10-04T06:00:00Z",
+          "finished_at": "2026-10-04T06:00:00Z"
+        }
+      ],
+      "manual_adjustments": []
+    },
+    {
+      "case_id": "case_1",
+      "module_key": "relationship",
+      "cap": 30,
+      "module_version": 3,
+      "input_version": 1,
+      "evaluated_input_version": 1,
+      "state": "succeeded",
+      "freshness": "current",
+      "adjustment_status": "none",
+      "current_run": {
+        "case_id": "case_1",
+        "module_key": "relationship",
+        "run_id": "run_case_1_relationship_1",
+        "input_version": 1,
+        "state": "succeeded",
+        "ai_score": 0,
+        "summary": "本次金额为可比历史中位数GBP 8,000的1.00倍。未触发规模偏离规则。",
+        "findings": [
+          {
+            "code": "TRADE_SCALE_NORMAL",
+            "statement": "本次金额为可比历史中位数GBP 8,000的1.00倍。未触发规模偏离规则。",
+            "source_refs": [
+              {
+                "source_id": "pdf_case_1",
+                "locator": "page=1; AcroForm verified against rendered page",
+                "kind": "user_pdf"
+              },
+              {
+                "source_id": "ref_trade_history_v1",
+                "locator": "local-reference-data.json#ref_trade_history_v1",
+                "kind": "authored_demo_seed"
+              }
+            ],
+            "confidence": 1.0
+          }
+        ],
+        "matched_rule_ids": [
+          "TRADE_SCALE_NORMAL"
+        ],
+        "blocking_flags": [],
+        "missing_inputs": [],
+        "provenance": {
+          "engine_mode": "demo_replay",
+          "analyzer": "reference_demo_analyzer",
+          "model": null,
+          "prompt_version": "module-analysis-v1",
+          "policy_version": "demo-risk-v1",
+          "parser_version": "source-review-v1",
+          "input_hash": "be062e10663e237a677abd21a65e5472d929479e94b030009584afa67cbefabb",
+          "generated_at": "2026-10-04T06:00:00Z"
+        }
+      },
+      "requested_adjustment": 0,
+      "effective_adjustment": 0,
+      "final_score": 0,
+      "allowed_actions": [
+        "upload_evidence",
+        "save_information",
+        "save_and_rerun",
+        "rerun",
+        "adjust",
+        "full_view"
+      ],
+      "evidence": [
+        {
+          "evidence_id": "ev_case_1_invoice",
+          "source_id": "pdf_case_1",
+          "kind": "file",
+          "file_id": "file_case_1_invoice",
+          "filename": "ApexDefend_Case_1_Invoice.pdf",
+          "sha256": "47b579d4f6764baa31447eea6637b79d02cf38997049222a8a35cf8dc54ab506",
+          "parse_status": "ready",
+          "status": "active",
+          "source_ref": {
+            "source_id": "pdf_case_1",
+            "locator": "page=1; AcroForm verified against rendered page",
+            "kind": "user_pdf"
+          }
+        },
+        {
+          "evidence_id": "ev_case_1_ref_trade_history_v1",
+          "source_id": "ref_trade_history_v1",
+          "kind": "reference",
+          "file_id": null,
+          "filename": null,
+          "sha256": null,
+          "parse_status": "ready",
+          "status": "active",
+          "source_ref": {
+            "source_id": "ref_trade_history_v1",
+            "locator": "local-reference-data.json#ref_trade_history_v1",
+            "kind": "authored_demo_seed"
+          }
+        }
+      ],
+      "supplements": [],
+      "run_history": [
+        {
+          "run_id": "run_case_1_relationship_1",
+          "input_version": 1,
+          "status": "succeeded",
+          "ai_score": 0,
+          "created_at": "2026-10-04T06:00:00Z",
+          "finished_at": "2026-10-04T06:00:00Z"
+        }
+      ],
+      "manual_adjustments": []
+    },
+    {
+      "case_id": "case_1",
+      "module_key": "market_price",
+      "cap": 10,
+      "module_version": 3,
+      "input_version": 1,
+      "evaluated_input_version": 1,
+      "state": "succeeded",
+      "freshness": "current",
+      "adjustment_status": "none",
+      "current_run": {
+        "case_id": "case_1",
+        "module_key": "market_price",
+        "run_id": "run_case_1_market_price_1",
+        "input_version": 1,
+        "state": "succeeded",
+        "ai_score": 0,
+        "summary": "GBP 8/PCS位于本地合成可比范围GBP 7–9内。",
+        "findings": [
+          {
+            "code": "PRICE_IN_RANGE",
+            "statement": "GBP 8/PCS位于本地合成可比范围GBP 7–9内。",
+            "source_refs": [
+              {
+                "source_id": "pdf_case_1",
+                "locator": "page=1; AcroForm verified against rendered page",
+                "kind": "user_pdf"
+              },
+              {
+                "source_id": "ref_market_v1",
+                "locator": "local-reference-data.json#ref_market_v1",
+                "kind": "authored_demo_seed"
+              }
+            ],
+            "confidence": 1.0
+          }
+        ],
+        "matched_rule_ids": [
+          "PRICE_IN_RANGE"
+        ],
+        "blocking_flags": [],
+        "missing_inputs": [],
+        "provenance": {
+          "engine_mode": "demo_replay",
+          "analyzer": "reference_demo_analyzer",
+          "model": null,
+          "prompt_version": "module-analysis-v1",
+          "policy_version": "demo-risk-v1",
+          "parser_version": "source-review-v1",
+          "input_hash": "81a06be0817aedba39c257cc1c2b19b3cfc4ad89f49bd5cf1c3e1d96dd30dec7",
+          "generated_at": "2026-10-04T06:00:00Z"
+        }
+      },
+      "requested_adjustment": 0,
+      "effective_adjustment": 0,
+      "final_score": 0,
+      "allowed_actions": [
+        "upload_evidence",
+        "save_information",
+        "save_and_rerun",
+        "rerun",
+        "adjust",
+        "full_view"
+      ],
+      "evidence": [
+        {
+          "evidence_id": "ev_case_1_invoice",
+          "source_id": "pdf_case_1",
+          "kind": "file",
+          "file_id": "file_case_1_invoice",
+          "filename": "ApexDefend_Case_1_Invoice.pdf",
+          "sha256": "47b579d4f6764baa31447eea6637b79d02cf38997049222a8a35cf8dc54ab506",
+          "parse_status": "ready",
+          "status": "active",
+          "source_ref": {
+            "source_id": "pdf_case_1",
+            "locator": "page=1; AcroForm verified against rendered page",
+            "kind": "user_pdf"
+          }
+        },
+        {
+          "evidence_id": "ev_case_1_ref_market_v1",
+          "source_id": "ref_market_v1",
+          "kind": "reference",
+          "file_id": null,
+          "filename": null,
+          "sha256": null,
+          "parse_status": "ready",
+          "status": "active",
+          "source_ref": {
+            "source_id": "ref_market_v1",
+            "locator": "local-reference-data.json#ref_market_v1",
+            "kind": "authored_demo_seed"
+          }
+        }
+      ],
+      "supplements": [],
+      "run_history": [
+        {
+          "run_id": "run_case_1_market_price_1",
+          "input_version": 1,
+          "status": "succeeded",
+          "ai_score": 0,
+          "created_at": "2026-10-04T06:00:00Z",
+          "finished_at": "2026-10-04T06:00:00Z"
+        }
+      ],
+      "manual_adjustments": []
+    },
+    {
+      "case_id": "case_1",
+      "module_key": "payment_history",
+      "cap": 15,
+      "module_version": 3,
+      "input_version": 1,
+      "evaluated_input_version": 1,
+      "state": "succeeded",
+      "freshness": "current",
+      "adjustment_status": "none",
+      "current_run": {
+        "case_id": "case_1",
+        "module_key": "payment_history",
+        "run_id": "run_case_1_payment_history_1",
+        "input_version": 1,
+        "state": "succeeded",
+        "ai_score": 5,
+        "summary": "12笔历史交易中2笔迟付，比例16.67%，无违约。",
+        "findings": [
+          {
+            "code": "PAYMENT_MINOR_DELAY",
+            "statement": "12笔历史交易中2笔迟付，比例16.67%，无违约。",
+            "source_refs": [
+              {
+                "source_id": "pdf_case_1",
+                "locator": "page=1; AcroForm verified against rendered page",
+                "kind": "user_pdf"
+              },
+              {
+                "source_id": "ref_payments_v1",
+                "locator": "local-reference-data.json#ref_payments_v1",
+                "kind": "authored_demo_seed"
+              }
+            ],
+            "confidence": 1.0
+          }
+        ],
+        "matched_rule_ids": [
+          "PAYMENT_MINOR_DELAY"
+        ],
+        "blocking_flags": [],
+        "missing_inputs": [],
+        "provenance": {
+          "engine_mode": "demo_replay",
+          "analyzer": "reference_demo_analyzer",
+          "model": null,
+          "prompt_version": "module-analysis-v1",
+          "policy_version": "demo-risk-v1",
+          "parser_version": "source-review-v1",
+          "input_hash": "9a642deb48854c10f5079c4d772880f9cd3f3cfee52e82e8d250028ef73e04f0",
+          "generated_at": "2026-10-04T06:00:00Z"
+        }
+      },
+      "requested_adjustment": 0,
+      "effective_adjustment": 0,
+      "final_score": 5,
+      "allowed_actions": [
+        "upload_evidence",
+        "save_information",
+        "save_and_rerun",
+        "rerun",
+        "adjust",
+        "full_view"
+      ],
+      "evidence": [
+        {
+          "evidence_id": "ev_case_1_invoice",
+          "source_id": "pdf_case_1",
+          "kind": "file",
+          "file_id": "file_case_1_invoice",
+          "filename": "ApexDefend_Case_1_Invoice.pdf",
+          "sha256": "47b579d4f6764baa31447eea6637b79d02cf38997049222a8a35cf8dc54ab506",
+          "parse_status": "ready",
+          "status": "active",
+          "source_ref": {
+            "source_id": "pdf_case_1",
+            "locator": "page=1; AcroForm verified against rendered page",
+            "kind": "user_pdf"
+          }
+        },
+        {
+          "evidence_id": "ev_case_1_ref_payments_v1",
+          "source_id": "ref_payments_v1",
+          "kind": "reference",
+          "file_id": null,
+          "filename": null,
+          "sha256": null,
+          "parse_status": "ready",
+          "status": "active",
+          "source_ref": {
+            "source_id": "ref_payments_v1",
+            "locator": "local-reference-data.json#ref_payments_v1",
+            "kind": "authored_demo_seed"
+          }
+        }
+      ],
+      "supplements": [],
+      "run_history": [
+        {
+          "run_id": "run_case_1_payment_history_1",
+          "input_version": 1,
+          "status": "succeeded",
+          "ai_score": 5,
+          "created_at": "2026-10-04T06:00:00Z",
+          "finished_at": "2026-10-04T06:00:00Z"
+        }
+      ],
+      "manual_adjustments": []
+    },
+    {
+      "case_id": "case_1",
+      "module_key": "duplicate_financing",
+      "cap": 10,
+      "module_version": 3,
+      "input_version": 1,
+      "evaluated_input_version": 1,
+      "state": "succeeded",
+      "freshness": "current",
+      "adjustment_status": "none",
+      "current_run": {
+        "case_id": "case_1",
+        "module_key": "duplicate_financing",
+        "run_id": "run_case_1_duplicate_financing_1",
+        "input_version": 1,
+        "state": "succeeded",
+        "ai_score": 0,
+        "summary": "本地Demo台账覆盖范围内未发现当前发票的有效融资。",
+        "findings": [
+          {
+            "code": "NO_LOCAL_FINANCING_MATCH",
+            "statement": "本地Demo台账覆盖范围内未发现当前发票的有效融资。",
+            "source_refs": [
+              {
+                "source_id": "pdf_case_1",
+                "locator": "page=1; AcroForm verified against rendered page",
+                "kind": "user_pdf"
+              },
+              {
+                "source_id": "ref_financing_v1",
+                "locator": "local-reference-data.json#ref_financing_v1",
+                "kind": "authored_demo_seed"
+              }
+            ],
+            "confidence": 1.0
+          }
+        ],
+        "matched_rule_ids": [
+          "NO_LOCAL_FINANCING_MATCH"
+        ],
+        "blocking_flags": [],
+        "missing_inputs": [],
+        "provenance": {
+          "engine_mode": "demo_replay",
+          "analyzer": "reference_demo_analyzer",
+          "model": null,
+          "prompt_version": "module-analysis-v1",
+          "policy_version": "demo-risk-v1",
+          "parser_version": "source-review-v1",
+          "input_hash": "261108b3048b5946789e83e9d82500d759f85e29c95bbc98685ce93e37447b86",
+          "generated_at": "2026-10-04T06:00:00Z"
+        }
+      },
+      "requested_adjustment": 0,
+      "effective_adjustment": 0,
+      "final_score": 0,
+      "allowed_actions": [
+        "upload_evidence",
+        "save_information",
+        "save_and_rerun",
+        "rerun",
+        "adjust",
+        "full_view"
+      ],
+      "evidence": [
+        {
+          "evidence_id": "ev_case_1_invoice",
+          "source_id": "pdf_case_1",
+          "kind": "file",
+          "file_id": "file_case_1_invoice",
+          "filename": "ApexDefend_Case_1_Invoice.pdf",
+          "sha256": "47b579d4f6764baa31447eea6637b79d02cf38997049222a8a35cf8dc54ab506",
+          "parse_status": "ready",
+          "status": "active",
+          "source_ref": {
+            "source_id": "pdf_case_1",
+            "locator": "page=1; AcroForm verified against rendered page",
+            "kind": "user_pdf"
+          }
+        },
+        {
+          "evidence_id": "ev_case_1_ref_financing_v1",
+          "source_id": "ref_financing_v1",
+          "kind": "reference",
+          "file_id": null,
+          "filename": null,
+          "sha256": null,
+          "parse_status": "ready",
+          "status": "active",
+          "source_ref": {
+            "source_id": "ref_financing_v1",
+            "locator": "local-reference-data.json#ref_financing_v1",
+            "kind": "authored_demo_seed"
+          }
+        }
+      ],
+      "supplements": [],
+      "run_history": [
+        {
+          "run_id": "run_case_1_duplicate_financing_1",
+          "input_version": 1,
+          "status": "succeeded",
+          "ai_score": 0,
+          "created_at": "2026-10-04T06:00:00Z",
+          "finished_at": "2026-10-04T06:00:00Z"
+        }
+      ],
+      "manual_adjustments": []
+    }
+  ],
+  "aggregate": {
+    "status": "current",
+    "current_result": {
+      "snapshot_id": "snapshot_case_1_1",
+      "aggregate_revision": 1,
+      "ai_total": 5,
+      "effective_adjustment_total": 0,
+      "final_risk_score": 5,
+      "risk_band": "LOW",
+      "module_versions": [
+        {
+          "module_key": "invoice_integrity",
+          "run_id": "run_case_1_invoice_integrity_1",
+          "input_version": 1,
+          "final_score": 0
+        },
+        {
+          "module_key": "buyer_verification",
+          "run_id": "run_case_1_buyer_verification_1",
+          "input_version": 1,
+          "final_score": 0
+        },
+        {
+          "module_key": "seller_verification",
+          "run_id": "run_case_1_seller_verification_1",
+          "input_version": 1,
+          "final_score": 0
+        },
+        {
+          "module_key": "relationship",
+          "run_id": "run_case_1_relationship_1",
+          "input_version": 1,
+          "final_score": 0
+        },
+        {
+          "module_key": "market_price",
+          "run_id": "run_case_1_market_price_1",
+          "input_version": 1,
+          "final_score": 0
+        },
+        {
+          "module_key": "payment_history",
+          "run_id": "run_case_1_payment_history_1",
+          "input_version": 1,
+          "final_score": 5
+        },
+        {
+          "module_key": "duplicate_financing",
+          "run_id": "run_case_1_duplicate_financing_1",
+          "input_version": 1,
+          "final_score": 0
+        }
+      ],
+      "policy_version": "demo-risk-v1",
+      "created_at": "2026-10-04T06:00:00Z"
+    },
+    "last_valid_result": {
+      "snapshot_id": "snapshot_case_1_1",
+      "aggregate_revision": 1,
+      "ai_total": 5,
+      "effective_adjustment_total": 0,
+      "final_risk_score": 5,
+      "risk_band": "LOW",
+      "module_versions": [
+        {
+          "module_key": "invoice_integrity",
+          "run_id": "run_case_1_invoice_integrity_1",
+          "input_version": 1,
+          "final_score": 0
+        },
+        {
+          "module_key": "buyer_verification",
+          "run_id": "run_case_1_buyer_verification_1",
+          "input_version": 1,
+          "final_score": 0
+        },
+        {
+          "module_key": "seller_verification",
+          "run_id": "run_case_1_seller_verification_1",
+          "input_version": 1,
+          "final_score": 0
+        },
+        {
+          "module_key": "relationship",
+          "run_id": "run_case_1_relationship_1",
+          "input_version": 1,
+          "final_score": 0
+        },
+        {
+          "module_key": "market_price",
+          "run_id": "run_case_1_market_price_1",
+          "input_version": 1,
+          "final_score": 0
+        },
+        {
+          "module_key": "payment_history",
+          "run_id": "run_case_1_payment_history_1",
+          "input_version": 1,
+          "final_score": 5
+        },
+        {
+          "module_key": "duplicate_financing",
+          "run_id": "run_case_1_duplicate_financing_1",
+          "input_version": 1,
+          "final_score": 0
+        }
+      ],
+      "policy_version": "demo-risk-v1",
+      "created_at": "2026-10-04T06:00:00Z"
+    },
+    "decision": {
+      "status": "eligible",
+      "advance_rate": 0.8,
+      "advance_amount": "6400.00",
+      "currency": "GBP",
+      "reasons": [
+        "current_low_risk"
+      ]
+    }
+  },
+  "engine_mode": "demo_replay",
+  "navigation": {
+    "target": "result",
+    "reason": "initial_assessment_settled"
+  }
+}

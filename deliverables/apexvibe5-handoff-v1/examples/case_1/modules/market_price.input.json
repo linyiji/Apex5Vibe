@@ -1,0 +1,80 @@
+{
+  "case_id": "case_1",
+  "module_key": "market_price",
+  "input_version": 1,
+  "as_of": "2026-10-04",
+  "policy_version": "demo-risk-v1",
+  "facts": {
+    "line_items": [
+      {
+        "sku": "CV-TOTE-01",
+        "description": "Cotton canvas tote bags\nSKU: CV-TOTE-01; natural beige\n100% cotton; 38 x 42 cm\nFor office supply resale\n50 pieces per carton",
+        "quantity": 1000,
+        "unit": "PCS",
+        "unit_price": "8.00",
+        "line_total": "8000.00",
+        "hs_code": "420292",
+        "country_of_manufacture": "China"
+      }
+    ],
+    "currency": "GBP",
+    "trade_terms": "DAP",
+    "delivery_location": "Bristol, UK"
+  },
+  "reference_records": [
+    {
+      "source_id": "ref_market_v1",
+      "kind": "market_benchmark",
+      "synthetic": true,
+      "source_type": "authored_demo_seed",
+      "as_of": "2026-10-04",
+      "data": {
+        "sku": "CV-TOTE-01",
+        "currency": "GBP",
+        "unit": "PCS",
+        "lower": "7.00",
+        "upper": "9.00",
+        "trade_terms": "DAP",
+        "delivery_location": "Bristol, UK",
+        "included_costs": [
+          "freight",
+          "insurance",
+          "packing"
+        ]
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "evidence_id": "ev_case_1_invoice",
+      "source_id": "pdf_case_1",
+      "kind": "file",
+      "file_id": "file_case_1_invoice",
+      "filename": "ApexDefend_Case_1_Invoice.pdf",
+      "sha256": "47b579d4f6764baa31447eea6637b79d02cf38997049222a8a35cf8dc54ab506",
+      "parse_status": "ready",
+      "status": "active",
+      "source_ref": {
+        "source_id": "pdf_case_1",
+        "locator": "page=1; AcroForm verified against rendered page",
+        "kind": "user_pdf"
+      }
+    },
+    {
+      "evidence_id": "ev_case_1_ref_market_v1",
+      "source_id": "ref_market_v1",
+      "kind": "reference",
+      "file_id": null,
+      "filename": null,
+      "sha256": null,
+      "parse_status": "ready",
+      "status": "active",
+      "source_ref": {
+        "source_id": "ref_market_v1",
+        "locator": "local-reference-data.json#ref_market_v1",
+        "kind": "authored_demo_seed"
+      }
+    }
+  ],
+  "supplements": []
+}

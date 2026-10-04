@@ -1,0 +1,49 @@
+{
+  "api_version": "v1",
+  "policy_version": "demo-risk-v1",
+  "engine_mode": "demo_replay",
+  "max_file_bytes": 20971520,
+  "max_files_per_request": 10,
+  "formats": [
+    {
+      "extension": ".pdf",
+      "status": "ready",
+      "parser": "acroform_or_text"
+    },
+    {
+      "extension": ".xlsx",
+      "status": "ready",
+      "parser": "read_only_spreadsheet"
+    },
+    {
+      "extension": ".csv",
+      "status": "ready",
+      "parser": "csv"
+    },
+    {
+      "extension": ".xls",
+      "status": "unavailable",
+      "parser": null
+    },
+    {
+      "extension": ".docx",
+      "status": "unavailable",
+      "parser": null
+    },
+    {
+      "extension": ".doc",
+      "status": "unavailable",
+      "parser": null
+    },
+    {
+      "extension": ".png",
+      "status": "unavailable",
+      "parser": null
+    },
+    {
+      "extension": ".jpg",
+      "status": "unavailable",
+      "parser": null
+    }
+  ]
+}

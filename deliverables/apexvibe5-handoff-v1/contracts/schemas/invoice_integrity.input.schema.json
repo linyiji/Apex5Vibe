@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "allOf": [
+    {
+      "$ref": "common.schema.json#/$defs/ModuleInput"
+    },
+    {
+      "properties": {
+        "module_key": {
+          "const": "invoice_integrity"
+        },
+        "facts": {
+          "type": "object",
+          "properties": {
+            "invoice": {
+              "$ref": "common.schema.json#/$defs/Invoice"
+            }
+          },
+          "required": [
+            "invoice"
+          ],
+          "additionalProperties": false
+        }
+      }
+    }
+  ]
+}

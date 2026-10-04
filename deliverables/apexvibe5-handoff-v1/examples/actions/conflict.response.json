@@ -1,0 +1,11 @@
+{
+  "error": {
+    "code": "VERSION_CONFLICT",
+    "message": "模块已更新，请刷新后重试",
+    "retryable": false,
+    "details": {
+      "current_module_version": 5
+    }
+  },
+  "request_id": "req_demo_001"
+}

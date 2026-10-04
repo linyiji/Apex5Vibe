@@ -1,0 +1,37 @@
+{
+  "module_key": "relationship",
+  "name": "Buyer–Seller Relationship & Trade Scale",
+  "cap": 30,
+  "policy_version": "demo-risk-v1",
+  "required_reference_kinds": [
+    "trade_history"
+  ],
+  "input_schema": "../schemas/relationship.input.schema.json",
+  "output_schema": "../schemas/relationship.output.schema.json",
+  "rules": [
+    {
+      "rule_id": "TRADE_SCALE_NORMAL",
+      "points": 0,
+      "condition": "amount / median < 2"
+    },
+    {
+      "rule_id": "TRADE_SCALE_ELEVATED",
+      "points": 15,
+      "condition": "2 <= ratio < 5"
+    },
+    {
+      "rule_id": "TRADE_SCALE_HIGH",
+      "points": 30,
+      "condition": "ratio >= 5"
+    },
+    {
+      "rule_id": "RELATED_PARTY_CONFLICT",
+      "points": 30,
+      "condition": "关联声明与参考资料冲突"
+    }
+  ],
+  "evidence_scope": "module",
+  "missing_data": "needs_info",
+  "recompute": "entire_current_input_snapshot",
+  "state_machine": "../module-state-machine.json"
+}

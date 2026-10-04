@@ -1,0 +1,93 @@
+{
+  "case_id": "case_1",
+  "module_key": "invoice_integrity",
+  "input_version": 1,
+  "as_of": "2026-10-04",
+  "policy_version": "demo-risk-v1",
+  "facts": {
+    "invoice": {
+      "invoice_id": "inv_case_1_v1",
+      "invoice_number": "CV-2026-1002-001",
+      "invoice_date": "2026-10-02",
+      "ship_date": "2026-10-02",
+      "due_date": "2026-11-01",
+      "payment_terms": "Net 30 days from invoice date",
+      "payment_term_days": 30,
+      "currency": "GBP",
+      "seller": {
+        "entity_id": "ent_cedarvale",
+        "legal_name": "Cedarvale Office Goods Limited",
+        "tax_id": "HK-SYN-100001",
+        "country": "Hong Kong",
+        "address": "Unit 8, 18 Fictional Harbour Road\nKowloon, Hong Kong"
+      },
+      "buyer": {
+        "entity_id": "ent_meridianleaf",
+        "legal_name": "Meridianleaf Workplace Ltd.",
+        "tax_id": "UK-SYN-200001",
+        "country": "United Kingdom",
+        "address": "30 Fictional Orchard Lane\nBristol, ZZ1 0ZZ"
+      },
+      "consignee_same_as_buyer": true,
+      "declared_related": false,
+      "purchase_order_number": "ML-PO-2026-0925-001",
+      "air_waybill_number": "SYN-AWB-261002-001",
+      "line_items": [
+        {
+          "sku": "CV-TOTE-01",
+          "description": "Cotton canvas tote bags\nSKU: CV-TOTE-01; natural beige\n100% cotton; 38 x 42 cm\nFor office supply resale\n50 pieces per carton",
+          "quantity": 1000,
+          "unit": "PCS",
+          "unit_price": "8.00",
+          "line_total": "8000.00",
+          "hs_code": "420292",
+          "country_of_manufacture": "China"
+        }
+      ],
+      "subtotal": "8000.00",
+      "charges": {
+        "insurance": "0.00",
+        "freight": "0.00",
+        "packing": "0.00",
+        "handling": "0.00",
+        "other": "0.00"
+      },
+      "total": "8000.00",
+      "trade_terms": "DAP",
+      "delivery_location": "Bristol, UK",
+      "source_refs": [
+        {
+          "source_id": "pdf_case_1",
+          "locator": "page=1; AcroForm verified against rendered page",
+          "kind": "user_pdf"
+        },
+        {
+          "source_id": "xlsx_case_1",
+          "locator": "Invoice Fields!B5:D66",
+          "kind": "user_xlsx"
+        }
+      ],
+      "extraction_method": "acroform_verified",
+      "synthetic": true
+    }
+  },
+  "reference_records": [],
+  "evidence": [
+    {
+      "evidence_id": "ev_case_1_invoice",
+      "source_id": "pdf_case_1",
+      "kind": "file",
+      "file_id": "file_case_1_invoice",
+      "filename": "ApexDefend_Case_1_Invoice.pdf",
+      "sha256": "47b579d4f6764baa31447eea6637b79d02cf38997049222a8a35cf8dc54ab506",
+      "parse_status": "ready",
+      "status": "active",
+      "source_ref": {
+        "source_id": "pdf_case_1",
+        "locator": "page=1; AcroForm verified against rendered page",
+        "kind": "user_pdf"
+      }
+    }
+  ],
+  "supplements": []
+}

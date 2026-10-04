@@ -1,0 +1,65 @@
+{
+  "states": [
+    "not_started",
+    "queued",
+    "running",
+    "succeeded",
+    "needs_info",
+    "failed"
+  ],
+  "transitions": [
+    {
+      "from": "not_started",
+      "event": "request_run",
+      "to": "queued"
+    },
+    {
+      "from": "succeeded",
+      "event": "request_run",
+      "to": "queued"
+    },
+    {
+      "from": "needs_info",
+      "event": "request_run",
+      "to": "queued"
+    },
+    {
+      "from": "failed",
+      "event": "request_run",
+      "to": "queued"
+    },
+    {
+      "from": "queued",
+      "event": "lease_acquired",
+      "to": "running"
+    },
+    {
+      "from": "running",
+      "event": "valid_output_current_version",
+      "to": "succeeded"
+    },
+    {
+      "from": "running",
+      "event": "missing_required_input",
+      "to": "needs_info"
+    },
+    {
+      "from": "running",
+      "event": "retries_exhausted",
+      "to": "failed"
+    }
+  ],
+  "orthogonal_axes": {
+    "freshness": [
+      "none",
+      "current",
+      "stale"
+    ],
+    "adjustment_status": [
+      "none",
+      "active",
+      "pending_review"
+    ]
+  },
+  "superseded_run": "Preserve old output in run history; do not publish as current. Mark module stale and schedule only if rerun_requested."
+}

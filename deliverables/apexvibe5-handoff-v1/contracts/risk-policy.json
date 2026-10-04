@@ -1,0 +1,145 @@
+{
+  "policy_version": "demo-risk-v1",
+  "status": "proposed_demo_policy_not_calibrated",
+  "direction": "higher_is_riskier",
+  "score_range": [
+    0,
+    100
+  ],
+  "high_min_inclusive": 30,
+  "advance_rate": "0.80",
+  "currency": "GBP",
+  "as_of": "2026-10-04",
+  "module_caps": {
+    "invoice_integrity": 15,
+    "buyer_verification": 10,
+    "seller_verification": 10,
+    "relationship": 30,
+    "market_price": 10,
+    "payment_history": 15,
+    "duplicate_financing": 10
+  },
+  "manual_policy": {
+    "request_range": "[-module_cap,module_cap]",
+    "aggregation": "sum_effective_adjustments",
+    "rerun": "pending_review_until_reconfirmed"
+  },
+  "rules": {
+    "invoice_integrity": [
+      {
+        "rule_id": "INTEGRITY_OK",
+        "points": 0,
+        "condition": "关键字段齐全，算术日期一致"
+      },
+      {
+        "rule_id": "INTEGRITY_CONFLICT",
+        "points": 15,
+        "condition": "确认的算术/字段冲突"
+      }
+    ],
+    "buyer_verification": [
+      {
+        "rule_id": "BUYER_MATCH",
+        "points": 0,
+        "condition": "本地档案匹配"
+      },
+      {
+        "rule_id": "BUYER_CONFLICT",
+        "points": 10,
+        "condition": "明确主体冲突"
+      }
+    ],
+    "seller_verification": [
+      {
+        "rule_id": "SELLER_MATCH",
+        "points": 0,
+        "condition": "本地档案匹配"
+      },
+      {
+        "rule_id": "SELLER_CONFLICT",
+        "points": 10,
+        "condition": "明确主体冲突"
+      }
+    ],
+    "relationship": [
+      {
+        "rule_id": "TRADE_SCALE_NORMAL",
+        "points": 0,
+        "condition": "amount / median < 2"
+      },
+      {
+        "rule_id": "TRADE_SCALE_ELEVATED",
+        "points": 15,
+        "condition": "2 <= ratio < 5"
+      },
+      {
+        "rule_id": "TRADE_SCALE_HIGH",
+        "points": 30,
+        "condition": "ratio >= 5"
+      },
+      {
+        "rule_id": "RELATED_PARTY_CONFLICT",
+        "points": 30,
+        "condition": "关联声明与参考资料冲突"
+      }
+    ],
+    "market_price": [
+      {
+        "rule_id": "PRICE_IN_RANGE",
+        "points": 0,
+        "condition": "单价在可比范围内"
+      },
+      {
+        "rule_id": "PRICE_DEVIATION_MINOR",
+        "points": 5,
+        "condition": "超范围比例 <= 0.25"
+      },
+      {
+        "rule_id": "PRICE_DEVIATION_HIGH",
+        "points": 10,
+        "condition": "超范围比例 > 0.25"
+      }
+    ],
+    "payment_history": [
+      {
+        "rule_id": "PAYMENT_ON_TIME",
+        "points": 0,
+        "condition": "late ratio = 0 and defaults = 0"
+      },
+      {
+        "rule_id": "PAYMENT_MINOR_DELAY",
+        "points": 5,
+        "condition": "0 < late ratio <= 0.2 and defaults = 0"
+      },
+      {
+        "rule_id": "PAYMENT_DELAY",
+        "points": 10,
+        "condition": "0.2 < late ratio <= 0.5 and defaults = 0"
+      },
+      {
+        "rule_id": "PAYMENT_HIGH",
+        "points": 15,
+        "condition": "late ratio > 0.5 or defaults > 0"
+      }
+    ],
+    "duplicate_financing": [
+      {
+        "rule_id": "NO_LOCAL_FINANCING_MATCH",
+        "points": 0,
+        "condition": "本地台账覆盖范围内无有效融资匹配"
+      },
+      {
+        "rule_id": "ACTIVE_FINANCING_MATCH",
+        "points": 10,
+        "condition": "同笔发票存在有效未结清融资"
+      }
+    ]
+  },
+  "rule_selection": "one_maximum_applicable_rule_per_module",
+  "hard_blocks": [
+    "confirmed_duplicate_financing",
+    "entity_mismatch",
+    "invoice_integrity_conflict"
+  ],
+  "missing_required_input": "needs_info_not_zero"
+}

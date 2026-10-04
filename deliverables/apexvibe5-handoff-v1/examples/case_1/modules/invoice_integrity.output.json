@@ -1,0 +1,38 @@
+{
+  "case_id": "case_1",
+  "module_key": "invoice_integrity",
+  "run_id": "run_case_1_invoice_integrity_1",
+  "input_version": 1,
+  "state": "succeeded",
+  "ai_score": 0,
+  "summary": "数量×单价与总额一致，日期与条款一致。",
+  "findings": [
+    {
+      "code": "INTEGRITY_OK",
+      "statement": "数量×单价与总额一致，日期与条款一致。",
+      "source_refs": [
+        {
+          "source_id": "pdf_case_1",
+          "locator": "page=1; AcroForm verified against rendered page",
+          "kind": "user_pdf"
+        }
+      ],
+      "confidence": 1.0
+    }
+  ],
+  "matched_rule_ids": [
+    "INTEGRITY_OK"
+  ],
+  "blocking_flags": [],
+  "missing_inputs": [],
+  "provenance": {
+    "engine_mode": "demo_replay",
+    "analyzer": "reference_demo_analyzer",
+    "model": null,
+    "prompt_version": "module-analysis-v1",
+    "policy_version": "demo-risk-v1",
+    "parser_version": "source-review-v1",
+    "input_hash": "71813cbbb7c4ea0cb78e04a7f42609fcaa9a8cca46982baa158caba02c9220fa",
+    "generated_at": "2026-10-04T06:00:00Z"
+  }
+}

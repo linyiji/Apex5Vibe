@@ -1,0 +1,43 @@
+{
+  "case_id": "case_2",
+  "module_key": "market_price",
+  "run_id": "run_case_2_market_price_1",
+  "input_version": 1,
+  "state": "succeeded",
+  "ai_score": 0,
+  "summary": "GBP 8/PCS位于本地合成可比范围GBP 7–9内。",
+  "findings": [
+    {
+      "code": "PRICE_IN_RANGE",
+      "statement": "GBP 8/PCS位于本地合成可比范围GBP 7–9内。",
+      "source_refs": [
+        {
+          "source_id": "pdf_case_2",
+          "locator": "page=1; AcroForm verified against rendered page",
+          "kind": "user_pdf"
+        },
+        {
+          "source_id": "ref_market_v1",
+          "locator": "local-reference-data.json#ref_market_v1",
+          "kind": "authored_demo_seed"
+        }
+      ],
+      "confidence": 1.0
+    }
+  ],
+  "matched_rule_ids": [
+    "PRICE_IN_RANGE"
+  ],
+  "blocking_flags": [],
+  "missing_inputs": [],
+  "provenance": {
+    "engine_mode": "demo_replay",
+    "analyzer": "reference_demo_analyzer",
+    "model": null,
+    "prompt_version": "module-analysis-v1",
+    "policy_version": "demo-risk-v1",
+    "parser_version": "source-review-v1",
+    "input_hash": "6f9c64d22882e859d21bbfedab44f77fda34652589c0b57ad38d8dd61ba0f6d0",
+    "generated_at": "2026-10-04T06:00:00Z"
+  }
+}

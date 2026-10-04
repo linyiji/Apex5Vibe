@@ -1,0 +1,43 @@
+{
+  "case_id": "case_1",
+  "module_key": "duplicate_financing",
+  "run_id": "run_case_1_duplicate_financing_1",
+  "input_version": 1,
+  "state": "succeeded",
+  "ai_score": 0,
+  "summary": "本地Demo台账覆盖范围内未发现当前发票的有效融资。",
+  "findings": [
+    {
+      "code": "NO_LOCAL_FINANCING_MATCH",
+      "statement": "本地Demo台账覆盖范围内未发现当前发票的有效融资。",
+      "source_refs": [
+        {
+          "source_id": "pdf_case_1",
+          "locator": "page=1; AcroForm verified against rendered page",
+          "kind": "user_pdf"
+        },
+        {
+          "source_id": "ref_financing_v1",
+          "locator": "local-reference-data.json#ref_financing_v1",
+          "kind": "authored_demo_seed"
+        }
+      ],
+      "confidence": 1.0
+    }
+  ],
+  "matched_rule_ids": [
+    "NO_LOCAL_FINANCING_MATCH"
+  ],
+  "blocking_flags": [],
+  "missing_inputs": [],
+  "provenance": {
+    "engine_mode": "demo_replay",
+    "analyzer": "reference_demo_analyzer",
+    "model": null,
+    "prompt_version": "module-analysis-v1",
+    "policy_version": "demo-risk-v1",
+    "parser_version": "source-review-v1",
+    "input_hash": "261108b3048b5946789e83e9d82500d759f85e29c95bbc98685ce93e37447b86",
+    "generated_at": "2026-10-04T06:00:00Z"
+  }
+}

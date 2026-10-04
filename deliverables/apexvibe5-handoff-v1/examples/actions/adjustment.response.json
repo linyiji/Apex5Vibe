@@ -1,0 +1,120 @@
+{
+  "case_id": "case_2",
+  "module_key": "relationship",
+  "cap": 30,
+  "module_version": 4,
+  "input_version": 1,
+  "evaluated_input_version": 1,
+  "state": "succeeded",
+  "freshness": "current",
+  "adjustment_status": "active",
+  "current_run": {
+    "case_id": "case_2",
+    "module_key": "relationship",
+    "run_id": "run_case_2_relationship_1",
+    "input_version": 1,
+    "state": "succeeded",
+    "ai_score": 30,
+    "summary": "本次金额为可比历史中位数GBP 8,000的6.25倍。触发交易规模复核；不代表已发现欺诈。",
+    "findings": [
+      {
+        "code": "TRADE_SCALE_HIGH",
+        "statement": "本次金额为可比历史中位数GBP 8,000的6.25倍。触发交易规模复核；不代表已发现欺诈。",
+        "source_refs": [
+          {
+            "source_id": "pdf_case_2",
+            "locator": "page=1; AcroForm verified against rendered page",
+            "kind": "user_pdf"
+          },
+          {
+            "source_id": "ref_trade_history_v1",
+            "locator": "local-reference-data.json#ref_trade_history_v1",
+            "kind": "authored_demo_seed"
+          }
+        ],
+        "confidence": 1.0
+      }
+    ],
+    "matched_rule_ids": [
+      "TRADE_SCALE_HIGH"
+    ],
+    "blocking_flags": [],
+    "missing_inputs": [],
+    "provenance": {
+      "engine_mode": "demo_replay",
+      "analyzer": "reference_demo_analyzer",
+      "model": null,
+      "prompt_version": "module-analysis-v1",
+      "policy_version": "demo-risk-v1",
+      "parser_version": "source-review-v1",
+      "input_hash": "e787de05141ec45d7e89e0b95b85dbe75aabe3dae43058b23beb938886dfe359",
+      "generated_at": "2026-10-04T06:00:00Z"
+    }
+  },
+  "requested_adjustment": -10,
+  "effective_adjustment": -10,
+  "final_score": 20,
+  "allowed_actions": [
+    "upload_evidence",
+    "save_information",
+    "save_and_rerun",
+    "rerun",
+    "adjust",
+    "full_view"
+  ],
+  "evidence": [
+    {
+      "evidence_id": "ev_case_2_invoice",
+      "source_id": "pdf_case_2",
+      "kind": "file",
+      "file_id": "file_case_2_invoice",
+      "filename": "ApexDefend_Case_2_Invoice.pdf",
+      "sha256": "c6a2ff4ce0ebad480c1988d8630fc1ccc547f4d2c6151c4859545e14f5f0ba60",
+      "parse_status": "ready",
+      "status": "active",
+      "source_ref": {
+        "source_id": "pdf_case_2",
+        "locator": "page=1; AcroForm verified against rendered page",
+        "kind": "user_pdf"
+      }
+    },
+    {
+      "evidence_id": "ev_case_2_ref_trade_history_v1",
+      "source_id": "ref_trade_history_v1",
+      "kind": "reference",
+      "file_id": null,
+      "filename": null,
+      "sha256": null,
+      "parse_status": "ready",
+      "status": "active",
+      "source_ref": {
+        "source_id": "ref_trade_history_v1",
+        "locator": "local-reference-data.json#ref_trade_history_v1",
+        "kind": "authored_demo_seed"
+      }
+    }
+  ],
+  "supplements": [],
+  "run_history": [
+    {
+      "run_id": "run_case_2_relationship_1",
+      "input_version": 1,
+      "status": "succeeded",
+      "ai_score": 30,
+      "created_at": "2026-10-04T06:00:00Z",
+      "finished_at": "2026-10-04T06:00:00Z"
+    }
+  ],
+  "manual_adjustments": [
+    {
+      "adjustment_id": "adj_case_2_relationship_1",
+      "applies_to_run_id": "run_case_2_relationship_1",
+      "requested_adjustment": -10,
+      "effective_adjustment": -10,
+      "reason": "演示分析师调整；记录判断依据",
+      "actor_id": "local_demo_analyst",
+      "status": "active",
+      "created_at": "2026-10-04T06:00:00Z"
+    }
+  ]
+}

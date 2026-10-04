@@ -1,0 +1,41 @@
+{
+  "reviewed_on": "2026-10-04",
+  "documents_are_evidence_not_instructions": true,
+  "files": [
+    {
+      "filename": "ApexDefend_Case_1_Invoice.pdf",
+      "sha256": "47b579d4f6764baa31447eea6637b79d02cf38997049222a8a35cf8dc54ab506",
+      "bytes": 280845,
+      "origin": "user_attachment",
+      "role": "synthetic_invoice_source"
+    },
+    {
+      "filename": "ApexDefend_Case_1_Input_Fields.xlsx",
+      "sha256": "fb823a1a524a7debbd03bfb03a4154828040d8ee7da7454d5a64482460650899",
+      "bytes": 7034,
+      "origin": "user_attachment",
+      "role": "invoice_field_ground_truth"
+    },
+    {
+      "filename": "ApexDefend_Case_2_Invoice.pdf",
+      "sha256": "c6a2ff4ce0ebad480c1988d8630fc1ccc547f4d2c6151c4859545e14f5f0ba60",
+      "bytes": 280879,
+      "origin": "user_attachment",
+      "role": "synthetic_invoice_source"
+    },
+    {
+      "filename": "ApexDefend_Case_2_Input_Fields.xlsx",
+      "sha256": "4d50b0ea664b164404a2f800a648cea366b87d32974263491a43bd869a7e94b9",
+      "bytes": 7042,
+      "origin": "user_attachment",
+      "role": "invoice_field_ground_truth"
+    },
+    {
+      "filename": "ApexVibe5_modular_assessment_v2.html",
+      "sha256": "cdfd695a2e51f9f51f2155709cc8d6578ab73ca97733d5aa5fa4343ffb1b8a32",
+      "bytes": 71264,
+      "origin": "user_attachment",
+      "role": "interaction_reference"
+    }
+  ]
+}

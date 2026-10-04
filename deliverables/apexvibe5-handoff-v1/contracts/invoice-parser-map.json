@@ -1,0 +1,82 @@
+{
+  "template": "user_supplied_commercial_invoice_v1",
+  "source": "reviewed_acroform_and_page_render",
+  "fallback": "unknown_template_requires_real_extraction_or_review",
+  "fields": {
+    "invoice_number": {
+      "pdf_key": "invoice no",
+      "xlsx_cell": "Invoice Fields!C5"
+    },
+    "invoice_date": {
+      "pdf_key": "if other___purpose of shipment",
+      "parse": "Invoice date: YYYY-MM-DD",
+      "xlsx_cell": "Invoice Fields!C6"
+    },
+    "ship_date": {
+      "pdf_key": "ship date",
+      "xlsx_cell": "Invoice Fields!C7"
+    },
+    "due_date": {
+      "pdf_key": "if other___purpose of shipment",
+      "parse": "Payment due date: YYYY-MM-DD",
+      "xlsx_cell": "Invoice Fields!C8"
+    },
+    "seller.tax_id": {
+      "pdf_key": "exporter tax id",
+      "xlsx_cell": "Invoice Fields!C20"
+    },
+    "seller.name_and_address": {
+      "pdf_key": "exporter co name_address",
+      "parse": "first line name; subsequent lines address"
+    },
+    "buyer.tax_id": {
+      "pdf_key": "consignee tax id",
+      "xlsx_cell": "Invoice Fields!C28"
+    },
+    "buyer.name_and_address": {
+      "pdf_key": "consignee co name_address",
+      "conditional": "only when sold-to same as consignee"
+    },
+    "quantity": {
+      "pdf_key": "no of units 1",
+      "xlsx_cell": "Invoice Fields!C36"
+    },
+    "unit_price": {
+      "pdf_key": "unit value 1",
+      "xlsx_cell": "Invoice Fields!C38"
+    },
+    "line_total": {
+      "pdf_key": "total value 01",
+      "xlsx_cell": "Invoice Fields!C39"
+    },
+    "total": {
+      "pdf_key": "invoice total",
+      "xlsx_cell": "Invoice Fields!C51"
+    },
+    "currency": {
+      "pdf_key": "currency code name",
+      "xlsx_cell": "Invoice Fields!C11"
+    }
+  },
+  "checkbox_mapping": {
+    "declared_related": {
+      "pdf_key": "Radio Button1",
+      "selected_value": "/no",
+      "normalized_value": false,
+      "scope": "this verified template only"
+    },
+    "consignee_same_as_buyer": {
+      "pdf_key": "Check Box3",
+      "selected_value": "/no",
+      "normalized_value": true,
+      "scope": "this verified template only"
+    },
+    "duties_paid_by": {
+      "pdf_key": "Radio Button3",
+      "selected_value": "/No",
+      "normalized_value": "Consignee",
+      "scope": "this verified template only"
+    }
+  },
+  "verification": "Compare widget /AS, field /V and visual labels; unknown values must not be coerced to false."
+}

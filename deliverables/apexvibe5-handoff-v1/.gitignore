@@ -1,0 +1,11 @@
+.env
+.venv/
+__pycache__/
+*.pyc
+storage/
+runtime/
+*.db-wal
+*.db-shm
+*.sqlite3-wal
+*.sqlite3-shm
+db/reference.sqlite3

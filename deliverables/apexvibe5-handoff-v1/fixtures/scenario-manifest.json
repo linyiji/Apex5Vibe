@@ -1,0 +1,25 @@
+{
+  "as_of": "2026-10-04",
+  "policy_version": "demo-risk-v1",
+  "input_scope": "two_user_supplied_synthetic_invoices",
+  "scenarios": [
+    {
+      "case_id": "case_1",
+      "invoice_number": "CV-2026-1002-001",
+      "expected_score": 5,
+      "expected_band": "LOW"
+    },
+    {
+      "case_id": "case_2",
+      "invoice_number": "CV-2026-1002-002",
+      "expected_score": 35,
+      "expected_band": "HIGH"
+    }
+  ],
+  "not_passed_to_analyzer": [
+    "scenario_id",
+    "expected_score",
+    "expected_band",
+    "filename_case_label"
+  ]
+}

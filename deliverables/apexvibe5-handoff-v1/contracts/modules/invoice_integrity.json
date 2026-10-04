@@ -1,0 +1,25 @@
+{
+  "module_key": "invoice_integrity",
+  "name": "Invoice Integrity",
+  "cap": 15,
+  "policy_version": "demo-risk-v1",
+  "required_reference_kinds": [],
+  "input_schema": "../schemas/invoice_integrity.input.schema.json",
+  "output_schema": "../schemas/invoice_integrity.output.schema.json",
+  "rules": [
+    {
+      "rule_id": "INTEGRITY_OK",
+      "points": 0,
+      "condition": "关键字段齐全，算术日期一致"
+    },
+    {
+      "rule_id": "INTEGRITY_CONFLICT",
+      "points": 15,
+      "condition": "确认的算术/字段冲突"
+    }
+  ],
+  "evidence_scope": "module",
+  "missing_data": "needs_info",
+  "recompute": "entire_current_input_snapshot",
+  "state_machine": "../module-state-machine.json"
+}

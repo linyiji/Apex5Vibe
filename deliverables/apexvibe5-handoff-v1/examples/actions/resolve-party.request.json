@@ -1,0 +1,10 @@
+{
+  "expected_case_revision": 4,
+  "side": "buyer",
+  "selection": {
+    "mode": "existing",
+    "entity_id": "ent_meridianleaf"
+  },
+  "resolution_action": "use_invoice_entity",
+  "reason": "已对照发票主体"
+}

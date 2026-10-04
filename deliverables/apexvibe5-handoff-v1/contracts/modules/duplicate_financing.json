@@ -1,0 +1,27 @@
+{
+  "module_key": "duplicate_financing",
+  "name": "Duplicate Financing",
+  "cap": 10,
+  "policy_version": "demo-risk-v1",
+  "required_reference_kinds": [
+    "financing_registry"
+  ],
+  "input_schema": "../schemas/duplicate_financing.input.schema.json",
+  "output_schema": "../schemas/duplicate_financing.output.schema.json",
+  "rules": [
+    {
+      "rule_id": "NO_LOCAL_FINANCING_MATCH",
+      "points": 0,
+      "condition": "本地台账覆盖范围内无有效融资匹配"
+    },
+    {
+      "rule_id": "ACTIVE_FINANCING_MATCH",
+      "points": 10,
+      "condition": "同笔发票存在有效未结清融资"
+    }
+  ],
+  "evidence_scope": "module",
+  "missing_data": "needs_info",
+  "recompute": "entire_current_input_snapshot",
+  "state_machine": "../module-state-machine.json"
+}

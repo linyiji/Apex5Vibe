@@ -1,0 +1,62 @@
+{
+  "case_id": "case_2",
+  "module_key": "duplicate_financing",
+  "input_version": 1,
+  "as_of": "2026-10-04",
+  "policy_version": "demo-risk-v1",
+  "facts": {
+    "invoice_number": "CV-2026-1002-002",
+    "seller_tax_id": "HK-SYN-100001",
+    "buyer_tax_id": "UK-SYN-200001",
+    "currency": "GBP",
+    "total": "50000.00",
+    "invoice_date": "2026-10-02"
+  },
+  "reference_records": [
+    {
+      "source_id": "ref_financing_v1",
+      "kind": "financing_registry",
+      "synthetic": true,
+      "source_type": "authored_demo_seed",
+      "as_of": "2026-10-04",
+      "data": {
+        "coverage": "local_demo_registry_only",
+        "coverage_complete_for_demo": true,
+        "records": []
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "evidence_id": "ev_case_2_invoice",
+      "source_id": "pdf_case_2",
+      "kind": "file",
+      "file_id": "file_case_2_invoice",
+      "filename": "ApexDefend_Case_2_Invoice.pdf",
+      "sha256": "c6a2ff4ce0ebad480c1988d8630fc1ccc547f4d2c6151c4859545e14f5f0ba60",
+      "parse_status": "ready",
+      "status": "active",
+      "source_ref": {
+        "source_id": "pdf_case_2",
+        "locator": "page=1; AcroForm verified against rendered page",
+        "kind": "user_pdf"
+      }
+    },
+    {
+      "evidence_id": "ev_case_2_ref_financing_v1",
+      "source_id": "ref_financing_v1",
+      "kind": "reference",
+      "file_id": null,
+      "filename": null,
+      "sha256": null,
+      "parse_status": "ready",
+      "status": "active",
+      "source_ref": {
+        "source_id": "ref_financing_v1",
+        "locator": "local-reference-data.json#ref_financing_v1",
+        "kind": "authored_demo_seed"
+      }
+    }
+  ],
+  "supplements": []
+}

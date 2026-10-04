@@ -1,0 +1,1060 @@
+{
+  "case_id": "case_0ae5943cfb4749b5a7cb97f6faa6f466",
+  "case_revision": 28,
+  "stage": "result",
+  "initial_assessment_status": "settled",
+  "invoice": {
+    "invoice_id": "invoice_file_477a7eb3f0084fb09fe77df94eaa74c9",
+    "invoice_number": "CV-2026-1002-001",
+    "invoice_date": "2026-10-02",
+    "ship_date": "2026-10-02",
+    "due_date": "2026-11-01",
+    "payment_terms": "Net 30 days from invoice date",
+    "payment_term_days": 30,
+    "currency": "GBP",
+    "seller": {
+      "entity_id": "ent_cedarvale",
+      "legal_name": "Cedarvale Office Goods Limited",
+      "address": "Unit 8, 18 Fictional Harbour Road\nKowloon, Hong Kong",
+      "tax_id": "HK-SYN-100001",
+      "country": "Hong Kong"
+    },
+    "buyer": {
+      "entity_id": "ent_meridianleaf",
+      "legal_name": "Meridianleaf Workplace Ltd.",
+      "address": "30 Fictional Orchard Lane\nBristol, ZZ1 0ZZ",
+      "tax_id": "UK-SYN-200001",
+      "country": "United Kingdom"
+    },
+    "consignee_same_as_buyer": true,
+    "declared_related": false,
+    "purchase_order_number": "ML-PO-2026-0925-001",
+    "air_waybill_number": "SYN-AWB-261002-001",
+    "line_items": [
+      {
+        "sku": "CV-TOTE-01",
+        "description": "Cotton canvas tote bags\nSKU: CV-TOTE-01; natural beige\n100% cotton; 38 x 42 cm\nFor office supply resale\n50 pieces per carton",
+        "quantity": 1000,
+        "unit": "PCS",
+        "unit_price": "8.00",
+        "line_total": "8000.00",
+        "hs_code": "420292",
+        "country_of_manufacture": "China"
+      }
+    ],
+    "subtotal": "8000.00",
+    "charges": {
+      "insurance": "0.00",
+      "freight": "0.00",
+      "packing": "0.00",
+      "handling": "0.00",
+      "other": "0.00"
+    },
+    "total": "8000.00",
+    "trade_terms": "DAP",
+    "delivery_location": "Bristol, UK",
+    "source_refs": [
+      {
+        "source_id": "file_477a7eb3f0084fb09fe77df94eaa74c9",
+        "locator": "page=1; AcroForm",
+        "kind": "user_pdf"
+      }
+    ],
+    "extraction_method": "acroform_verified",
+    "synthetic": true
+  },
+  "parties": [
+    {
+      "side": "seller",
+      "selection": {
+        "mode": "skip"
+      },
+      "invoice_entity": {
+        "entity_id": "ent_cedarvale",
+        "legal_name": "Cedarvale Office Goods Limited",
+        "address": "Unit 8, 18 Fictional Harbour Road\nKowloon, Hong Kong",
+        "tax_id": "HK-SYN-100001",
+        "country": "Hong Kong"
+      },
+      "resolved_entity_id": "ent_cedarvale",
+      "status": "matched",
+      "reason": "对照发票注册号与辖区匹配本地资料",
+      "resolution_action": null
+    },
+    {
+      "side": "buyer",
+      "selection": {
+        "mode": "skip"
+      },
+      "invoice_entity": {
+        "entity_id": "ent_meridianleaf",
+        "legal_name": "Meridianleaf Workplace Ltd.",
+        "address": "30 Fictional Orchard Lane\nBristol, ZZ1 0ZZ",
+        "tax_id": "UK-SYN-200001",
+        "country": "United Kingdom"
+      },
+      "resolved_entity_id": "ent_meridianleaf",
+      "status": "matched",
+      "reason": "对照发票注册号与辖区匹配本地资料",
+      "resolution_action": null
+    }
+  ],
+  "modules": [
+    {
+      "case_id": "case_0ae5943cfb4749b5a7cb97f6faa6f466",
+      "module_key": "invoice_integrity",
+      "cap": 15,
+      "module_version": 9,
+      "input_version": 3,
+      "evaluated_input_version": 3,
+      "state": "succeeded",
+      "freshness": "current",
+      "current_run": {
+        "case_id": "case_0ae5943cfb4749b5a7cb97f6faa6f466",
+        "module_key": "invoice_integrity",
+        "run_id": "run_bee5bc253c944d1fb94b112c07299afd",
+        "input_version": 3,
+        "state": "succeeded",
+        "ai_score": 0,
+        "summary": "所供发票及表格关键字段齐全，金额计算、付款期限及对应字段一致，匹配 INTEGRITY_OK（0分）。本结论仅限合成演示材料的完整性核对，不代表真实交易核验。",
+        "matched_rule_ids": [
+          "INTEGRITY_OK"
+        ],
+        "findings": [
+          {
+            "code": "KEY_FIELDS_CONSISTENT",
+            "statement": "发票号码、买卖双方名称及地址、币种、货物明细、采购订单号、空运单号和交货条款均已提供；发票与表格中对应字段一致。",
+            "source_refs": [
+              {
+                "source_id": "file_477a7eb3f0084fb09fe77df94eaa74c9",
+                "locator": "page=1; AcroForm",
+                "kind": "user_pdf"
+              },
+              {
+                "source_id": "file_a9d8019c9ff54fa9a207ecb6ebf0c243",
+                "locator": "parsed_content",
+                "kind": "uploaded_file"
+              }
+            ]
+          },
+          {
+            "code": "ARITHMETIC_CONSISTENT",
+            "statement": "1000件×8.00 GBP＝8000.00 GBP，与行金额及小计一致；各项附加费用为零，总额为8000.00 GBP。表格记载20箱、每箱50件，与1000件总数量一致。",
+            "source_refs": [
+              {
+                "source_id": "file_477a7eb3f0084fb09fe77df94eaa74c9",
+                "locator": "page=1; AcroForm",
+                "kind": "user_pdf"
+              },
+              {
+                "source_id": "file_a9d8019c9ff54fa9a207ecb6ebf0c243",
+                "locator": "parsed_content",
+                "kind": "uploaded_file"
+              }
+            ]
+          },
+          {
+            "code": "DATES_CONSISTENT",
+            "statement": "开票日及发货日均为2026-10-02；开票日起30天为2026-11-01，与到期日及Net 30付款条款一致。",
+            "source_refs": [
+              {
+                "source_id": "file_477a7eb3f0084fb09fe77df94eaa74c9",
+                "locator": "page=1; AcroForm",
+                "kind": "user_pdf"
+              },
+              {
+                "source_id": "file_a9d8019c9ff54fa9a207ecb6ebf0c243",
+                "locator": "parsed_content",
+                "kind": "uploaded_file"
+              }
+            ]
+          }
+        ],
+        "blocking_flags": [],
+        "missing_inputs": [],
+        "provenance": {
+          "engine_mode": "llm",
+          "analyzer": "teamrouter",
+          "model": "gpt-6.1-sol",
+          "prompt_version": "module-analysis-v1",
+          "policy_version": "demo-risk-v1",
+          "parser_version": "acroform-v1",
+          "input_hash": "3ec21d3b562b8cd93a4ab1f7661aff41d1a6da22b33f7d7980be4532bc807c4e",
+          "generated_at": "2026-10-04T07:10:19.505500+00:00"
+        }
+      },
+      "adjustment_status": "none",
+      "requested_adjustment": 0,
+      "effective_adjustment": 0,
+      "final_score": 0,
+      "allowed_actions": [
+        "upload_evidence",
+        "save_information",
+        "save_and_rerun",
+        "full_view",
+        "rerun",
+        "adjust"
+      ],
+      "error": null,
+      "evidence": [
+        {
+          "evidence_id": "file_477a7eb3f0084fb09fe77df94eaa74c9",
+          "source_id": "file_477a7eb3f0084fb09fe77df94eaa74c9",
+          "kind": "file",
+          "file_id": "file_477a7eb3f0084fb09fe77df94eaa74c9",
+          "filename": "live-invoice.pdf",
+          "sha256": "47b579d4f6764baa31447eea6637b79d02cf38997049222a8a35cf8dc54ab506",
+          "parse_status": "ready",
+          "status": "active",
+          "error": null,
+          "source_ref": {
+            "source_id": "file_477a7eb3f0084fb09fe77df94eaa74c9",
+            "locator": "parsed_content",
+            "kind": "user_pdf"
+          }
+        },
+        {
+          "evidence_id": "file_a9d8019c9ff54fa9a207ecb6ebf0c243",
+          "source_id": "file_a9d8019c9ff54fa9a207ecb6ebf0c243",
+          "kind": "file",
+          "file_id": "file_a9d8019c9ff54fa9a207ecb6ebf0c243",
+          "filename": "invoice-fields.xlsx",
+          "sha256": "fb823a1a524a7debbd03bfb03a4154828040d8ee7da7454d5a64482460650899",
+          "parse_status": "ready",
+          "status": "active",
+          "error": null,
+          "source_ref": {
+            "source_id": "file_a9d8019c9ff54fa9a207ecb6ebf0c243",
+            "locator": "parsed_content",
+            "kind": "uploaded_file"
+          }
+        }
+      ],
+      "supplements": [],
+      "manual_adjustments": [],
+      "run_history": [
+        {
+          "run_id": "run_c0e9842a8183497d810c3ba852c995c8",
+          "input_version": 2,
+          "status": "succeeded",
+          "ai_score": 0,
+          "created_at": "2026-10-04T07:07:56.694817+00:00",
+          "finished_at": "2026-10-04T07:08:11.333025+00:00"
+        },
+        {
+          "run_id": "run_bee5bc253c944d1fb94b112c07299afd",
+          "input_version": 3,
+          "status": "succeeded",
+          "ai_score": 0,
+          "created_at": "2026-10-04T07:10:00.997832+00:00",
+          "finished_at": "2026-10-04T07:10:19.508259+00:00"
+        }
+      ]
+    },
+    {
+      "case_id": "case_0ae5943cfb4749b5a7cb97f6faa6f466",
+      "module_key": "buyer_verification",
+      "cap": 10,
+      "module_version": 5,
+      "input_version": 2,
+      "evaluated_input_version": 2,
+      "state": "succeeded",
+      "freshness": "current",
+      "current_run": {
+        "case_id": "case_0ae5943cfb4749b5a7cb97f6faa6f466",
+        "module_key": "buyer_verification",
+        "run_id": "run_e4463c0d06f74ca7bd8e1bc2334bf491",
+        "input_version": 2,
+        "state": "succeeded",
+        "ai_score": 0,
+        "summary": "买方主体与本地档案完全匹配，适用本地档案匹配规则。",
+        "matched_rule_ids": [
+          "BUYER_MATCH"
+        ],
+        "findings": [
+          {
+            "code": "BUYER_MATCH_CONFIRMED",
+            "statement": "实体ID、法定名称、税号、国家和地址均与本地参考档案一致。",
+            "source_refs": [
+              {
+                "source_id": "ref_buyer_v1",
+                "locator": "local_reference",
+                "kind": "authored_demo_seed"
+              }
+            ]
+          }
+        ],
+        "blocking_flags": [],
+        "missing_inputs": [],
+        "provenance": {
+          "engine_mode": "llm",
+          "analyzer": "teamrouter",
+          "model": "gpt-6.1-sol",
+          "prompt_version": "module-analysis-v1",
+          "policy_version": "demo-risk-v1",
+          "parser_version": "acroform-v1",
+          "input_hash": "f3d0c4d167aa5af678b3bfd58718253b735d6ef06506bac6b34f544b9fcba60e",
+          "generated_at": "2026-10-04T07:08:50.210596+00:00"
+        }
+      },
+      "adjustment_status": "none",
+      "requested_adjustment": 0,
+      "effective_adjustment": 0,
+      "final_score": 0,
+      "allowed_actions": [
+        "upload_evidence",
+        "save_information",
+        "save_and_rerun",
+        "full_view",
+        "rerun",
+        "adjust"
+      ],
+      "error": null,
+      "evidence": [
+        {
+          "evidence_id": "file_477a7eb3f0084fb09fe77df94eaa74c9",
+          "source_id": "file_477a7eb3f0084fb09fe77df94eaa74c9",
+          "kind": "file",
+          "file_id": "file_477a7eb3f0084fb09fe77df94eaa74c9",
+          "filename": "live-invoice.pdf",
+          "sha256": "47b579d4f6764baa31447eea6637b79d02cf38997049222a8a35cf8dc54ab506",
+          "parse_status": "ready",
+          "status": "active",
+          "error": null,
+          "source_ref": {
+            "source_id": "file_477a7eb3f0084fb09fe77df94eaa74c9",
+            "locator": "parsed_content",
+            "kind": "user_pdf"
+          }
+        },
+        {
+          "evidence_id": "ref_buyer_v1",
+          "source_id": "ref_buyer_v1",
+          "kind": "reference",
+          "file_id": null,
+          "filename": null,
+          "sha256": null,
+          "parse_status": "ready",
+          "status": "active",
+          "error": null,
+          "source_ref": {
+            "source_id": "ref_buyer_v1",
+            "locator": "local_reference",
+            "kind": "authored_demo_seed"
+          }
+        }
+      ],
+      "supplements": [],
+      "manual_adjustments": [],
+      "run_history": [
+        {
+          "run_id": "run_e4463c0d06f74ca7bd8e1bc2334bf491",
+          "input_version": 2,
+          "status": "succeeded",
+          "ai_score": 0,
+          "created_at": "2026-10-04T07:07:56.695896+00:00",
+          "finished_at": "2026-10-04T07:08:50.212497+00:00"
+        }
+      ]
+    },
+    {
+      "case_id": "case_0ae5943cfb4749b5a7cb97f6faa6f466",
+      "module_key": "seller_verification",
+      "cap": 10,
+      "module_version": 5,
+      "input_version": 2,
+      "evaluated_input_version": 2,
+      "state": "succeeded",
+      "freshness": "current",
+      "current_run": {
+        "case_id": "case_0ae5943cfb4749b5a7cb97f6faa6f466",
+        "module_key": "seller_verification",
+        "run_id": "run_ed442f1dbda44c6d860859d368951552",
+        "input_version": 2,
+        "state": "succeeded",
+        "ai_score": 0,
+        "summary": "卖方主体与本地档案中的法律名称、地址、税号及国家/地区一致，匹配本地档案。",
+        "matched_rule_ids": [
+          "SELLER_MATCH"
+        ],
+        "findings": [
+          {
+            "code": "LOCAL_RECORD_MATCH",
+            "statement": "实体编号 ent_cedarvale 的法律名称、地址、税号及国家/地区均与本地参考档案一致。",
+            "source_refs": [
+              {
+                "source_id": "file_477a7eb3f0084fb09fe77df94eaa74c9",
+                "locator": "page=1; AcroForm",
+                "kind": "user_pdf"
+              },
+              {
+                "source_id": "ref_seller_v1",
+                "locator": "local_reference",
+                "kind": "authored_demo_seed"
+              }
+            ]
+          }
+        ],
+        "blocking_flags": [],
+        "missing_inputs": [],
+        "provenance": {
+          "engine_mode": "llm",
+          "analyzer": "teamrouter",
+          "model": "gpt-6.1-sol",
+          "prompt_version": "module-analysis-v1",
+          "policy_version": "demo-risk-v1",
+          "parser_version": "acroform-v1",
+          "input_hash": "e687a06f611315c36926e7011aaa7617b063aada093542bc921e5acd36fb65dd",
+          "generated_at": "2026-10-04T07:09:11.071665+00:00"
+        }
+      },
+      "adjustment_status": "none",
+      "requested_adjustment": 0,
+      "effective_adjustment": 0,
+      "final_score": 0,
+      "allowed_actions": [
+        "upload_evidence",
+        "save_information",
+        "save_and_rerun",
+        "full_view",
+        "rerun",
+        "adjust"
+      ],
+      "error": null,
+      "evidence": [
+        {
+          "evidence_id": "file_477a7eb3f0084fb09fe77df94eaa74c9",
+          "source_id": "file_477a7eb3f0084fb09fe77df94eaa74c9",
+          "kind": "file",
+          "file_id": "file_477a7eb3f0084fb09fe77df94eaa74c9",
+          "filename": "live-invoice.pdf",
+          "sha256": "47b579d4f6764baa31447eea6637b79d02cf38997049222a8a35cf8dc54ab506",
+          "parse_status": "ready",
+          "status": "active",
+          "error": null,
+          "source_ref": {
+            "source_id": "file_477a7eb3f0084fb09fe77df94eaa74c9",
+            "locator": "parsed_content",
+            "kind": "user_pdf"
+          }
+        },
+        {
+          "evidence_id": "ref_seller_v1",
+          "source_id": "ref_seller_v1",
+          "kind": "reference",
+          "file_id": null,
+          "filename": null,
+          "sha256": null,
+          "parse_status": "ready",
+          "status": "active",
+          "error": null,
+          "source_ref": {
+            "source_id": "ref_seller_v1",
+            "locator": "local_reference",
+            "kind": "authored_demo_seed"
+          }
+        }
+      ],
+      "supplements": [],
+      "manual_adjustments": [],
+      "run_history": [
+        {
+          "run_id": "run_ed442f1dbda44c6d860859d368951552",
+          "input_version": 2,
+          "status": "succeeded",
+          "ai_score": 0,
+          "created_at": "2026-10-04T07:07:56.696582+00:00",
+          "finished_at": "2026-10-04T07:09:11.072746+00:00"
+        }
+      ]
+    },
+    {
+      "case_id": "case_0ae5943cfb4749b5a7cb97f6faa6f466",
+      "module_key": "relationship",
+      "cap": 30,
+      "module_version": 5,
+      "input_version": 2,
+      "evaluated_input_version": 2,
+      "state": "succeeded",
+      "freshness": "current",
+      "current_run": {
+        "case_id": "case_0ae5943cfb4749b5a7cb97f6faa6f466",
+        "module_key": "relationship",
+        "run_id": "run_0d7c94f36afe4fc787dbeb4ba56fc12d",
+        "input_version": 2,
+        "state": "succeeded",
+        "ai_score": 0,
+        "summary": "本笔金额为8,000 GBP，与可比历史交易中位数相同，比例为1，命中交易规模正常规则（0分）。参考记录为合成演示数据。",
+        "matched_rule_ids": [
+          "TRADE_SCALE_NORMAL"
+        ],
+        "findings": [
+          {
+            "code": "TRADE_SCALE_NORMAL",
+            "statement": "本地参考记录中，同一买卖双方、同一SKU及币种的12笔已完成交易，金额中位数为8,000 GBP。结合本次提供的金额8,000 GBP，金额与中位数之比为1，低于2，适用0分规则。该参考记录为合成演示数据。",
+            "source_refs": [
+              {
+                "source_id": "ref_trade_history_v1",
+                "locator": "local_reference",
+                "kind": "authored_demo_seed"
+              }
+            ]
+          }
+        ],
+        "blocking_flags": [],
+        "missing_inputs": [],
+        "provenance": {
+          "engine_mode": "llm",
+          "analyzer": "teamrouter",
+          "model": "gpt-6.1-sol",
+          "prompt_version": "module-analysis-v1",
+          "policy_version": "demo-risk-v1",
+          "parser_version": "acroform-v1",
+          "input_hash": "9104e7057c6d63a75d4e8fd117183c904222b442d2e92ed9c53761bf8b8a86dd",
+          "generated_at": "2026-10-04T07:09:26.978247+00:00"
+        }
+      },
+      "adjustment_status": "none",
+      "requested_adjustment": 0,
+      "effective_adjustment": 0,
+      "final_score": 0,
+      "allowed_actions": [
+        "upload_evidence",
+        "save_information",
+        "save_and_rerun",
+        "full_view",
+        "rerun",
+        "adjust"
+      ],
+      "error": null,
+      "evidence": [
+        {
+          "evidence_id": "file_477a7eb3f0084fb09fe77df94eaa74c9",
+          "source_id": "file_477a7eb3f0084fb09fe77df94eaa74c9",
+          "kind": "file",
+          "file_id": "file_477a7eb3f0084fb09fe77df94eaa74c9",
+          "filename": "live-invoice.pdf",
+          "sha256": "47b579d4f6764baa31447eea6637b79d02cf38997049222a8a35cf8dc54ab506",
+          "parse_status": "ready",
+          "status": "active",
+          "error": null,
+          "source_ref": {
+            "source_id": "file_477a7eb3f0084fb09fe77df94eaa74c9",
+            "locator": "parsed_content",
+            "kind": "user_pdf"
+          }
+        },
+        {
+          "evidence_id": "ref_trade_history_v1",
+          "source_id": "ref_trade_history_v1",
+          "kind": "reference",
+          "file_id": null,
+          "filename": null,
+          "sha256": null,
+          "parse_status": "ready",
+          "status": "active",
+          "error": null,
+          "source_ref": {
+            "source_id": "ref_trade_history_v1",
+            "locator": "local_reference",
+            "kind": "authored_demo_seed"
+          }
+        }
+      ],
+      "supplements": [],
+      "manual_adjustments": [],
+      "run_history": [
+        {
+          "run_id": "run_0d7c94f36afe4fc787dbeb4ba56fc12d",
+          "input_version": 2,
+          "status": "succeeded",
+          "ai_score": 0,
+          "created_at": "2026-10-04T07:07:56.697415+00:00",
+          "finished_at": "2026-10-04T07:09:26.980196+00:00"
+        }
+      ]
+    },
+    {
+      "case_id": "case_0ae5943cfb4749b5a7cb97f6faa6f466",
+      "module_key": "market_price",
+      "cap": 10,
+      "module_version": 5,
+      "input_version": 2,
+      "evaluated_input_version": 2,
+      "state": "succeeded",
+      "freshness": "current",
+      "current_run": {
+        "case_id": "case_0ae5943cfb4749b5a7cb97f6faa6f466",
+        "module_key": "market_price",
+        "run_id": "run_db7f781a197b4e6b8de8f0c2739a8a18",
+        "input_version": 2,
+        "state": "succeeded",
+        "ai_score": 0,
+        "summary": "发票单价为8.00 GBP/件，处于本地合成参考区间7.00–9.00 GBP/件内，匹配PRICE_IN_RANGE规则（0分）。该参考仅用于演示，不构成真实市场尽调。",
+        "matched_rule_ids": [
+          "PRICE_IN_RANGE"
+        ],
+        "findings": [
+          {
+            "code": "COMPARABLE_PRICE_IN_RANGE",
+            "statement": "CV-TOTE-01的发票单价为8.00 GBP/PCS；本地参考区间为7.00–9.00 GBP/PCS。双方SKU、币种、单位、DAP贸易条款及交付地点Bristol, UK一致，单价在可比范围内。",
+            "source_refs": [
+              {
+                "source_id": "file_477a7eb3f0084fb09fe77df94eaa74c9",
+                "locator": "page=1; AcroForm",
+                "kind": "user_pdf"
+              },
+              {
+                "source_id": "ref_market_v1",
+                "locator": "local_reference",
+                "kind": "authored_demo_seed"
+              }
+            ]
+          },
+          {
+            "code": "SYNTHETIC_REFERENCE_LIMITATION",
+            "statement": "价格基准为截至2026-10-04的本地合成演示记录，并非独立市场核验或实时市场查询结果。",
+            "source_refs": [
+              {
+                "source_id": "ref_market_v1",
+                "locator": "local_reference",
+                "kind": "authored_demo_seed"
+              }
+            ]
+          }
+        ],
+        "blocking_flags": [],
+        "missing_inputs": [],
+        "provenance": {
+          "engine_mode": "llm",
+          "analyzer": "teamrouter",
+          "model": "gpt-6.1-sol",
+          "prompt_version": "module-analysis-v1",
+          "policy_version": "demo-risk-v1",
+          "parser_version": "acroform-v1",
+          "input_hash": "968ebd6a31db9d290ffc40daf2c6a1c230916e44995cff481fd84893edf4d2a9",
+          "generated_at": "2026-10-04T07:09:38.650904+00:00"
+        }
+      },
+      "adjustment_status": "none",
+      "requested_adjustment": 0,
+      "effective_adjustment": 0,
+      "final_score": 0,
+      "allowed_actions": [
+        "upload_evidence",
+        "save_information",
+        "save_and_rerun",
+        "full_view",
+        "rerun",
+        "adjust"
+      ],
+      "error": null,
+      "evidence": [
+        {
+          "evidence_id": "file_477a7eb3f0084fb09fe77df94eaa74c9",
+          "source_id": "file_477a7eb3f0084fb09fe77df94eaa74c9",
+          "kind": "file",
+          "file_id": "file_477a7eb3f0084fb09fe77df94eaa74c9",
+          "filename": "live-invoice.pdf",
+          "sha256": "47b579d4f6764baa31447eea6637b79d02cf38997049222a8a35cf8dc54ab506",
+          "parse_status": "ready",
+          "status": "active",
+          "error": null,
+          "source_ref": {
+            "source_id": "file_477a7eb3f0084fb09fe77df94eaa74c9",
+            "locator": "parsed_content",
+            "kind": "user_pdf"
+          }
+        },
+        {
+          "evidence_id": "ref_market_v1",
+          "source_id": "ref_market_v1",
+          "kind": "reference",
+          "file_id": null,
+          "filename": null,
+          "sha256": null,
+          "parse_status": "ready",
+          "status": "active",
+          "error": null,
+          "source_ref": {
+            "source_id": "ref_market_v1",
+            "locator": "local_reference",
+            "kind": "authored_demo_seed"
+          }
+        }
+      ],
+      "supplements": [],
+      "manual_adjustments": [],
+      "run_history": [
+        {
+          "run_id": "run_db7f781a197b4e6b8de8f0c2739a8a18",
+          "input_version": 2,
+          "status": "succeeded",
+          "ai_score": 0,
+          "created_at": "2026-10-04T07:07:56.698179+00:00",
+          "finished_at": "2026-10-04T07:09:38.660497+00:00"
+        }
+      ]
+    },
+    {
+      "case_id": "case_0ae5943cfb4749b5a7cb97f6faa6f466",
+      "module_key": "payment_history",
+      "cap": 15,
+      "module_version": 5,
+      "input_version": 2,
+      "evaluated_input_version": 2,
+      "state": "succeeded",
+      "freshness": "current",
+      "current_run": {
+        "case_id": "case_0ae5943cfb4749b5a7cb97f6faa6f466",
+        "module_key": "payment_history",
+        "run_id": "run_ff80fd98a8164d189a07f47835c7fea3",
+        "input_version": 2,
+        "state": "succeeded",
+        "ai_score": 5,
+        "summary": "所供合成付款记录中，12笔有2笔延迟，延迟比例为16.67%，违约为0笔，匹配轻微延迟规则，风险分为5分。该结论仅基于本地演示数据。",
+        "matched_rule_ids": [
+          "PAYMENT_MINOR_DELAY"
+        ],
+        "findings": [
+          {
+            "code": "PAYMENT_LATE_RATIO",
+            "statement": "买方ent_meridianleaf的12笔付款记录中，pay_04延迟3天、pay_09延迟6天，其余10笔按期付款；延迟比例为2/12，约16.67%。",
+            "source_refs": [
+              {
+                "source_id": "ref_payments_v1",
+                "locator": "local_reference",
+                "kind": "authored_demo_seed"
+              }
+            ]
+          },
+          {
+            "code": "PAYMENT_DEFAULT_COUNT",
+            "statement": "12笔记录的defaulted均为false，违约笔数为0；结合延迟比例，符合0 < late ratio <= 0.2且defaults = 0的规则条件。",
+            "source_refs": [
+              {
+                "source_id": "ref_payments_v1",
+                "locator": "local_reference",
+                "kind": "authored_demo_seed"
+              }
+            ]
+          },
+          {
+            "code": "SYNTHETIC_REFERENCE_LIMITATION",
+            "statement": "付款历史来源标记为synthetic=true、authored_demo_seed，属于合成本地演示参考，不构成真实尽职调查或独立核验。",
+            "source_refs": [
+              {
+                "source_id": "ref_payments_v1",
+                "locator": "local_reference",
+                "kind": "authored_demo_seed"
+              }
+            ]
+          }
+        ],
+        "blocking_flags": [],
+        "missing_inputs": [],
+        "provenance": {
+          "engine_mode": "llm",
+          "analyzer": "teamrouter",
+          "model": "gpt-6.1-sol",
+          "prompt_version": "module-analysis-v1",
+          "policy_version": "demo-risk-v1",
+          "parser_version": "acroform-v1",
+          "input_hash": "257fa4b99bb1184e659b9a8e5c5af2b32833e7586deebfb780c747f964879b79",
+          "generated_at": "2026-10-04T07:09:51.511641+00:00"
+        }
+      },
+      "adjustment_status": "none",
+      "requested_adjustment": 0,
+      "effective_adjustment": 0,
+      "final_score": 5,
+      "allowed_actions": [
+        "upload_evidence",
+        "save_information",
+        "save_and_rerun",
+        "full_view",
+        "rerun",
+        "adjust"
+      ],
+      "error": null,
+      "evidence": [
+        {
+          "evidence_id": "file_477a7eb3f0084fb09fe77df94eaa74c9",
+          "source_id": "file_477a7eb3f0084fb09fe77df94eaa74c9",
+          "kind": "file",
+          "file_id": "file_477a7eb3f0084fb09fe77df94eaa74c9",
+          "filename": "live-invoice.pdf",
+          "sha256": "47b579d4f6764baa31447eea6637b79d02cf38997049222a8a35cf8dc54ab506",
+          "parse_status": "ready",
+          "status": "active",
+          "error": null,
+          "source_ref": {
+            "source_id": "file_477a7eb3f0084fb09fe77df94eaa74c9",
+            "locator": "parsed_content",
+            "kind": "user_pdf"
+          }
+        },
+        {
+          "evidence_id": "ref_payments_v1",
+          "source_id": "ref_payments_v1",
+          "kind": "reference",
+          "file_id": null,
+          "filename": null,
+          "sha256": null,
+          "parse_status": "ready",
+          "status": "active",
+          "error": null,
+          "source_ref": {
+            "source_id": "ref_payments_v1",
+            "locator": "local_reference",
+            "kind": "authored_demo_seed"
+          }
+        }
+      ],
+      "supplements": [],
+      "manual_adjustments": [],
+      "run_history": [
+        {
+          "run_id": "run_ff80fd98a8164d189a07f47835c7fea3",
+          "input_version": 2,
+          "status": "succeeded",
+          "ai_score": 5,
+          "created_at": "2026-10-04T07:07:56.698851+00:00",
+          "finished_at": "2026-10-04T07:09:51.514203+00:00"
+        }
+      ]
+    },
+    {
+      "case_id": "case_0ae5943cfb4749b5a7cb97f6faa6f466",
+      "module_key": "duplicate_financing",
+      "cap": 10,
+      "module_version": 5,
+      "input_version": 2,
+      "evaluated_input_version": 2,
+      "state": "succeeded",
+      "freshness": "current",
+      "current_run": {
+        "case_id": "case_0ae5943cfb4749b5a7cb97f6faa6f466",
+        "module_key": "duplicate_financing",
+        "run_id": "run_cd0f00e440364245a32adfbd36c15a69",
+        "input_version": 2,
+        "state": "succeeded",
+        "ai_score": 0,
+        "summary": "本地演示台账覆盖范围内无有效融资匹配，适用0分规则；该结论不代表外部融资登记核验结果。",
+        "matched_rule_ids": [
+          "NO_LOCAL_FINANCING_MATCH"
+        ],
+        "findings": [
+          {
+            "code": "NO_LOCAL_FINANCING_MATCH",
+            "statement": "截至2026-10-04，所供合成本地融资台账标注演示范围覆盖完整，记录为空，因此该范围内未发现发票CV-2026-1002-001的有效未结清融资匹配。",
+            "source_refs": [
+              {
+                "source_id": "ref_financing_v1",
+                "locator": "local_reference",
+                "kind": "authored_demo_seed"
+              }
+            ]
+          }
+        ],
+        "blocking_flags": [],
+        "missing_inputs": [],
+        "provenance": {
+          "engine_mode": "llm",
+          "analyzer": "teamrouter",
+          "model": "gpt-6.1-sol",
+          "prompt_version": "module-analysis-v1",
+          "policy_version": "demo-risk-v1",
+          "parser_version": "acroform-v1",
+          "input_hash": "559929b3fbd8c098520d585e64e596ff7bffbb778a6b8f805fa2e8398ea5fa48",
+          "generated_at": "2026-10-04T07:10:00.449136+00:00"
+        }
+      },
+      "adjustment_status": "none",
+      "requested_adjustment": 0,
+      "effective_adjustment": 0,
+      "final_score": 0,
+      "allowed_actions": [
+        "upload_evidence",
+        "save_information",
+        "save_and_rerun",
+        "full_view",
+        "rerun",
+        "adjust"
+      ],
+      "error": null,
+      "evidence": [
+        {
+          "evidence_id": "file_477a7eb3f0084fb09fe77df94eaa74c9",
+          "source_id": "file_477a7eb3f0084fb09fe77df94eaa74c9",
+          "kind": "file",
+          "file_id": "file_477a7eb3f0084fb09fe77df94eaa74c9",
+          "filename": "live-invoice.pdf",
+          "sha256": "47b579d4f6764baa31447eea6637b79d02cf38997049222a8a35cf8dc54ab506",
+          "parse_status": "ready",
+          "status": "active",
+          "error": null,
+          "source_ref": {
+            "source_id": "file_477a7eb3f0084fb09fe77df94eaa74c9",
+            "locator": "parsed_content",
+            "kind": "user_pdf"
+          }
+        },
+        {
+          "evidence_id": "ref_financing_v1",
+          "source_id": "ref_financing_v1",
+          "kind": "reference",
+          "file_id": null,
+          "filename": null,
+          "sha256": null,
+          "parse_status": "ready",
+          "status": "active",
+          "error": null,
+          "source_ref": {
+            "source_id": "ref_financing_v1",
+            "locator": "local_reference",
+            "kind": "authored_demo_seed"
+          }
+        }
+      ],
+      "supplements": [],
+      "manual_adjustments": [],
+      "run_history": [
+        {
+          "run_id": "run_cd0f00e440364245a32adfbd36c15a69",
+          "input_version": 2,
+          "status": "succeeded",
+          "ai_score": 0,
+          "created_at": "2026-10-04T07:07:56.699494+00:00",
+          "finished_at": "2026-10-04T07:10:00.455252+00:00"
+        }
+      ]
+    }
+  ],
+  "aggregate": {
+    "status": "current",
+    "current_result": {
+      "snapshot_id": "snapshot_cbc0debaf73a47bd96ab1ac9cef94ff8",
+      "aggregate_revision": 2,
+      "ai_total": 5,
+      "effective_adjustment_total": 0,
+      "final_risk_score": 5,
+      "risk_band": "LOW",
+      "module_versions": [
+        {
+          "module_key": "invoice_integrity",
+          "run_id": "run_bee5bc253c944d1fb94b112c07299afd",
+          "input_version": 3,
+          "final_score": 0
+        },
+        {
+          "module_key": "buyer_verification",
+          "run_id": "run_e4463c0d06f74ca7bd8e1bc2334bf491",
+          "input_version": 2,
+          "final_score": 0
+        },
+        {
+          "module_key": "seller_verification",
+          "run_id": "run_ed442f1dbda44c6d860859d368951552",
+          "input_version": 2,
+          "final_score": 0
+        },
+        {
+          "module_key": "relationship",
+          "run_id": "run_0d7c94f36afe4fc787dbeb4ba56fc12d",
+          "input_version": 2,
+          "final_score": 0
+        },
+        {
+          "module_key": "market_price",
+          "run_id": "run_db7f781a197b4e6b8de8f0c2739a8a18",
+          "input_version": 2,
+          "final_score": 0
+        },
+        {
+          "module_key": "payment_history",
+          "run_id": "run_ff80fd98a8164d189a07f47835c7fea3",
+          "input_version": 2,
+          "final_score": 5
+        },
+        {
+          "module_key": "duplicate_financing",
+          "run_id": "run_cd0f00e440364245a32adfbd36c15a69",
+          "input_version": 2,
+          "final_score": 0
+        }
+      ],
+      "policy_version": "demo-risk-v1",
+      "created_at": "2026-10-04T07:10:19.523310+00:00"
+    },
+    "last_valid_result": {
+      "snapshot_id": "snapshot_cbc0debaf73a47bd96ab1ac9cef94ff8",
+      "aggregate_revision": 2,
+      "ai_total": 5,
+      "effective_adjustment_total": 0,
+      "final_risk_score": 5,
+      "risk_band": "LOW",
+      "module_versions": [
+        {
+          "module_key": "invoice_integrity",
+          "run_id": "run_bee5bc253c944d1fb94b112c07299afd",
+          "input_version": 3,
+          "final_score": 0
+        },
+        {
+          "module_key": "buyer_verification",
+          "run_id": "run_e4463c0d06f74ca7bd8e1bc2334bf491",
+          "input_version": 2,
+          "final_score": 0
+        },
+        {
+          "module_key": "seller_verification",
+          "run_id": "run_ed442f1dbda44c6d860859d368951552",
+          "input_version": 2,
+          "final_score": 0
+        },
+        {
+          "module_key": "relationship",
+          "run_id": "run_0d7c94f36afe4fc787dbeb4ba56fc12d",
+          "input_version": 2,
+          "final_score": 0
+        },
+        {
+          "module_key": "market_price",
+          "run_id": "run_db7f781a197b4e6b8de8f0c2739a8a18",
+          "input_version": 2,
+          "final_score": 0
+        },
+        {
+          "module_key": "payment_history",
+          "run_id": "run_ff80fd98a8164d189a07f47835c7fea3",
+          "input_version": 2,
+          "final_score": 5
+        },
+        {
+          "module_key": "duplicate_financing",
+          "run_id": "run_cd0f00e440364245a32adfbd36c15a69",
+          "input_version": 2,
+          "final_score": 0
+        }
+      ],
+      "policy_version": "demo-risk-v1",
+      "created_at": "2026-10-04T07:10:19.523310+00:00"
+    },
+    "decision": {
+      "status": "eligible",
+      "advance_rate": 0.8,
+      "advance_amount": "6400.00",
+      "currency": "GBP",
+      "reasons": [
+        "current_low_risk"
+      ]
+    }
+  },
+  "engine_mode": "llm",
+  "error": null,
+  "navigation": {
+    "target": "result",
+    "reason": "initial_assessment_settled"
+  }
+}

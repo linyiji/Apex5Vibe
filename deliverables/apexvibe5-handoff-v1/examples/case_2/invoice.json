@@ -1,0 +1,65 @@
+{
+  "invoice_id": "inv_case_2_v1",
+  "invoice_number": "CV-2026-1002-002",
+  "invoice_date": "2026-10-02",
+  "ship_date": "2026-10-02",
+  "due_date": "2026-11-01",
+  "payment_terms": "Net 30 days from invoice date",
+  "payment_term_days": 30,
+  "currency": "GBP",
+  "seller": {
+    "entity_id": "ent_cedarvale",
+    "legal_name": "Cedarvale Office Goods Limited",
+    "tax_id": "HK-SYN-100001",
+    "country": "Hong Kong",
+    "address": "Unit 8, 18 Fictional Harbour Road\nKowloon, Hong Kong"
+  },
+  "buyer": {
+    "entity_id": "ent_meridianleaf",
+    "legal_name": "Meridianleaf Workplace Ltd.",
+    "tax_id": "UK-SYN-200001",
+    "country": "United Kingdom",
+    "address": "30 Fictional Orchard Lane\nBristol, ZZ1 0ZZ"
+  },
+  "consignee_same_as_buyer": true,
+  "declared_related": false,
+  "purchase_order_number": "ML-PO-2026-0925-002",
+  "air_waybill_number": "SYN-AWB-261002-002",
+  "line_items": [
+    {
+      "sku": "CV-TOTE-01",
+      "description": "Cotton canvas tote bags\nSKU: CV-TOTE-01; natural beige\n100% cotton; 38 x 42 cm\nFor office supply resale\n50 pieces per carton",
+      "quantity": 6250,
+      "unit": "PCS",
+      "unit_price": "8.00",
+      "line_total": "50000.00",
+      "hs_code": "420292",
+      "country_of_manufacture": "China"
+    }
+  ],
+  "subtotal": "50000.00",
+  "charges": {
+    "insurance": "0.00",
+    "freight": "0.00",
+    "packing": "0.00",
+    "handling": "0.00",
+    "other": "0.00"
+  },
+  "total": "50000.00",
+  "trade_terms": "DAP",
+  "delivery_location": "Bristol, UK",
+  "source_refs": [
+    {
+      "source_id": "pdf_case_2",
+      "locator": "page=1; AcroForm verified against rendered page",
+      "kind": "user_pdf"
+    },
+    {
+      "source_id": "xlsx_case_2",
+      "locator": "Invoice Fields!B5:D66",
+      "kind": "user_xlsx"
+    }
+  ],
+  "extraction_method": "acroform_verified",
+  "synthetic": true
+}
