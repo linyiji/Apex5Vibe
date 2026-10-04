@@ -93,6 +93,10 @@ class Evidence(Base):
     case_id: Mapped[str] = mapped_column(index=True)
     module_key: Mapped[str | None] = mapped_column(nullable=True)
     kind: Mapped[str]
+    evidence_group: Mapped[str | None] = mapped_column(nullable=True)
+    version: Mapped[int] = mapped_column(default=1)
+    supersedes_evidence_id: Mapped[str | None] = mapped_column(nullable=True)
+    status: Mapped[str] = mapped_column(default="active")
     filename: Mapped[str | None] = mapped_column(nullable=True)
     sha256: Mapped[str | None] = mapped_column(nullable=True)
     storage_key: Mapped[str | None] = mapped_column(nullable=True)

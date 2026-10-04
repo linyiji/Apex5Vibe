@@ -199,6 +199,8 @@ def create_app(settings=None, database=None):
         files: list[UploadFile] = File(),
         expected_module_version: int = Form(ge=1),
         rerun: bool = Form(False),
+        evidence_group: str | None = Form(None, pattern=r"^[a-z][a-z0-9_]{0,63}$"),
+        supersedes_evidence_id: str | None = Form(None),
     ):
         if len(files) > settings.max_files:
             raise AppError("INVALID_FILES", "每次最多10个文件")
@@ -212,12 +214,23 @@ def create_app(settings=None, database=None):
             ],
             "expected_module_version": expected_module_version,
             "rerun": rerun,
+            "evidence_group": evidence_group,
+            "supersedes_evidence_id": supersedes_evidence_id,
         }
         return command(
             f"POST:/cases/{case_id}/{module_key}/evidence",
             idempotency_key,
             payload,
-            lambda s: svc.upload_evidence(s, case_id, module_key, contents, expected_module_version, rerun),
+            lambda s: svc.upload_evidence(
+                s,
+                case_id,
+                module_key,
+                contents,
+                expected_module_version,
+                rerun,
+                evidence_group,
+                supersedes_evidence_id,
+            ),
         )
 
     @app.post("/v1/cases/{case_id}/modules/{module_key}/supplements", tags=["modules"], status_code=202)

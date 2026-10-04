@@ -44,7 +44,15 @@ python scripts/live_case1.py --verify-rerun
 
 预期结果：发票 `CV-2026-1002-001`、GBP 8,000.00、风险指数 **5 / 100 LOW**、`eligible`、80% 演示预支额度 **GBP 6,400.00**。预期来自公开的合成参考数据和演示计分规则，服务端没有按文件名或 Case 编号硬编码结果。任何断言失败都会保留运行记录并以非零状态退出。
 
-详细输出保存到 `runtime/live-case1.json`。实际验收记录见 [`docs/validation/`](docs/validation/)。Case 2 原件及架构样例保留，本阶段以 Case 1 真实闭环为验收范围。
+详细输出保存到 `runtime/live-case1.json`。实际验收记录见 [`docs/validation/`](docs/validation/)。
+
+补充规格已扩展到 Case 2 的错误字段表和修正版替代流程：
+
+```bash
+python scripts/live_case2.py
+```
+
+该脚本期望真实 AI 得到 **35 → 50 → 35 HIGH**，两次均只重跑 `invoice_integrity`，主 PDF 金额始终 GBP 50,000.00。字段映射、参考资料筛选及替代接口见 [补充实现说明](docs/local-data-and-replacement.md)。本轮仅本地测试；GitHub 上传等待前后端联调完成后再执行。
 
 ## 已实现的行为
 
@@ -54,6 +62,7 @@ python scripts/live_case1.py --verify-rerun
 - AI 根据当前证据选择规则并提供引用；后端验证结构、引用和规则，映射分数并聚合。人工调整独立保存，AI 重跑后需要重新确认。
 - 初评批次全部结束后 `navigation.target=result`；失败与缺资料也结束等待，但不生成虚假的零分或 Low 结果。
 - 持久任务队列、有限重试、租约恢复、旧任务提交保护、版本冲突检查与请求幂等。
+- Excel 按字段键映射及与 PDF 的差异校验；精确筛选本地参考资料；证据组显式版本替代，解析成功后原子激活，失败保留旧证据。
 - PDF 发票表单解析；PDF 文本、XLSX、CSV 补件。未实现的 XLS、Word、图片/OCR 在 capabilities 中明确标为 unavailable。
 
 ## 验证与交接

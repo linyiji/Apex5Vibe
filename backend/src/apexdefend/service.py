@@ -21,8 +21,10 @@ from .db import (
 )
 from .domain import CAPS, DEPENDENCIES, POLICY, REFERENCE_KINDS, adjusted_score, decision, module_facts
 from .errors import AppError
+from .field_sheets import field_sheet, invoice_checks
 from .models import MODULES
 from .parsers import validate_upload
+from .references import select_reference
 
 
 class Service:
@@ -291,6 +293,7 @@ class Service:
             select(Evidence).where(
                 Evidence.case_id == case.id,
                 Evidence.module_key == module.key,
+                Evidence.status.in_(["pending", "failed"]),
                 Evidence.parse_status != "ready",
             )
         )
@@ -366,17 +369,59 @@ class Service:
             filename=Path(filename).name,
             sha256=hashlib.sha256(data).hexdigest(),
             storage_key=relative,
+            status="pending",
         )
         s.add(evidence)
         return evidence
 
-    def upload_evidence(self, s, case_id, key, files, expected_version, rerun):
+    def upload_evidence(
+        self,
+        s,
+        case_id,
+        key,
+        files,
+        expected_version,
+        rerun,
+        evidence_group=None,
+        supersedes_evidence_id=None,
+    ):
         case, module = self.case(s, case_id), self.module(s, case_id, key)
         self.expected_module(module, expected_version)
         if not 1 <= len(files) <= self.settings.max_files:
             raise AppError("INVALID_FILES", "每次请上传1到10个文件")
         for name, data in files:
             validate_upload(name, data, self.settings.max_file_bytes)
+        if supersedes_evidence_id and not evidence_group:
+            raise AppError("EVIDENCE_GROUP_REQUIRED", "替代上传必须指定evidence_group")
+        if evidence_group and len(files) != 1:
+            raise AppError("INVALID_FILES", "每个证据组一次只能上传一个版本")
+        if evidence_group == "invoice_field_sheet" and (
+            key != "invoice_integrity" or Path(files[0][0]).suffix.lower() != ".xlsx"
+        ):
+            raise AppError("INVALID_EVIDENCE_GROUP", "invoice_field_sheet需要invoice_integrity模块的XLSX文件")
+        group_versions = (
+            list(
+                s.scalars(
+                    select(Evidence).where(
+                        Evidence.case_id == case_id,
+                        Evidence.module_key == key,
+                        Evidence.evidence_group == evidence_group,
+                    )
+                )
+            )
+            if evidence_group
+            else []
+        )
+        active = next((e for e in group_versions if e.status == "active"), None)
+        replacement = s.get(Evidence, supersedes_evidence_id) if supersedes_evidence_id else None
+        if supersedes_evidence_id and (
+            not replacement
+            or replacement.case_id != case_id
+            or replacement.module_key != key
+            or replacement.evidence_group != evidence_group
+            or replacement.status != "active"
+        ):
+            raise AppError("INVALID_REPLACEMENT", "只能替代同Case、同模块、同组的当前有效证据", 409)
         ids, job, added = [], None, False
         for name, data in files:
             sha = hashlib.sha256(data).hexdigest()
@@ -385,13 +430,25 @@ class Service:
                     Evidence.case_id == case_id,
                     Evidence.module_key == key,
                     Evidence.kind == "file",
+                    Evidence.evidence_group == evidence_group,
+                    Evidence.status.in_(["active", "pending"]),
                     Evidence.sha256 == sha,
                 )
             )
             if duplicate:
                 ids.append(duplicate.id)
                 continue
+            if evidence_group:
+                if any(e.status == "pending" for e in group_versions):
+                    raise AppError("REPLACEMENT_PENDING", "此证据组的新版本仍在解析", 409)
+                if active and not replacement:
+                    raise AppError(
+                        "REPLACEMENT_REQUIRED", "当前组已有有效证据，请显式指定supersedes_evidence_id", 409
+                    )
             evidence = self.store_file(s, case_id, key, name, data)
+            evidence.evidence_group = evidence_group
+            evidence.version = max((e.version for e in group_versions), default=0) + 1
+            evidence.supersedes_evidence_id = supersedes_evidence_id
             ids.append(evidence.id)
             job = Job(
                 id=uid("job"),
@@ -412,6 +469,27 @@ class Service:
         self.emit(s, case, "evidence_uploaded", key, {"evidence_ids": ids, "deduplicated": not added})
         s.flush()
         return 202, self.accepted(case_id, key, job, module, ids)
+
+    def activate_evidence(self, s, evidence, module):
+        if evidence.evidence_group:
+            old = (
+                s.get(Evidence, evidence.supersedes_evidence_id) if evidence.supersedes_evidence_id else None
+            )
+            if old and old.status != "active":
+                raise AppError("REPLACEMENT_CONFLICT", "被替代证据已不是有效版本", 409)
+            for previous in s.scalars(
+                select(Evidence).where(
+                    Evidence.case_id == evidence.case_id,
+                    Evidence.module_key == evidence.module_key,
+                    Evidence.evidence_group == evidence.evidence_group,
+                    Evidence.id != evidence.id,
+                )
+            ):
+                if previous.status in ["active", "failed"]:
+                    previous.status = "superseded"
+            s.flush()
+        evidence.status = "active"
+        self.invalidate(module)
 
     def adjust(self, s, case_id, key, body):
         case, module = self.case(s, case_id), self.module(s, case_id, key)
@@ -517,7 +595,7 @@ class Service:
         if (
             assessable
             and not self.active_job(s, module)
-            and not any(e.parse_status != "ready" for e in evidence)
+            and not any(e.status in ["pending", "failed"] for e in evidence)
         ):
             actions.append("rerun")
             if module.state == "succeeded" and module.freshness == "current":
@@ -589,7 +667,10 @@ class Service:
             "filename": e.filename,
             "sha256": e.sha256,
             "parse_status": e.parse_status,
-            "status": "active",
+            "status": e.status,
+            "evidence_group": e.evidence_group,
+            "version": e.version,
+            "supersedes_evidence_id": e.supersedes_evidence_id,
             "error": e.error,
             "source_ref": {
                 "source_id": e.id,
@@ -696,14 +777,9 @@ class Service:
     def inputs(self, s, case, module):
         records = []
         for reference in s.scalars(select(Reference).where(Reference.kind.in_(REFERENCE_KINDS[module.key]))):
-            doc = reference.document
-            if reference.kind == "entity_profile":
-                side = "buyer" if module.key == "buyer_verification" else "seller"
-                if doc["data"]["entity_id"] != case.invoice[side]["entity_id"]:
-                    continue
-                if doc["data"].get("verification_status") != "demo_local_verified":
-                    continue
-            records.append(doc)
+            doc = select_reference(reference.document, module.key, case.invoice, POLICY["as_of"])
+            if doc:
+                records.append(doc)
         source = case.invoice["source_refs"][0]
         sources = [source] + [
             {"source_id": r["source_id"], "locator": "local_reference", "kind": "authored_demo_seed"}
@@ -711,7 +787,9 @@ class Service:
         ]
         evidence = []
         for e in s.scalars(
-            select(Evidence).where(Evidence.case_id == case.id, Evidence.module_key == module.key)
+            select(Evidence).where(
+                Evidence.case_id == case.id, Evidence.module_key == module.key, Evidence.status == "active"
+            )
         ):
             if e.parse_status != "ready":
                 raise AppError("EVIDENCE_NOT_READY", "模块证据尚未解析成功")
@@ -722,14 +800,22 @@ class Service:
                     "kind": "analyst_statement" if e.kind == "note" else "uploaded_file",
                 }
             )
-            evidence.append({"source_id": e.id, "kind": e.kind, "content": e.content})
+            content = dict(e.content)
+            if module.key == "invoice_integrity" and e.kind == "file":
+                mapped = field_sheet(content, e.id, case.invoice)
+                if mapped:
+                    content["field_sheet"] = mapped
+            evidence.append({"source_id": e.id, "kind": e.kind, "content": content})
+        facts = module_facts(module.key, case.invoice)
+        if module.key == "invoice_integrity":
+            facts["deterministic_checks"] = invoice_checks(case.invoice)
         return {
             "case_id": case.id,
             "module_key": module.key,
             "input_version": module.input_version,
             "as_of": POLICY["as_of"],
             "policy_version": POLICY["policy_version"],
-            "facts": module_facts(module.key, case.invoice),
+            "facts": facts,
             "reference_records": records,
             "sources": sources,
             "evidence": evidence,

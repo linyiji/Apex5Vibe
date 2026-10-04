@@ -114,7 +114,7 @@ def score_analysis(analysis, inputs, run_id, model):
             "engine_mode": "llm",
             "analyzer": "teamrouter",
             "model": model,
-            "prompt_version": "module-analysis-v1",
+            "prompt_version": "module-analysis-v2",
             "policy_version": POLICY["policy_version"],
             "parser_version": "acroform-v1",
             "input_hash": content_hash(inputs),

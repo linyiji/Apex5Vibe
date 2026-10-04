@@ -108,9 +108,9 @@ def new_case(client, buyer=None, seller=None):
     return result.json()["case_id"]
 
 
-def upload(client, case_id, worker):
+def upload(client, case_id, worker, case_number=1):
     ws = client.get(f"/v1/cases/{case_id}").json()
-    pdf = (HANDOFF / "source/ApexDefend_Case_1_Invoice.pdf").read_bytes()
+    pdf = (HANDOFF / f"source/ApexDefend_Case_{case_number}_Invoice.pdf").read_bytes()
     response = client.post(
         f"/v1/cases/{case_id}/invoice",
         headers=key(),

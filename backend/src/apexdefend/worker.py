@@ -7,8 +7,10 @@ from sqlalchemy import and_, or_, select
 from .analyzer import TeamRouterAnalyzer
 from .config import Settings
 from .db import Database, Evidence, Job, Run, now
-from .domain import POLICY, score_analysis
+from .domain import POLICY, REFERENCE_KINDS, score_analysis
 from .errors import AppError
+from .field_sheets import field_sheet
+from .models import AIAnalysis
 from .parsers import parse_evidence, parse_invoice
 from .service import Service
 
@@ -117,12 +119,33 @@ class Worker:
                     raise AppError("FILE_NOT_FOUND", "任务文件不存在", 404)
                 path = self.service.storage / evidence.storage_key
                 filename, evidence_id = evidence.filename, evidence.id
+                group, target_module = evidence.evidence_group, job.module_key
+                invoice_snapshot = self.service.case(s, case_id).invoice
         # File parsing and model calls are intentionally outside all DB transactions.
         if kind == "module_run":
-            analysis, provider = self.analyzer.analyze(inputs, POLICY)
+            missing = set(REFERENCE_KINDS[inputs["module_key"]]) - {
+                r["kind"] for r in inputs["reference_records"]
+            }
+            if missing:
+                analysis = AIAnalysis(
+                    status="needs_info",
+                    summary="缺少符合筛选条件的本地参考资料",
+                    matched_rule_ids=[],
+                    findings=[],
+                    missing_inputs=sorted(missing),
+                )
+                provider = {
+                    "provider": "local_validation",
+                    "requested_model": self.service.settings.teamrouter_model,
+                    "reported_model": None,
+                }
+            else:
+                analysis, provider = self.analyzer.analyze(inputs, POLICY)
             output = score_analysis(
                 analysis, inputs, payload["run_id"], self.service.settings.teamrouter_model
             )
+            if missing:
+                output["provenance"].update(analyzer="local_validation", model=None)
         else:
             data = path.read_bytes()
             output = (
@@ -131,6 +154,12 @@ class Worker:
                 else parse_evidence(filename, data)
             )
             provider = None
+            if kind == "parse_evidence" and target_module == "invoice_integrity":
+                mapped = field_sheet(output, evidence_id, invoice_snapshot)
+                if group == "invoice_field_sheet" and not mapped:
+                    raise AppError("INVALID_FIELD_SHEET", "字段表需要Invoice Fields工作表")
+                if mapped:
+                    output["field_sheet"] = mapped
         with self.db.transaction() as s:
             job = self.owned(s, job_id, token)
             if not job:
@@ -163,16 +192,19 @@ class Worker:
                 evidence = s.get(Evidence, payload["evidence_id"])
                 evidence.content, evidence.parse_status, evidence.error = output, "ready", None
                 if kind == "parse_invoice":
+                    evidence.status = "active"
                     case.invoice, case.error, case.stage = output, None, "resolving"
                     self.service.resolve_parties(s, case)
                 else:
                     module = self.service.module(s, case_id, job.module_key)
+                    self.service.activate_evidence(s, evidence, module)
                     if module.rerun_requested:
                         s.flush()
                         if not s.scalar(
                             select(Evidence).where(
                                 Evidence.case_id == case_id,
                                 Evidence.module_key == module.key,
+                                Evidence.status.in_(["pending", "failed"]),
                                 Evidence.parse_status != "ready",
                             )
                         ):
@@ -237,6 +269,7 @@ class Worker:
             else:
                 evidence = s.get(Evidence, job.payload["evidence_id"])
                 evidence.error, evidence.parse_status = error.body(), "failed"
+                evidence.status = "failed"
                 if job.kind == "parse_invoice":
                     case.error, case.stage = error.body(), "draft"
                 else:

@@ -22,6 +22,13 @@ def install_contracts(app):
     definitions["Finding"]["required"].remove("confidence")
     definitions["ModuleView"]["properties"]["error"] = nullable(ref("ErrorBody"))
     definitions["Evidence"]["properties"]["error"] = nullable(ref("ErrorBody"))
+    definitions["Evidence"]["properties"]["status"] = {
+        "type": "string",
+        "enum": ["active", "pending", "failed", "superseded", "withdrawn"],
+    }
+    definitions["Evidence"]["properties"]["evidence_group"] = nullable({"type": "string"})
+    definitions["Evidence"]["properties"]["version"] = {"type": "integer", "minimum": 1}
+    definitions["Evidence"]["properties"]["supersedes_evidence_id"] = nullable({"type": "string"})
     definitions["Workspace"]["properties"]["error"] = nullable(ref("ErrorBody"))
     definitions["Workspace"]["properties"]["parties"]["items"] = {
         "anyOf": [ref("PartyResolution"), ref("PartySelection")]

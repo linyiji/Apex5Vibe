@@ -2445,6 +2445,29 @@
             "type": "boolean",
             "title": "Rerun",
             "default": false
+          },
+          "evidence_group": {
+            "anyOf": [
+              {
+                "type": "string",
+                "pattern": "^[a-z][a-z0-9_]{0,63}$"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Evidence Group"
+          },
+          "supersedes_evidence_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Supersedes Evidence Id"
           }
         },
         "type": "object",
@@ -3240,6 +3263,9 @@
             "type": "string",
             "enum": [
               "active",
+              "pending",
+              "failed",
+              "superseded",
               "withdrawn"
             ]
           },
@@ -3250,6 +3276,30 @@
             "anyOf": [
               {
                 "$ref": "#/components/schemas/ErrorBody"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "evidence_group": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "version": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "supersedes_evidence_id": {
+            "anyOf": [
+              {
+                "type": "string"
               },
               {
                 "type": "null"

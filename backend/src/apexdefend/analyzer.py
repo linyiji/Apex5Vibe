@@ -15,6 +15,10 @@ Cite supplied source IDs for every finding. Do not claim external registry or re
 Synthetic local records are demo references, not real due diligence. A large trade is not proof of fraud.
 Reconsider the entire evidence snapshot each run; new evidence can increase, decrease or leave risk unchanged.
 Return a concise Chinese summary and factual findings. Never output a financing decision.
+For invoice_integrity, examine both PDF arithmetic and active field-sheet comparisons. A confirmed conflict
+between the active sheet and the PDF is an integrity conflict even if the PDF's own arithmetic is correct.
+Explain each discrepancy and its sheet/cell location when present. Apply only the highest applicable rule,
+not one score per discrepancy. Attachments supplement, and never silently overwrite, the main PDF facts.
 """
 
 

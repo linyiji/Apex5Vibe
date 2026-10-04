@@ -88,6 +88,11 @@ SQLite 采用 `BEGIN IMMEDIATE` 短写事务及唯一索引，防止同模块同
 
 ## 范围边界
 
-当前主发票解析器针对提供的 AcroForm 模板，非任意扫描发票 OCR。补件支持有文本的 PDF、无公式求值的 XLSX 和 UTF-8 CSV；XLS、Word、图片能力预留但不可用。Excel 解压大小、单元格数量、PDF 页数、文件大小、AI 上下文均有限额。解析失败显式阻止目标模块继续出分，需人工检查文件；本版未提供删除失败补件接口。
+当前主发票解析器针对提供的 AcroForm 模板，非任意扫描发票 OCR。补件支持有文本的 PDF、无公式求值的 XLSX 和 UTF-8 CSV；XLS、Word、图片能力预留但不可用。Excel 解压大小、单元格数量、PDF 页数、文件大小、AI 上下文均有限额。解析失败显式阻止目标模块继续出分；有分组的失败替代可通过有效修正版恢复，普通无分组失败补件暂无删除接口。
 
 本地单实例数据库、固定演示身份、无外部工商/银行/融资网络查询。后续生产化可替换持久队列、对象存储、数据库和身份系统，保留 Case/Module/Run 契约。
+
+
+## 补充：本地数据与显式修正
+
+已增加字段键映射、精确筛选本地参考资料及解析验证后的原子证据替代。接入 `evidence_group / supersedes_evidence_id`，展示 pending / active / failed / superseded 版本状态。完整说明与请求表见 [补充实现说明](local-data-and-replacement.md)。本轮仅本地测试；前后端联调后再上传 GitHub。

@@ -61,3 +61,8 @@ Queue 为 GET `/v1/cases?risk_band=LOW|HIGH&limit=50&cursor=...`。其中 `risk_
 本轮未实现任意规范化发票字段 PATCH；更正发票可重新上传（`replace=true`，无活动任务时），会使所有模块过期。主体选择有独立 PATCH 接口。Next.js 字段编辑若要持久化，应在后续新增有审计的后端编辑契约后再开放。
 
 `scripts/live_case1.py --verify-rerun` 是接入流程的可执行参考；`runtime/live-case1.json` 是本地真实运行响应，不应打包到前端作为模拟“真实调用”。
+
+
+## 补充：本地数据与显式修正
+
+已增加字段键映射、精确筛选本地参考资料及解析验证后的原子证据替代。接入 `evidence_group / supersedes_evidence_id`，展示 pending / active / failed / superseded 版本状态。完整说明与请求表见 [补充实现说明](local-data-and-replacement.md)。本轮仅本地测试；前后端联调后再上传 GitHub。

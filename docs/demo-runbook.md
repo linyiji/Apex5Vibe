@@ -39,4 +39,9 @@
 
 离线 pytest 验证协议/业务正确性，测试分析器明确标记 `test_only`。`live_case1.py` 要求运行记录的 provider 为 teamrouter、requested_model 为 gpt-6.1-sol，并检查真实最终输出。脚本保存完整 JSON 后才退出，包括失败情况，不会把失败运行标记为成功。
 
-后端接口与前端尚未实际联调；本轮通过 HTTP 脚本完成闭环。Case 2 仅保留原始资料和设计样例，未作为本轮真实模型验收结论。
+后端接口与前端尚未实际联调；本轮通过 HTTP 脚本完成闭环。Case 2 的补充接口和真实验收步骤见 [补充实现说明](local-data-and-replacement.md)。
+
+
+## 补充：本地数据与显式修正
+
+已增加字段键映射、精确筛选本地参考资料及解析验证后的原子证据替代。接入 `evidence_group / supersedes_evidence_id`，展示 pending / active / failed / superseded 版本状态。完整说明与请求表见 [补充实现说明](local-data-and-replacement.md)。本轮仅本地测试；前后端联调后再上传 GitHub。
